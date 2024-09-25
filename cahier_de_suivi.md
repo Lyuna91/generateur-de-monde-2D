@@ -38,8 +38,9 @@ Etablissement des missions spécifiques par membre pour le sprint 1 :
 
 ---
 
-# Update Jade
+# Update Jade - 25//09/2024 - 22h
 
 J'ai créé le cahier de suivi, la documentation technique et le doc qui répertorie nos tests pour le debogage
 On en reparle en détail vendredi, en attendant pensez à bien mettre vos updates des missions qu'on s'est assigné aujourd'hui
---
+
+---
