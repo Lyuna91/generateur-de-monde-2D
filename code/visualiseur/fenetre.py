@@ -16,7 +16,7 @@ class Fenetre:
         for y in range(0, self.hauteur, taille_case):
             pygame.draw.line(self.ecran, couleur, (0, y), (self.largeur, y))
 
-    def afficher(self):
+    def afficher_fenetre(self):
         ouvert = True
         while ouvert:
             for event in pygame.event.get():
