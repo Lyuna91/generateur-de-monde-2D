@@ -42,5 +42,14 @@ Etablissement des missions spécifiques par membre pour le sprint 1 :
 
 J'ai créé le cahier de suivi, la documentation technique et le doc qui répertorie nos tests pour le debogage
 On en reparle en détail vendredi, en attendant pensez à bien mettre vos updates des missions qu'on s'est assigné aujourd'hui
+--
 
----
+# 26/09/2024
+
+# Update Carlos
+
+Euhhh JE devais creer le cahier de suivis de base...
+
+Bref, j'ai ajouté fonctions.py dans lequel se trouve les fonctions que l'on va réaliser, avec les classes que l'on va utilisé. Je vous invite a aller tchequer et a ajouter ce que vous voulez.
+
+@JadeVu (Yep sorry pour le cahier de suivi, je l'ai fais pour pouvoir noter le debrief de réunion tout de suite pour pas oublier)
