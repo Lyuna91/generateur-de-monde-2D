@@ -65,6 +65,8 @@ J'ai d'abord créer un dossier _code_ pour y mettre le code de l'application, j'
 créer un autre dossier _visualiseur_ à l'intérieur. J'y ai mis une classe fenêtre, pour ouvrir une fenêtre pygame et de quoi afficher un quadrillage pour avoir une meilleure idée de la façon dont les
 pixels seront affichés.
 
+@JadeVu
+
 ---
 
 # 29/09/2024
@@ -74,5 +76,6 @@ pixels seront affichés.
 On a décidé de tout creer en anglais, donc j'ai mis à jour les fonctions (fonctions.py) avec les derniers modifications du cahier des charges. J'ai aussi mis à jour la documentation technique.
 
 @YunaVu
+@JadeVu
 
 ---
