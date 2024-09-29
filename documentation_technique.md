@@ -33,6 +33,7 @@ Ex: couleur_pixel, position_pixel ect...
 
 # Fonctions
 
-Le nommage des fonctions suit la même logique que celle des Classes.
+Le nom d'une fonction commence avec un mot tout en minuscule et si le nom est composé de plusieurs mots
+on mettra une majuscule au debut de chaque nouveaux mots
 
 # Algorithmes

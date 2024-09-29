@@ -1,125 +1,147 @@
 """
 Il s'agit de la liste des fonctions a réaliser ( pas encore complete)
 
-Grammaire à respecter:
+"""
 
-    - Pour les Classes : le nom de la classe acommence avec une Majuscule et si le nom est composé de plusieurs noms on mettra une majuscule au debut de chaque nouveaux noms. Ex: class GenerateurDeCarte, GenerateurCarte ect...
+"""
+Package Generation
+"""
+class Map: 
 
-    - Pour les fonctions : pareil que pour les classes
+    def generateMap():
+        """
+        Cette fonction génère une carte de taille définie (petite, moyenne, grande)
+        selon les paramètres choisis par l'utilisateur.
+        
+        """
+        pass
 
-    - Pour les variable : Toutes les lettres en minuscules et l'usage de "_" pour separer les mots Ex: couleur_pixel, position_pixel ect...
+    def generateEmptyMap(lenght, width):
+        pass
+    
+
+    def generateContinent():
+        pass
+
+    def generateArchipelago():
+        pass
+
+    def generatePangea():
+        pass
+
+    def generateWorld():
+        pass
+
+    def generatePixels():
+        pass
+
+
+    def generateBiome():
+        pass
+
+    def generateCountry():
+        pass
+
+    def generateBorder():
+        pass
+
+    def generateRiver():
+        pass
+
+    def generateRoad():
+        pass
+
+    def generateCities(): 
+        pass
+
+
+
+class Biome:
+    """
+    Classe permettant de définir les biomes.
+    
+    """
+    pass
+
+class River:
+    """
+    Classe permettant de définir les rivière.
+    
+    """
+    pass
+
+class Road:
+    """
+    Classe permettant de définir les routes.
+    
+    """
+    pass
+
+class Border:
+    """
+    Classe permettant de définir les bords.
+    
+    """
+    pass
+
+class Zone:
+    """
+    Classe permettant de définir les zones.
+    
+    """
+    pass
+
+class Pixel:
+    """
+    Classe permettant de définir les pixels.
+    
+    """
+    pass
+
+class Country:
+    """
+    Classe permettant de définir les pays.
+    
+    """
+    pass
+
+
+BiomeName = {
+    0: "Plain",
+    1: "Mountain",
+    2: "Desert",
+    3: "Forest",
+    4: "Ocean",
+    5: "Sea"}
+
+
+
+
+"""
+Package Display
 
 """
 
-
-
-class Route:
-    """Une classe pour les routes"""
-    def __init__(self, id, liste_des_pixels = []):
-        self.id = id
-        self.liste_des_pixels = liste_des_pixels
-
-    def ajouterPixel (self, pixel):
-        """ ajoute un pixel à une route
-        :param self:
-        :param pixel (tuple ou liste) les informations liés aux pixels
-        """
-        self.liste_des_pixels.append
-
-    def tracerRoute(self,pixel_d, pixel_f):
-        """ Trace une route optimal entre deux pixel, 
-        on voudras determiner le meilleur chemin (le plus court)
-        
-        :param pixel_d: le pixel de départ
-        :param pixel_f: le pixel d'arrivé
-        """
-
-
-
-class GenerateurCarte:
-
-    def genererCarteVide(longueur, largeur):
-        """ Cree une carte blanche
-        :param longueur: la longueur de la fenetre d'affichage
-        :param largeur: la largeur de la fenetre
-        """
-
-    def genererCarteTaille(taille):
-        """
-        Cree une carte blanche en fonction de la taille rentrée en parametre
-        :param taille: (str) M pour moyenne, P pour petite, G pour grande
-        """
-
-    def genererArchipel():
-        """
-        Cree une archipel
-        """
-    
-    def genererContinent():
-        """
-        Cree un continent
-        """
-
-    def genererPange():
-        """
-        Cree une pangée
-        """
-
-    def genererMonde(type_monde):
-        """
-        Cree un monde en fonction du type choisis
-        par l'utilisateur
-
-        :param type_monde: type du monde : archipel, pangée ect... 
-        """
-
-    def genererBiome(biome):
-        """
-        Cree un biome sur une carte
-        :param biome: (dict) les informations du biome
-        """
-
-    def genererRoute(route):
-        """
-        Cree une route sur la carte
-        :param route: (dict) les informations de la route
-        """
-
-
-class Biome: 
+class Vizualisation:
     """
-    Les Biomes de la Carte
+    Classe permettant d'afficher les graphiques.
     """
     pass
 
-
-class Riviere: 
-
+class Render:
     """
-    Les rivieres de la map
-    
+    Classe permettant d'afficher les graphiques.
     """
-
     pass
 
-
-class VisualisateurCarte:
-
+class Menu:
     """
-    Visualisation de la Map
-    
+    Classe permettant d'afficher les menus.
     """
+    pass
 
-class ModificateurCarte:
-
+class Panel:
     """
-    Modification de la map , de l'affichage, sauvegarde et chargement de la map  aussi appelle ControleurCarte
-    
+    Classe permettant d'afficher les graphiques.
     """
-
-class Render: 
-    """
-    Render ...
-
-    """
-
+    pass
