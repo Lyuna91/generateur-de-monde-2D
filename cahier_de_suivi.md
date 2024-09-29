@@ -35,6 +35,7 @@ Etablissement des missions spécifiques par membre pour le sprint 1 :
   Réunion pour ces pushs prévu pour le vendredi 27 septembre pour s'assurer du bon fonctionnement de Github
 
 @JadeVu
+@YunaVu
 
 ---
 
@@ -42,14 +43,24 @@ Etablissement des missions spécifiques par membre pour le sprint 1 :
 
 J'ai créé le cahier de suivi, la documentation technique et le doc qui répertorie nos tests pour le debogage
 On en reparle en détail vendredi, en attendant pensez à bien mettre vos updates des missions qu'on s'est assigné aujourd'hui
---
+
+## @YunaVu
 
 # 26/09/2024
 
-# Update Carlos
+## Update Carlos
 
 Euhhh JE devais creer le cahier de suivis de base...
 
 Bref, j'ai ajouté fonctions.py dans lequel se trouve les fonctions que l'on va réaliser, avec les classes que l'on va utilisé. Je vous invite a aller tchequer et a ajouter ce que vous voulez.
 
 @JadeVu (Yep sorry pour le cahier de suivi, je l'ai fais pour pouvoir noter le debrief de réunion tout de suite pour pas oublier)
+@YunaVu Carlos 0/20
+
+## Update Yuna
+
+J'ai d'abord créer un dossier _code_ pour y mettre le code de l'application, j'ai ensuite créer
+créer un autre dossier _visualiseur_ à l'intérieur. J'y ai mis une classe fenêtre, pour ouvrir une fenêtre pygame et de quoi afficher un quadrillage pour avoir une meilleure idée de la façon dont les
+pixels seront affichés.
+
+---
