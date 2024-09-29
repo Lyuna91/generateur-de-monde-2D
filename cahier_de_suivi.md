@@ -36,6 +36,7 @@ Etablissement des missions spécifiques par membre pour le sprint 1 :
 
 @JadeVu
 @YunaVu
+@CarlosVu
 
 ---
 
@@ -45,6 +46,7 @@ J'ai créé le cahier de suivi, la documentation technique et le doc qui répert
 On en reparle en détail vendredi, en attendant pensez à bien mettre vos updates des missions qu'on s'est assigné aujourd'hui
 
 @YunaVu
+@CarlosVu
 
 ---
 
@@ -57,7 +59,8 @@ Euhhh JE devais creer le cahier de suivis de base...
 Bref, j'ai ajouté fonctions.py dans lequel se trouve les fonctions que l'on va réaliser, avec les classes que l'on va utilisé. Je vous invite a aller tchequer et a ajouter ce que vous voulez.
 
 @JadeVu (Yep sorry pour le cahier de suivi, je l'ai fais pour pouvoir noter le debrief de réunion tout de suite pour pas oublier)
-@YunaVu Carlos 0/20
+@YunaVu
+@CarlosVu
 
 ## Update Yuna
 
@@ -66,6 +69,7 @@ créer un autre dossier _visualiseur_ à l'intérieur. J'y ai mis une classe fen
 pixels seront affichés.
 
 @JadeVu
+@CarlosVu
 
 ---
 
@@ -77,5 +81,6 @@ On a décidé de tout creer en anglais, donc j'ai mis à jour les fonctions (fon
 
 @YunaVu
 @JadeVu
+@CarlosVu
 
 ---
