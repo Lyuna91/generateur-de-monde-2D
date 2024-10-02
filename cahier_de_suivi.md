@@ -84,3 +84,37 @@ On a décidé de tout creer en anglais, donc j'ai mis à jour les fonctions (fon
 @CarlosVu
 
 ---
+
+# Débrief Réunion 2/10/2024
+
+Débrief des différents commit sur le projet
+
+### Hierarchisation du projet
+
+Dossiers différents à créer entre les différents packages : en l'occurence Generation et affichage
+Fichiers différents à créer entre les classes : en l'occurence, biome, river, road, etc...
+
+### Cahier des charges
+
+Ajouter le cahier des charges (et notamment la partie sur les sprints) en format Markdown
+
+### Missions de la semaine
+
+Création des fichiers et gestion de la hierarchisation
+Créer tous les .init dans tous les fichiers ( minima le pack génération )
+Création approfondie de la classe pixel pour ensuite créer les fonctions de création de la map AVEC les pixels et en fonction de la taille
+
+### Répartition des tâches
+
+Carlos : Gestion de la hiérarchisation + création des fichiers + init
+Deadline : jeudi 02/10/2024 - minuit
+
+Jade : Developpement de la classe pixel + dev des éléments restants
+Deadline : Samedi 05/10/2024 - minuit
+Prérequis : Carlos doit avoir créé les fichiers
+
+Yuna : Dev de la fonction generateMap et generateEmptyMap
+Deadline : Lundi 07/10/2024 - minuit
+Prérequis : Jade doit avoir créé les pixels
+
+---
