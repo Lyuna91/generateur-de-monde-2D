@@ -17,6 +17,15 @@ Donc ce document servira à ça, je commence le squelette du docuemnt
 
 # Règles de nommage
 
+NB : on a decide de tout nommer en anglais.
+
+# Classes
+
+Le nom d'une Classe commence avec une Majuscule et si le nom est composé de plusieurs mots
+(pour plus de précision notamment) on mettra une majuscule au debut de chaque nouveaux mots.
+
+Ex: class GenerateurDeCarte, GenerateurCarte ect...
+
 # Variables
 
 Toutes les lettres en minuscules et l'usage de "\_" pour separer les mots
