@@ -75,7 +75,7 @@ pixels seront affichés.
 
 # 29/09/2024
 
-# Update Carlos
+## Update Carlos
 
 On a décidé de tout creer en anglais, donc j'ai mis à jour les fonctions (fonctions.py) avec les derniers modifications du cahier des charges. J'ai aussi mis à jour la documentation technique.
 
@@ -107,7 +107,7 @@ Création approfondie de la classe pixel pour ensuite créer les fonctions de cr
 ### Répartition des tâches
 
 Carlos : Gestion de la hiérarchisation + création des fichiers + init
-Deadline : jeudi 02/10/2024 - minuit
+Deadline : jeudi 03/10/2024 - minuit
 
 Jade : Developpement de la classe pixel + dev des éléments restants
 Deadline : Samedi 05/10/2024 - minuit
@@ -116,5 +116,14 @@ Prérequis : Carlos doit avoir créé les fichiers
 Yuna : Dev de la fonction generateMap et generateEmptyMap
 Deadline : Lundi 07/10/2024 - minuit
 Prérequis : Jade doit avoir créé les pixels
+
+@CarlosVu
+
+# 3/10/2024
+
+## Update Carlos
+
+Gestion de la hiérarchisation + création des fichiers + init Faite
+Les modifications ne sont pas definitives...
 
 ---
