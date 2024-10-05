@@ -50,9 +50,7 @@ On en reparle en détail vendredi, en attendant pensez à bien mettre vos update
 
 ---
 
-# 26/09/2024
-
-## Update Carlos
+# Update Carlos - 26/09/2024
 
 Euhhh JE devais creer le cahier de suivis de base...
 
@@ -62,7 +60,7 @@ Bref, j'ai ajouté fonctions.py dans lequel se trouve les fonctions que l'on va 
 @YunaVu
 @CarlosVu
 
-## Update Yuna
+# Update Yuna - 26/09/2024
 
 J'ai d'abord créer un dossier _code_ pour y mettre le code de l'application, j'ai ensuite créer
 créer un autre dossier _visualiseur_ à l'intérieur. J'y ai mis une classe fenêtre, pour ouvrir une fenêtre pygame et de quoi afficher un quadrillage pour avoir une meilleure idée de la façon dont les
@@ -73,9 +71,7 @@ pixels seront affichés.
 
 ---
 
-# 29/09/2024
-
-## Update Carlos
+# Update Carlos - 29/09/2024
 
 On a décidé de tout creer en anglais, donc j'ai mis à jour les fonctions (fonctions.py) avec les derniers modifications du cahier des charges. J'ai aussi mis à jour la documentation technique.
 
@@ -117,13 +113,27 @@ Yuna : Dev de la fonction generateMap et generateEmptyMap
 Deadline : Lundi 07/10/2024 - minuit
 Prérequis : Jade doit avoir créé les pixels
 
-@CarlosVu
+@JadeVu @CarlosVu
 
-# 3/10/2024
-
-## Update Carlos
+# Update Carlos - 3/10/2024
 
 Gestion de la hiérarchisation + création des fichiers + init Faite
 Les modifications ne sont pas definitives...
 
+@JadeVu
+
 ---
+
+# Update Jade - 05/10/2024
+
+1er point : Quand vous faites une entrée dans le cahier de suivi, faites de la forme suivante pour qu'on soit cohérent svp :
+
+- # Update NOM - DATE - Potentiellement HEURE si c'est pertinent
+
+2e point : Commenter votre code un maximum ! J'ai rajouter dans la doc technique des consignes à suivre sur le dev
+
+3e point : n"hésitez pas à supprimer ce qui n'est plus utile pour éviter de pourir notre dossier. En l'occurence, après avoir refais toutes les classes dans des nouveaux fichiers, le fonction.py aurait pu être supprimé. Je m'en suis chargé
+
+4e point : je me suis rendu compte que j'arrivais pas à lire les fonctions GenerateEmptyRoad (surement ma vue qui me joue des tours, ou alors je suis trop toqué) donc pour éviter de trop fatiguer à décrypter j'ai changé la règle de nomage pour les fonctions pour du generate_empty_road. De toute façon la moitié du projet était dev de cette manière la, on était pas raccord la dessus visiblement. J'ai modifié le map.py qui correspondait à l'ancienne règle de nommage
+
+5e point : J'ai crée les éléments de pixels et de biome principalement. Je peux pas trop toucher au zone pour l'instant vu que c'est un travail à faire avec l'algo de voronoi qui attendra le sprint 2. J'ai créé une fonction de génération de pixel sur une map que @yuna tu pourras utiliser dans la créa de generate_map et generat_empty_map je pense. Hésite pas à regarder et modifier si besoin.

@@ -12,40 +12,40 @@ class Map:
         self.size = size
         self.options = options
 
-    def generateEmptyMap(self, size):
+    def generate_empty_map(self, size):
         pass
 
-    def generateMap(self, size, options):
+    def generate_map(self, size, options):
         pass
 
-    def generatePixels(self, size, options):
+    def generate_pixels(self, size, options):
         pass
 
-    def generateContinent(self, size, options):
+    def generate_continent(self, size, options):
         pass
 
-    def generatePangea(self, size, options):
+    def generate_pangea(self, size, options):
         pass
 
-    def generateArchipelago(self, size, options):
+    def generate_archipelago(self, size, options):
         pass
 
-    def generateBiome(self, size, biome, options):
+    def generate_biome(self, size, biome, options):
         pass
 
-    def generateCountry(self, size, options):
+    def generate_country(self, size, options):
         pass
 
-    def generateBorder(self, size, options):
+    def generate_border(self, size, options):
         pass
 
-    def generateRoad(self, size, options):
+    def generate_road(self, size, options):
         pass
 
-    def generateRiver(self, size, options):
+    def generate_river(self, size, options):
         pass
 
-    def generateCities(self, size, options):
+    def generate_cities(self, size, options):
         pass
 
 

@@ -5,35 +5,56 @@ C'est complémentaire au commentaire présents dans le code. C'est pour permettr
 
 Ici on établis et on explique notamment nos règles de développement.
 
-En relisant le cahier des charges on trouve les points suivant par exemple :
-
-- Qualité d'écriture du code (je propose de mettre des tirets du 8 entre_nos_mots par exemple, pour les titres de fichiers ou pour les variables )
-- Pre/post conditions claires (je propose de bien mettre le @brief comme M. Weinberg, avec les paramètres et la valeur de retour, c'est super utile)
-  Etc, etc...
-
-Donc ce document servira à ça, je commence le squelette du docuemnt
-
 ---
 
 # Règles de nommage
 
 NB : on a decide de tout nommer en anglais.
 
-# Classes
+## Classes
 
 Le nom d'une Classe commence avec une Majuscule et si le nom est composé de plusieurs mots
 (pour plus de précision notamment) on mettra une majuscule au debut de chaque nouveaux mots.
 
 Ex: class GenerateurDeCarte, GenerateurCarte ect...
 
-# Variables
+## Variables
 
 Toutes les lettres en minuscules et l'usage de "\_" pour separer les mots
 Ex: couleur_pixel, position_pixel ect...
 
-# Fonctions
+## Fonctions
 
-Le nom d'une fonction commence avec un mot tout en minuscule et si le nom est composé de plusieurs mots
-on mettra une majuscule au debut de chaque nouveaux mots
+Toutes les lettres en minuscules et l'usage de "\_" pour separer les mots
+Ex: couleur_pixel, position_pixel ect...
 
-# Algorithmes
+# Consignes de dev
+
+## Séparation des parties du code
+
+On sépare les parties d'un fichier de code avec
+
+- ######################### NOM DE LA PARTIE
+
+Ex: ######################### SETTER
+
+## Dev d'une fonction
+
+On commente toujours l'utilité de la fonction
+Ex : def generer_pixels(largeur, hauteur, taille_pixel, color=(200, 200, 200)):
+"""
+Génère automatiquement une grille de pixels pour remplir une fenêtre.
+
+        :param largeur: Largeur de la fenêtre en pixels
+        :param hauteur: Hauteur de la fenêtre en pixels
+        :param taille_pixel: Taille de chaque pixel (par exemple 10x10)
+        :param color: Couleur par défaut des pixels (facultatif)
+        :return: Liste de pixels générés
+        """
+
+On mets :
+-> une rapide description de ce que fait la fonction
+-> les paramètres
+-> le return
+
+ça va être long et fastidieux mais au moins pas besoin de lire le code pour savoir ce que fait la fonction
