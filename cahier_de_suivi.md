@@ -113,7 +113,9 @@ Yuna : Dev de la fonction generateMap et generateEmptyMap
 Deadline : Lundi 07/10/2024 - minuit
 Prérequis : Jade doit avoir créé les pixels
 
-@JadeVu @CarlosVu
+@JadeVu
+@CarlosVu
+@YunaVu
 
 # Update Carlos - 3/10/2024
 
@@ -121,6 +123,7 @@ Gestion de la hiérarchisation + création des fichiers + init Faite
 Les modifications ne sont pas definitives...
 
 @JadeVu
+@YunaVu
 
 ---
 
@@ -138,7 +141,20 @@ Les modifications ne sont pas definitives...
 
 5e point : J'ai crée les éléments de pixels et de biome principalement. Je peux pas trop toucher au zone pour l'instant vu que c'est un travail à faire avec l'algo de voronoi qui attendra le sprint 2. J'ai créé une fonction de génération de pixel sur une map que @yuna tu pourras utiliser dans la créa de generate_map et generat_empty_map je pense. Hésite pas à regarder et modifier si besoin.
 
+@YunaVu
+
 # Update Yuna - 05/10/2024
 
 Dans le diagramme de classe, j'avais oublier de parler de la fenêtre. J'hésite à la laisser comme ça ou à l'intégrer directement dans
 la classe visualisation. Je déplace juste ma classe fenêtre et le main dans le package Visualisateur_Affichage et je laisse comme ça pour l'instant.
+
+J'ai du ajouter le chemin pour aller récupérer la classe Pixel sinon on y a pas accès et j'ai enlever le
+chemin vers la classe Zone de la classe Pixel car on en a pas besoin tout de suite.
+
+Depuis la fonction generate_pixel de Jade, je peux récupérer une liste de pixel toute faite dans la fenêtre et
+je les affiches sur l'écran de la fenêtre avec la fonction afficher_pixel.
+
+/!\ Je viens de me rendre compte que certains nom de fonction sont en français, je vais changer ça.
+
+J'ai aussi changer ta fonction @jade pour générer les pixels avec une couleur blue qui varient un peu pour qu'on
+puisse mieux les voir

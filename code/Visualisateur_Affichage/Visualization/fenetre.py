@@ -21,7 +21,7 @@ class Fenetre:
         self.titre = titre
         self.ecran = pygame.display.set_mode((self.largeur, self.hauteur))
         pygame.display.set_caption(self.titre)
-        self.pixels = Pixel.generer_pixels(largeur, hauteur, 5) # Récupérer une liste de pixels générés dans Pixel
+        self.pixels = Pixel.generate_pixels(largeur, hauteur, 5) # Récupérer une liste de pixels générés dans Pixel
 
 ######################### METHODES
 
