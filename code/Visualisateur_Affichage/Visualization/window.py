@@ -7,7 +7,7 @@ from Generateur.Pixel.pixel import Pixel  # Importer la classe Pixel depuis le m
 
 pygame.init()
 
-class Fenetre:
+class Window:
 
     """
     Classe permettant de définir une fenêtre d'affichage pour visualiser les pixels.
@@ -25,7 +25,7 @@ class Fenetre:
 
 ######################### METHODES
 
-    def afficher_quadrillage(self, taille_case, couleur):
+    def display_grid(self, taille_case, couleur):
         """
         Affiche un quadrillage sur la fenêtre.
         """
@@ -34,14 +34,14 @@ class Fenetre:
         for y in range(0, self.hauteur, taille_case):
             pygame.draw.line(self.ecran, couleur, (0, y), (self.largeur, y))
 
-    def afficher_pixels(self,taille_pixel=5):
+    def display_pixels(self,taille_pixel=5):
         """
         Dessine les pixels sur l'écran à partir de la liste de pixels.
         """
         for pixel in self.pixels:
             pygame.draw.rect(self.ecran, pixel.color, (pixel.x, pixel.y, taille_pixel, taille_pixel))
 
-    def afficher_fenetre(self):
+    def display_window(self):
         """
         Permet d'afficher la fenêtre et de la maintenir ouverte.
         """

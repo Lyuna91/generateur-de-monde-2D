@@ -1,4 +1,4 @@
-from fenetre import Fenetre
+from window import Window
 
-fenetre = Fenetre(800, 600, "Carte")
-fenetre.afficher_fenetre()
+window = Window(800, 600, "Carte")
+window.display.window()
