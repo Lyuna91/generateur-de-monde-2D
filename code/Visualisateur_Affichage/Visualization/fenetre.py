@@ -1,19 +1,20 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
 import pygame
-from Generateur.Pixel import Pixel
+from Generateur.Pixel.pixel import Pixel  # Importer la classe Pixel depuis le module pixel
 
 pygame.init()
 
 class Fenetre:
-    def __init__(self,largeur, hauteur, titre, pixels):
+    def __init__(self, largeur, hauteur, titre):
         self.largeur = largeur
         self.hauteur = hauteur
         self.titre = titre
         self.ecran = pygame.display.set_mode((self.largeur, self.hauteur))
         pygame.display.set_caption(self.titre)
-        self.pixels = self.generer_pixels(self.largeur,self.hauteur,5)  # Générer automatiquement les pixels
-        # list_pixels
-        # Ajoutée par Jade : Liste des pixels à afficher ??? J'ai du mal avec Pygame pour l'instant, c'est une proposition
-
+        self.pixels = Pixel.generer_pixels(largeur, hauteur, 5)
 
     def afficher_quadrillage(self, taille_case, couleur):
         """
@@ -24,29 +25,22 @@ class Fenetre:
         for y in range(0, self.hauteur, taille_case):
             pygame.draw.line(self.ecran, couleur, (0, y), (self.largeur, y))
 
-    def afficher_pixels(self):
+    def afficher_pixels(self,taille_pixel=5):
+        """
+        Affiche les pixels sur l'écran.
+        """
         for pixel in self.pixels:
-            pixel.dessiner(self.ecran)
+            pygame.draw.rect(self.ecran, pixel.color, (pixel.x, pixel.y, taille_pixel, taille_pixel))
 
     def afficher_fenetre(self):
-        """
-        Boucle principale pour afficher la fenêtre et les pixels.
-        """
         ouvert = True
         while ouvert:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     ouvert = False
 
-            # Remplir l'écran de blanc
-            self.ecran.fill((255, 255, 255))
-
-            # Afficher le quadrillage
-            self.afficher_quadrillage(10, (200, 200, 200))
-
-            # Afficher les pixels
-            self.afficher_pixels()
-
-            # Mettre à jour l'affichage
-            pygame.display.flip()
+            self.ecran.fill((255, 255, 255))  # Remplir l'écran de blanc
+            self.afficher_quadrillage(10, (200, 200, 200))  # Afficher le quadrillage
+            self.afficher_pixels()  # Afficher les pixels
+            pygame.display.flip()  # Mettre à jour l'affichage
         pygame.quit()

@@ -1,4 +1,5 @@
-from Generateur.Zone import Zone
+#from Generateur.Zone import Zone
+import random
 
 class Pixel:
     """
@@ -7,7 +8,9 @@ class Pixel:
 
 ######################### INIT
 
-    def __init__(self, x, y, color, zone, altitude=0, element=None):
+# J'ai enlevé le paramètre "zone" des paramètres, je n'arrive pas a accéder à sa classe
+
+    def __init__(self, x, y, color, altitude=0, element=None):
         """
         Initialise un pixel avec ses caractéristiques de base.
 
@@ -21,7 +24,7 @@ class Pixel:
         self.x = x
         self.y = y
         self.color = color
-        self.zone = zone  # je suis pas sûre de mettre la zone dans le pixel
+        # self.zone = zone  # je suis pas sûre de mettre la zone dans le pixel
         self.altitude = altitude
         self.element = element
 
@@ -51,36 +54,37 @@ class Pixel:
         return {
             'Position': (self.x, self.y),
             'Couleur': self.color,
-            'Zone': self.zone,
+            # 'Zone': self.zone,
             'Altitude': self.altitude,
             'Element': self.element
         }
 
-    def get_biome(self):
-        """
-        Renvoie le biome auquel appartient ce pixel en fonction de sa zone.
-        """
-        if self.zone and hasattr(self.zone, 'biome'):
-            return self.zone.biome
-        return None
+    # def get_biome(self):
+    #     """
+    #     Renvoie le biome auquel appartient ce pixel en fonction de sa zone.
+    #     """
+    #     if self.zone and hasattr(self.zone, 'biome'):
+    #         return self.zone.biome
+    #     return None
     
 ######################### GENERATEUR DE PIXELS
 
     @staticmethod
-    def generer_pixels(largeur, hauteur, taille_pixel, color=(200, 200, 200)):
+    def generer_pixels(largeur, hauteur, taille_pixel):
         """
-        Génère automatiquement une grille de pixels pour remplir une fenêtre.
+        Génère automatiquement une grille de pixels pour remplir une fenêtre avec des couleurs aléatoires.
         
         :param largeur: Largeur de la fenêtre en pixels
         :param hauteur: Hauteur de la fenêtre en pixels
         :param taille_pixel: Taille de chaque pixel (par exemple 10x10)
-        :param color: Couleur par défaut des pixels (facultatif)
         :return: Liste de pixels générés
         """
         list_pixels = []
         for x in range(0, largeur, taille_pixel):
             for y in range(0, hauteur, taille_pixel):
-                # Créer un pixel à la position (x, y) avec une couleur par défaut
+                # Générer une couleur aléatoire
+                color = (0, 0, random.randint(200, 255))
+                # Créer un pixel à la position (x, y) avec une couleur aléatoire
                 pixel = Pixel(x=x, y=y, color=color)
                 list_pixels.append(pixel)
         return list_pixels
