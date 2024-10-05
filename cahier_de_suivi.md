@@ -137,3 +137,8 @@ Les modifications ne sont pas definitives...
 4e point : je me suis rendu compte que j'arrivais pas à lire les fonctions GenerateEmptyRoad (surement ma vue qui me joue des tours, ou alors je suis trop toqué) donc pour éviter de trop fatiguer à décrypter j'ai changé la règle de nomage pour les fonctions pour du generate_empty_road. De toute façon la moitié du projet était dev de cette manière la, on était pas raccord la dessus visiblement. J'ai modifié le map.py qui correspondait à l'ancienne règle de nommage
 
 5e point : J'ai crée les éléments de pixels et de biome principalement. Je peux pas trop toucher au zone pour l'instant vu que c'est un travail à faire avec l'algo de voronoi qui attendra le sprint 2. J'ai créé une fonction de génération de pixel sur une map que @yuna tu pourras utiliser dans la créa de generate_map et generat_empty_map je pense. Hésite pas à regarder et modifier si besoin.
+
+# Update Yuna - 05/10/2024
+
+Dans le diagramme de classe, j'avais oublier de parler de la fenêtre. J'hésite à la laisser comme ça ou à l'intégrer directement dans
+la classe visualisation. Je déplace juste ma classe fenêtre et le main dans le package Visualisateur_Affichage et je laisse comme ça pour l'instant.
