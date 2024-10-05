@@ -34,7 +34,7 @@ class Window:
         for y in range(0, self.hauteur, taille_case):
             pygame.draw.line(self.ecran, couleur, (0, y), (self.largeur, y))
 
-    def display_pixels(self,taille_pixel=5):
+    def display_pixels(self,taille_pixel=10):
         """
         Dessine les pixels sur l'écran à partir de la liste de pixels.
         """
@@ -52,7 +52,7 @@ class Window:
                     ouvert = False
 
             self.ecran.fill((255, 255, 255))  # Remplir l'écran de blanc
-            # self.afficher_quadrillage(10, (200, 200, 200))  # Afficher le quadrillage
-            self.afficher_pixels()  # Afficher les pixels
+            # self.display_grid(10, (200, 200, 200))  # Afficher le quadrillage
+            self.display_pixels()  # Afficher les pixels
             pygame.display.flip()  # Mettre à jour l'affichage
         pygame.quit()
