@@ -70,7 +70,7 @@ class Pixel:
 ######################### GENERATEUR DE PIXELS
 
     @staticmethod
-    def genererate_pixels(largeur, hauteur, taille_pixel):
+    def generate_pixels(largeur, hauteur, taille_pixel):
         """
         Génère automatiquement une grille de pixels pour remplir une fenêtre avec des couleurs aléatoires.
         
