@@ -1,4 +1,5 @@
 import pygame
+from Generateur.Pixel import Pixel
 
 pygame.init()
 
@@ -9,7 +10,7 @@ class Fenetre:
         self.titre = titre
         self.ecran = pygame.display.set_mode((self.largeur, self.hauteur))
         pygame.display.set_caption(self.titre)
-        # self.pixels = self.generer_pixels()  # Générer automatiquement les pixels
+        self.pixels = self.generer_pixels(self.largeur,self.hauteur,5)  # Générer automatiquement les pixels
         # list_pixels
         # Ajoutée par Jade : Liste des pixels à afficher ??? J'ai du mal avec Pygame pour l'instant, c'est une proposition
 
@@ -23,6 +24,9 @@ class Fenetre:
         for y in range(0, self.hauteur, taille_case):
             pygame.draw.line(self.ecran, couleur, (0, y), (self.largeur, y))
 
+    def afficher_pixels(self):
+        for pixel in self.pixels:
+            pixel.dessiner(self.ecran)
 
     def afficher_fenetre(self):
         """
