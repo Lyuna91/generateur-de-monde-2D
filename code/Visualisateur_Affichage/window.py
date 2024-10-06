@@ -2,8 +2,8 @@ import pygame
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))) # Accéder à la classe Pixel
-from Generateur.Pixel.pixel import Pixel  # Importer la classe Pixel depuis le module pixel
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) # Accéder à la classe Pixel
+from Generateur.pixel import Pixel  # Importer la classe Pixel depuis le module pixel
 
 pygame.init()
 
