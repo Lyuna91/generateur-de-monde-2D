@@ -158,3 +158,7 @@ je les affiches sur l'écran de la fenêtre avec la fonction afficher_pixel.
 
 J'ai aussi changer ta fonction @jade pour générer les pixels avec une couleur blue qui varient un peu pour qu'on
 puisse mieux les voir
+
+# Update Yuna 06/10/2024
+
+J'ai retirer les dossiers qui contenait qu'un seul fichier
