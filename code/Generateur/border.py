@@ -1,4 +1,4 @@
-from Generateur.Pixel import Pixel
+from .pixel import Pixel
 class Border :
     def __init__(self, id, countries, size, pixels):
         self.id = id
@@ -6,5 +6,5 @@ class Border :
         self.size = size
         self.pixels = pixels
 
-    def createBorder(self):
+    def create_border(self):
         pass

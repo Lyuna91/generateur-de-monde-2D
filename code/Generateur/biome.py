@@ -39,7 +39,7 @@ class Biome:
         "Mountain": (139, 137, 137),
         "Ocean": (0, 105, 148),
         "Plains": (124, 252, 0),
-        "Lake": (65, 105, 225),  # Bleu royal pour les lacs
+        "Lake": (65, 105, 225),  # Bleu royal ou d'après Carlos "du bleu c'est du bleu"
     }
 
 ######################### CREATE BIOME

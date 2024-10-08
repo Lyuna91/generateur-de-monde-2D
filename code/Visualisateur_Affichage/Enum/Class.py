@@ -1,2 +1,2 @@
-ClassEnum = {
+class_enum = {
 }

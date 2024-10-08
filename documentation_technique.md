@@ -11,6 +11,18 @@ Ici on établis et on explique notamment nos règles de développement.
 
 NB : on a decide de tout nommer en anglais.
 
+## Dossier
+
+Majuscule au début des mots avec underscore si nécessaire
+Ex : Visualisateur_Affichage
+Ex : Générateur
+
+## Fichier .py
+
+Ques des minuscules avec underscore
+ex : export_type
+ex : panel
+
 ## Classes
 
 Le nom d'une Classe commence avec une Majuscule et si le nom est composé de plusieurs mots

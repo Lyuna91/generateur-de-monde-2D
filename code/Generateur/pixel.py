@@ -67,24 +67,3 @@ class Pixel:
     #         return self.zone.biome
     #     return None
     
-######################### GENERATEUR DE PIXELS
-
-    @staticmethod
-    def generate_pixels(largeur, hauteur, taille_pixel):
-        """
-        Génère automatiquement une grille de pixels pour remplir une fenêtre avec des couleurs aléatoires.
-        
-        :param largeur: Largeur de la fenêtre en pixels
-        :param hauteur: Hauteur de la fenêtre en pixels
-        :param taille_pixel: Taille de chaque pixel (par exemple 10x10)
-        :return: Liste de pixels générés
-        """
-        list_pixels = []
-        for x in range(0, largeur, taille_pixel):
-            for y in range(0, hauteur, taille_pixel):
-                # Générer une couleur aléatoire
-                color = (0, 0, random.randint(200, 255))
-                # Créer un pixel à la position (x, y) avec une couleur aléatoire
-                pixel = Pixel(x=x, y=y, color=color)
-                list_pixels.append(pixel)
-        return list_pixels

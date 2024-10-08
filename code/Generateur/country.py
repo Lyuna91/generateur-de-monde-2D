@@ -1,4 +1,4 @@
-from Generateur.Zone import Zone
+from .zone import Zone
 class Country:
     def __init__(self, id, name, size, zones):
         self.id = id

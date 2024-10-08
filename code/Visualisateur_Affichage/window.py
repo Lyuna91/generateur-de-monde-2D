@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) # Accéder à la classe Pixel
-from Generateur.pixel import Pixel  # Importer la classe Pixel depuis le module pixel
+from Generateur.map import Map 
 
 pygame.init()
 
@@ -21,7 +21,7 @@ class Window:
         self.titre = titre
         self.ecran = pygame.display.set_mode((self.largeur, self.hauteur))
         pygame.display.set_caption(self.titre)
-        self.pixels = Pixel.generate_pixels(largeur, hauteur, 10) # Récupérer une liste de pixels générés dans Pixel
+        self.pixels = Map.generate_pixels(largeur, hauteur, 10) # Récupérer une liste de pixels générés dans Pixel
 
 ######################### METHODES
 

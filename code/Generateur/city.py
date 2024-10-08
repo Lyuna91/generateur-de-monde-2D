@@ -1,4 +1,4 @@
-from Generateur.Country import Country
+from .country import Country
 class City:
     def __init__(self, id, name, position, country):
         self.id = id
@@ -6,5 +6,5 @@ class City:
         self.position = position
         self.country = country  
 
-    def createCity(self):
+    def create_city(self):
         pass

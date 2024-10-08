@@ -162,3 +162,8 @@ puisse mieux les voir
 # Update Yuna 06/10/2024
 
 J'ai retirer les dossiers qui contenait qu'un seul fichier
+
+# COURS 08/10
+
+-> refaire le diagramme de classe avec ce qu'on a vu en cours UML
+-> attention sur road et river qui sont identique dans le diagramme de classe

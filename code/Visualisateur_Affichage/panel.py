@@ -6,5 +6,5 @@ class Panel:
         self.Class = Class
 
     
-    def modifyClass(self, Class):
+    def modify_class(self, Class):
         pass

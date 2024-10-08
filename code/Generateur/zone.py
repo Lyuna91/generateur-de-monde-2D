@@ -1,4 +1,4 @@
-from Generateur.Pixel import Pixel
+from .pixel import Pixel
 class Zone:
     def __init__(self, id , biome, size, seed, pixels):
         self.id = id
@@ -7,5 +7,5 @@ class Zone:
         self.seed = seed
         self.pixels = pixels
 
-    def createZone(self):
+    def create_zone(self):
         pass

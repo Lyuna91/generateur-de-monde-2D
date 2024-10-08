@@ -6,5 +6,5 @@ class Render:
         self.options = options
 
     
-    def renderMap(self, Map, options):
+    def render_map(self, Map, options):
         pass

@@ -8,17 +8,17 @@ class Menu:
         self.exportType = exportType
         self.map = map
 
-    def exportMap(self):
+    def export_map(self):
         pass
 
-    def ModifyButton(self):
+    def modify_button(self):
         pass
 
-    def modifyMap(self):
+    def modify_map(self):
         pass
 
-    def newMap(self):
+    def new_map(self):
         pass
 
-    def displayMap(self):
+    def display_map(self):
         pass

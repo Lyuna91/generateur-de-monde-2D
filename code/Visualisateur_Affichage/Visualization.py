@@ -7,10 +7,10 @@ class Visualization:
         self.cameraPosition = cameraPosition
         self.render = render
     
-    def updateMapSize(self, size, render):
+    def update_map_size(self, size, render):
         pass
 
-    def updateCameraPosition(self, position, render):
+    def update_camera_position(self, position, render):
         pass
 
     
