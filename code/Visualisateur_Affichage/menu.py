@@ -3,9 +3,9 @@ from Visualisateur_Affichage.Enum.export_type import export_type
 from Generateur.map import Map
 
 class Menu:
-    def __init__(self, displayType, exportType, map):
-        self.displayType = displayType
-        self.exportType = exportType
+    def __init__(self, display_type, export_type, map):
+        self.display_type = display_type
+        self.export_type = export_type
         self.map = map
 
     def export_map(self):
