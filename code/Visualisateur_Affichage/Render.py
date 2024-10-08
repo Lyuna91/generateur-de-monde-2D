@@ -1,4 +1,4 @@
-from Generateur.Map.map import Map
+from Generateur.map import Map
 
 class Render:
     def __init__(self, Map, options):

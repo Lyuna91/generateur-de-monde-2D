@@ -1,6 +1,6 @@
 from Visualisateur_Affichage.Enum.DisplayType import DisplayType
 from Visualisateur_Affichage.Enum.ExportType import ExportType
-from Generateur.Map.map import Map
+from Generateur.map import Map
 
 class Menu:
     def __init__(self, displayType, exportType, map):
