@@ -171,3 +171,36 @@ J'ai retirer les dossiers qui contenait qu'un seul fichier
 https://www.mathweb.fr/euclide/2024/05/02/diagrammes-de-voronoi-point-de-vue-mathematiques-et-python/
 
 Vérifier la gestion des pixels et des zones ensemble : on suspecte que les zones soient créées et affichées mais les pixels n'ont pas l'information de la zone à laquelle ils sont affectés.
+
+## Update Voronoi
+
+-> Algorithme de Voronoi implémantée pendant le cours.
+
+On a actuellement un algorithme qui crée des zones selon Voronoi, dans chacune de ces zones un pixel est attribué et chaque pixel recupere en parametre de zone, l'identifiant de sa zone.
+
+Dans un soucis de test et debuggage:
+
+- Nous avons rajouté un point noir qui correspond à la "seed" pour visualiser son emplacement.
+- Nous avons attribué une couleur aléatoire aux zones.
+
+## Trucs à faire
+
+- Remplir le fichier de test_debogage avec les tests que l'on a éffectué aujourd'hui.
+- Expliquer en détail la fonction "génerer_zone_voronoi" + expliquer l'algorithme en détail dans la documentation technique.
+- Vérifier la syntaxe a TETE reposée du code qu'on a fait aujourd'hui (Bien respecter la doc technique)
+- Vérifier la hierarchisation, vérifier la localisation des fonctions(les fonctions zones sont bien dans le fichier "Zone")
+- Commencer a reflechir à l'implementation des biomes
+
+## Repartition du travail de la semaine
+
+YNZA : remplir le fichier de test debogage (Expliquer tous les tests qui ont pas fonctionnés, les prints inserés et les modifs mis en place)
+
+RHADE : Expliquer Voronoi dans la doc technique
+
+My GLORIOUS KING CARLOS : Vérification du code en fonction de la doc technique et modifs + expliquer l'affichages des pixels et des zones.
+
+TOUS : Réfléchir à l'implémentation des biômes
+
+## A noter
+
+PAS DE REUNION LE MERCREDI 9 OCTOBRE 2024 : car le travail a été effectuer après le cours du 8 la veille.
