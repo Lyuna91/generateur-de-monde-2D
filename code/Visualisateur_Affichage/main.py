@@ -1,4 +1,4 @@
-from window import Window
+from Render import Render
 
-window = Window(800, 600, "Carte")
+window = Render(800, 600, "Carte")
 window.display_window()
