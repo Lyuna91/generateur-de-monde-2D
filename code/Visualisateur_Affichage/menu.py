@@ -1,5 +1,5 @@
-from Visualisateur_Affichage.Enum.DisplayType import DisplayType
-from Visualisateur_Affichage.Enum.ExportType import ExportType
+from Visualisateur_Affichage.Enum.display_type import display_type
+from Visualisateur_Affichage.Enum.export_type import export_type
 from Generateur.map import Map
 
 class Menu:

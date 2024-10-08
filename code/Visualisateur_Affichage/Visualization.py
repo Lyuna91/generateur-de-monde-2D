@@ -1,5 +1,5 @@
 
-from Visualisateur_Affichage.Render import Render
+from .render import render
 
 class Visualization:
     def __init__(self, zoom, cameraPosition, render):
