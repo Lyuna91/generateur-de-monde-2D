@@ -1,4 +1,3 @@
-#from Generateur.Zone import Zone
 import random
 
 class Pixel:
@@ -10,7 +9,7 @@ class Pixel:
 
 # J'ai enlevé le paramètre "zone" des paramètres, je n'arrive pas a accéder à sa classe
 
-    def __init__(self, x, y, color, altitude=0, element=None):
+    def __init__(self, x, y, color, zone_id, altitude=0, element=None):
         """
         Initialise un pixel avec ses caractéristiques de base.
 
@@ -24,7 +23,7 @@ class Pixel:
         self.x = x
         self.y = y
         self.color = color
-        # self.zone = zone  # je suis pas sûre de mettre la zone dans le pixel
+        self.zone_id = zone_id  # Utilise l'ID de la zone
         self.altitude = altitude
         self.element = element
 
@@ -47,23 +46,14 @@ class Pixel:
 
 ######################### GETTER
 
-    def get_info(self):
+    def get_info_pixel(self):
         """
         Renvoie les informations du pixel pour le débogage.
         """
         return {
             'Position': (self.x, self.y),
             'Couleur': self.color,
-            # 'Zone': self.zone,
+            'Zone ID': self.zone_id,
             'Altitude': self.altitude,
             'Element': self.element
         }
-
-    # def get_biome(self):
-    #     """
-    #     Renvoie le biome auquel appartient ce pixel en fonction de sa zone.
-    #     """
-    #     if self.zone and hasattr(self.zone, 'biome'):
-    #         return self.zone.biome
-    #     return None
-    

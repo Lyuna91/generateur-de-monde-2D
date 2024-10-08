@@ -167,3 +167,7 @@ J'ai retirer les dossiers qui contenait qu'un seul fichier
 
 -> refaire le diagramme de classe avec ce qu'on a vu en cours UML
 -> attention sur road et river qui sont identique dans le diagramme de classe
+
+https://www.mathweb.fr/euclide/2024/05/02/diagrammes-de-voronoi-point-de-vue-mathematiques-et-python/
+
+Vérifier la gestion des pixels et des zones ensemble : on suspecte que les zones soient créées et affichées mais les pixels n'ont pas l'information de la zone à laquelle ils sont affectés.
