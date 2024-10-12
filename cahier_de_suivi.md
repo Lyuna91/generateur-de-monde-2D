@@ -1,3 +1,8 @@
+---
+updated_at: 2024-10-12T17:08:57.009+02:00
+edited_seconds: 10
+---
+
 # Cahier de suivi
 
 Ce document sert de suivi sur l'avancée du projet. On abandonne le projet du Trello, on centralise tout ici pour être tranquile
@@ -204,3 +209,8 @@ TOUS : Réfléchir à l'implémentation des biômes
 ## A noter
 
 PAS DE REUNION LE MERCREDI 9 OCTOBRE 2024 : car le travail a été effectuer après le cours du 8 la veille.
+
+# Update Yuna 12/10/2024
+
+J'ai rédiger les tests qu'on avait effectué le 8 octobre de la création de l'algorithme voronoï
+dans le fichier test_debogage.
