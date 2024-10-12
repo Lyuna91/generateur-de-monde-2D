@@ -1,3 +1,6 @@
+---
+updated_at: 2024-10-12T17:13:41.768+02:00
+---
 # Documentation technique
 
 ici c'est un document qui viendra expliqué les différentes fonctions, les différents éléments, les appels de fonctions, le fonctionnement des algorithmes, etc...

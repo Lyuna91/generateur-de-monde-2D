@@ -1,3 +1,6 @@
+---
+updated_at: 2024-10-12T17:13:41.726+02:00
+---
 # Cahier des charges - Création d’un logiciel de génération aléatoire de maps (cartes) en 2D
 
 **Version 1 - 29/09/2024**

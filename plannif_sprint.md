@@ -1,3 +1,6 @@
+---
+updated_at: 2024-10-12T17:13:41.791+02:00
+---
 # Déroulement du projet
 
 ### Sprint 1 : Du 23 septembre au 8 octobre 2024 (2 semaines)
