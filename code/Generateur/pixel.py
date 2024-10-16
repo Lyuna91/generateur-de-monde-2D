@@ -51,9 +51,9 @@ class Pixel:
         Renvoie les informations du pixel pour le débogage.
         """
         return {
-            'Position': (self.x, self.y),
-            'Couleur': self.color,
-            'Zone ID': self.zone_id,
+            'Location': (self.x, self.y),
+            'Color': self.color,
+            'ID Zone': self.zone_id,
             'Altitude': self.altitude,
             'Element': self.element
         }

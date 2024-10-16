@@ -27,9 +27,9 @@ class Biome:
         """
         return {
             'ID': self.id,
-            'Nom': self.name,
-            'Couleur': self.color,
-            'Altitude Moyenne': self.altitude_avg,
+            'Name': self.name,
+            'Color': self.color,
+            'Average Altitude': self.altitude_avg,
         }
     
 ######################### BIOME COLOR
