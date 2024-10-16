@@ -1,6 +1,7 @@
 ---
 updated_at: 2024-10-12T17:13:41.768+02:00
 ---
+
 # Documentation technique
 
 ici c'est un document qui viendra expliqué les différentes fonctions, les différents éléments, les appels de fonctions, le fonctionnement des algorithmes, etc...
@@ -73,3 +74,23 @@ On mets :
 -> le return
 
 ça va être long et fastidieux mais au moins pas besoin de lire le code pour savoir ce que fait la fonction
+
+# Explications
+
+## Pixels, Zones et Affichage
+
+### Pixels --> pixel.py
+
+Définit la classe Pixel, représentant chaque pixel avec des attributs comme position, couleur, altitude et ID de zone. Il inclut des méthodes pour modifier la couleur ou l'élément associé au pixel.
+
+### Zone --> zone.py
+
+La classe Zone utilise des diagrammes de Voronoi pour générer des zones avec des pixels. Chaque zone est définie par un ID, des pixels associés et une couleur, et permet de gérer des zones aléatoires.
+
+### Render --> render.py
+
+Utilise pygame pour afficher les zones et les pixels dans une fenêtre. Les pixels sont dessinés sous forme de rectangles colorés, et la méthode display_window permet de maintenir l'affichage actif.
+
+## Affichage des zones avec Voronoi (de maniere vulgariser, pour la version complete voir la partie de Jade)
+
+Les zones sont générées via Voronoi dans zone.py, ce qui divise l'espace en polygones autour de graines. Les pixels de chaque zone sont ensuite affichés avec leurs couleurs respectives dans render.py, créant des sections visuelles distinctes sur la carte.
