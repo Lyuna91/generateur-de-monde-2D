@@ -214,3 +214,7 @@ PAS DE REUNION LE MERCREDI 9 OCTOBRE 2024 : car le travail a été effectuer apr
 
 J'ai rédiger les tests qu'on avait effectué le 8 octobre de la création de l'algorithme voronoï
 dans le fichier test_debogage.
+
+# Update Carlos 16/10/2024
+
+J'ai réaliser mes tâches notamment la vérification du code en fonction de la doc technique. AU niveau de l'explication j'en ai faite une MAIS je suis pas sûr et j'attends des retours.
