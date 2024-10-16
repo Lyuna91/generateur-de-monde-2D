@@ -224,3 +224,12 @@ J'ai réaliser mes tâches notamment la vérification du code en fonction de la 
 Yuna - Aider Carlos avec pygame et le lancement du programme
 Carlos - Lier les biomes avec les zones
 Jade - S'occuper du test de la liaison (insérant print - biome dans zone)
+
+# Update Carlos 16/10/2024 - apres la reunion
+
+J'ai pris de l'avance, j'ai lier le biome et les zones.
+
+Mais lors de la réalisation de mon plan tres original, j'ai remarqué que nous avons fait une petite erreur
+lors de la creation des biome. On assigne le meme ID à tous les biomes du meme type. Je pense que nous devrons creer un ID perso a chaque zone meme si elle on un ID de zone Commun.
+
+A reflechir.
