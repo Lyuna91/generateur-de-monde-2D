@@ -1,9 +1,10 @@
 import random
 from scipy.spatial import Voronoi
 from .pixel import Pixel
+from .biome import Biome
 
 class Zone:
-    def __init__(self, id, size, seed, pixels, color=(255, 255, 255)):
+    def __init__(self, id, size, seed, pixels):
         """
         Initialise une zone avec un ID, une taille, un centre (seed), une liste de pixels et une couleur unique.
         
@@ -15,8 +16,8 @@ class Zone:
         """
         self.id = id
         self.seed = seed
-        self.color = color
         self.size = size
+        self.biome = Biome.create_random_biome()
         self.pixels = pixels if pixels is not None else []
 
 
@@ -38,8 +39,8 @@ class Zone:
         print(self.size)
         print('\n')
 
-        print('Couleur')
-        print(self.color)
+        print('Biome')
+        print(self.biome.get_biome_info()) # A creer
         print('\n')
 
         return 1
@@ -59,8 +60,7 @@ class Zone:
         centers = [(random.randint(0, width), random.randint(0, height)) for _ in range(num_zones)]
         
         # Créer les zones avec des couleurs uniques
-        zones = [Zone(id=idx, seed=centers[idx], 
-                    color=(random.randint(50, 255), random.randint(50, 255), random.randint(50, 255)),
+        zones = [Zone(id=idx, seed=centers[idx],
                     size=0, pixels=[]) for idx in range(num_zones)]
 
         # Initialiser le compteur de pixels
@@ -71,7 +71,7 @@ class Zone:
             for y in range(0, height, pixel_size):
                 # Trouver la zone la plus proche pour chaque pixel
                 closest_zone = min(zones, key=lambda zone: (zone.seed[0] - x) ** 2 + (zone.seed[1] - y) ** 2)
-                pixel = Pixel(x, y, closest_zone.color, zone_id=closest_zone.id)  # Crée le pixel avec l'ID de la zone
+                pixel = Pixel(x, y, closest_zone.biome.color, zone_id=closest_zone.id)  # Crée le pixel avec l'ID de la zone
                 closest_zone.pixels.append(pixel)  # Ajoute le pixel à la liste de pixels de la zone
                 closest_zone.size += 1  # Incrémente la taille de la zone
                 pixel_count += 1  # Incrémente le compteur de pixels
