@@ -218,3 +218,9 @@ dans le fichier test_debogage.
 # Update Carlos 16/10/2024
 
 J'ai réaliser mes tâches notamment la vérification du code en fonction de la doc technique. AU niveau de l'explication j'en ai faite une MAIS je suis pas sûr et j'attends des retours.
+
+# Debrief Reunion 16/10
+
+Yuna - Aider Carlos avec pygame et le lancement du programme
+Carlos - Lier les biomes avec les zones
+Jade - S'occuper du test de la liaison (insérant print - biome dans zone)
