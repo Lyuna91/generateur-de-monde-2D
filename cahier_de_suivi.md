@@ -242,9 +242,21 @@ A reflechir.
 - On revoit classe par classe les différents éléments à implémenter (45min)
 - On détermine 'ordre dans lequel on développe nos éléments (30min) + déterminer calendrier de la semaine à venir
 
+## Ordre de développement du sprint (Du 18 octobre au 26 novembre)
+
+- Revoir les biomes (deadline mercredi 23 octobre )
+- Devélopper d'abord les pays (deadline mercredi 30 octobre ) - Un pays se forme en selectionnant une liste de zone
+- Développer les frontières (deadline mercredi 6 novembre) - Représente l'extérieur du pays créé en sélectionnant la liste de zone
+- Développer les villes (deadline mercredi 13 novembre ) - les villes sont des points à placer aléatoirement - Tous les biomes sauf les lacs et océans
+- Développer les routes (deadline mercredi 20 novembre)
+- Développer les rivières (deadline mardi 26 novembre)
+
 ## On se mets d'accord sur l'orga de la semaine qui arrive
 
-## Carlos s'occupe d'envoyer le sprint ce soir
+- Changer les biomes pour les passer en dictionnaire
+  biome = { "Desert" : Biome (.......), } (à décider sur discord samedi 18/10)
+
+## Carlos s'occupe d'envoyer le sprint ce soir (18/10)
 
 Répartition des points :
 
