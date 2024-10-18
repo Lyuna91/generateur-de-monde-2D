@@ -233,3 +233,21 @@ Mais lors de la réalisation de mon plan tres original, j'ai remarqué que nous 
 lors de la creation des biome. On assigne le meme ID à tous les biomes du meme type. Je pense que nous devrons creer un ID perso a chaque zone meme si elle on un ID de zone Commun.
 
 A reflechir.
+
+# Cours 18/10
+
+## Trouver ce qu'on fait pendant le cours
+
+- On revoit les bugs et problèmes rencontré actuellement (15min)
+- On revoit classe par classe les différents éléments à implémenter (45min)
+- On détermine 'ordre dans lequel on développe nos éléments (30min) + déterminer calendrier de la semaine à venir
+
+## On se mets d'accord sur l'orga de la semaine qui arrive
+
+## Carlos s'occupe d'envoyer le sprint ce soir
+
+Répartition des points :
+
+- Yuna : 40
+- Carlos : 30
+- Jade : 30
