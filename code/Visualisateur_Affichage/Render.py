@@ -10,9 +10,19 @@ from Generateur.biome import Biome
 from Generateur.zone import Zone
 from Generateur.pixel import Pixel
 
-# J'ai enlevé Map et options pour le moment, ils n'éxistent pas pour l'instant dans le code
 class Render:
+    """
+    Classe permettant de gérer l'affichage de la carte générée.
+    """
+
     def __init__(self, width, height, title):
+        """
+        Initialise un rendu avec une largeur, une hauteur et un titre de fenêtre.
+
+        :param width: Largeur de la fenêtre
+        :param height: Hauteur de la fenêtre
+        :param title: Titre de la fenêtre
+        """
         self.width = width
         self.height = height
         self.title = title
@@ -20,7 +30,14 @@ class Render:
         pygame.display.set_caption(self.title)
         self.zones = Zone.generate_voronoi_zones(self.width, self.height, 10)  # Exemple avec 10 zones
 
-    
+    def __repr__(self):
+        """
+        Retourne une représentation du rendu sous forme de string.
+        """
+        return f"Render(width={self.width}, height={self.height}, title={self.title}, screen={self.screen}, zones={self.zones})"
+
+######################### METHODS
+
     def render_map(self, Map, options):
         pass
 

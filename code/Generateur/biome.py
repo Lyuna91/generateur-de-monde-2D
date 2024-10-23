@@ -1,4 +1,5 @@
 from random import *
+
 class Biome:
     """
     Classe permettant de définir les biomes.
