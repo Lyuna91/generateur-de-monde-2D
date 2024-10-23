@@ -86,16 +86,6 @@ class Biome:
         Crée et retourne un biome lac.
         """
         return Biome(id=6, name="Lake", color=Biome.biome_colors["Lake"], altitude_avg=0)
-    def get_biome_info(self):
-        """
-        Retourne les informations du biome.
-        """
-        return {
-            'ID': self.id,
-            'Name': self.name,
-            'Color': self.color,
-            'Average Altitude': self.altitude_avg,
-        }
     
     @classmethod
     def create_random_biome(cls):
@@ -105,3 +95,4 @@ class Biome:
         liste = [cls.create_forest_biome(), cls.create_desert_biome(), cls.create_mountain_biome(), cls.create_ocean_biome(), cls.create_plains_biome(), cls.create_lake_biome()]
         rdn_num = randint(0, len(liste) - 1)
         return liste[rdn_num]
+    
