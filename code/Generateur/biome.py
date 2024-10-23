@@ -21,6 +21,9 @@ class Biome:
         self.altitude_avg = altitude_avg
 
     def __repr__(self):
+        """
+        Retourne une représentation de la frontière sous forme de string.
+        """
         return f"Biome(id={self.id}, name={self.name}, color={self.color}, altitude_avg={self.altitude_avg})"
 
 ######################### GETTER
@@ -46,7 +49,7 @@ class Biome:
         "Lake": (65, 105, 225),  # Bleu royal ou d'après Carlos "du bleu c'est du bleu"
     }
 
-######################### CREATE BIOME
+######################### METHODS
 
     @staticmethod
     def create_forest_biome():
