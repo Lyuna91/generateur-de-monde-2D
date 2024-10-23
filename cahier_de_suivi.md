@@ -293,3 +293,5 @@ Important : la création de la fonction create_pays : dedans il faut implémente
 - J'ai créer la fonction **repr** pour afficher les infos d'un biome et display_biomes pour afficher un biome
 - J'ai retirer le paramètre cls (équivalent à self) pour le remplacer par self car c'est ce qui avait été ajouté jusque là.
 - La fonction get_biome_info permet de récupérer les infos d'un biome sous forme de dico, le **repr** permet de les afficher seulement.
+
+- En plus j'ai fais la mise à jour de tout les fichiers en fonction de la doc technique, plus ajouter un **repr** pour toute les classes.
