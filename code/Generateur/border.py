@@ -1,5 +1,9 @@
 from .pixel import Pixel
+
 class Border :
+    """
+    Classe permettant de définir les frontières.
+    """
 
 ######################### INIT
 

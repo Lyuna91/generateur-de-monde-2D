@@ -1,5 +1,3 @@
-######################### GENERATEUR
-
 from .pixel import Pixel
 from .border import Border
 from .river import River
@@ -8,16 +6,34 @@ from .city import City
 from .biome import Biome
 from .country import Country
 
-######################### IMPORT 
-
 import random
 
-
 class Map: 
+    """
+    Classe permettant de définir les cartes.
+    """
+
+######################### INIT
+
     def __init__(self, name, size, options):
+        """
+        Initialise une carte avec ses caractéristiques de base.
+        
+        :param name: Nom de la carte
+        :param size: Taille de la carte
+        :param options: Options de génération de la carte
+        """
         self.name = name
         self.size = size
         self.options = options
+
+    def __repr__(self):
+        """
+        Retourne une représentation de la carte sous forme de string.
+        """
+        return f"Map(name={self.name}, size={self.size}, options={self.options})"
+    
+######################### METHODS
 
     def generate_empty_map(self, size):
         pass

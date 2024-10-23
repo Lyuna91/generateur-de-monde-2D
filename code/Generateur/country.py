@@ -1,6 +1,8 @@
 from .zone import Zone
 
 class Country:
+    """
+    Classe permettant de définir les pays."""
 
 ######################### INIT
 

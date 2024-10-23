@@ -1,6 +1,8 @@
 from .country import Country
 
 class City:
+    """
+    Classe permettant de définir les villes."""
 
 ######################### INIT
 

@@ -4,6 +4,12 @@ from .pixel import Pixel
 from .biome import Biome
 
 class Zone:
+    """
+    Classe permettant de définir les zones de Voronoi.
+    """
+
+######################### INIT
+
     def __init__(self, id, size, seed, pixels):
         """
         Initialise une zone avec un ID, une taille, un centre (seed), une liste de pixels et une couleur unique.
@@ -20,6 +26,13 @@ class Zone:
         self.biome = Biome.create_random_biome()
         self.pixels = pixels if pixels is not None else []
 
+        def __repr__(self):
+            """
+            Retourne une représentation de la zone sous forme de string.
+            """
+            return f"Zone(id={self.id}, size={self.size}, seed={self.seed}, pixels={self.pixels}, biome={self.biome})"
+
+######################### METHODS
 
     def get_info_zone(self):
         """

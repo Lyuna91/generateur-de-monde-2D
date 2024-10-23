@@ -4,10 +4,8 @@ class Pixel:
     """
     Classe permettant de définir les pixels.
     """
-
+    
 ######################### INIT
-
-# J'ai enlevé le paramètre "zone" des paramètres, je n'arrive pas a accéder à sa classe
 
     def __init__(self, x, y, color, zone_id, altitude=0, element=None):
         """
@@ -23,10 +21,15 @@ class Pixel:
         self.x = x
         self.y = y
         self.color = color
-        self.zone_id = zone_id  # Utilise l'ID de la zone
+        self.zone_id = zone_id
         self.altitude = altitude
         self.element = element
 
+    def __repr__(self):
+        """
+        Retourne une représentation du pixel sous forme de string.
+        """
+        return f"Pixel(x={self.x}, y={self.y}, color={self.color}, zone_id={self.zone_id}, altitude={self.altitude}, element={self.element})"
 
 ######################### SETTER
 
