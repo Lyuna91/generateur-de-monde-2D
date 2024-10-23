@@ -20,6 +20,9 @@ class Biome:
         self.color = color
         self.altitude_avg = altitude_avg
 
+    def __repr__(self):
+        return f"Biome(id={self.id}, name={self.name}, color={self.color}, altitude_avg={self.altitude_avg})"
+
 ######################### GETTER
 
     def get_biome_info(self):
@@ -86,13 +89,36 @@ class Biome:
         Crée et retourne un biome lac.
         """
         return Biome(id=6, name="Lake", color=Biome.biome_colors["Lake"], altitude_avg=0)
-    
+
     @classmethod
-    def create_random_biome(cls):
+    def create_random_biome(self):
         """
         Crée et retourne un biome au hasard.
         """
-        liste = [cls.create_forest_biome(), cls.create_desert_biome(), cls.create_mountain_biome(), cls.create_ocean_biome(), cls.create_plains_biome(), cls.create_lake_biome()]
+        liste = [self.create_forest_biome(), self.create_desert_biome(), self.create_mountain_biome(), self.create_ocean_biome(), self.create_plains_biome(), self.create_lake_biome()]
         rdn_num = randint(0, len(liste) - 1)
         return liste[rdn_num]
+    
+    @classmethod
+    def create_biomes(self):
+        """
+        Crée et retourne un dictionnaire de biomes.
+        """
+        biomes = {
+            "Forest": Biome.create_forest_biome(),
+            "Desert": Biome.create_desert_biome(),
+            "Mountain": Biome.create_mountain_biome(),
+            "Ocean": Biome.create_ocean_biome(),
+            "Plains": Biome.create_plains_biome(),
+            "Lake": Biome.create_lake_biome(),
+        }
+        return biomes
+    
+    @classmethod
+    def display_biomes(cls, biomes):
+        """
+        Affiche un dictionnaire de biomes.
+        """
+        for biome in biomes.items():
+            print(biome)
     
