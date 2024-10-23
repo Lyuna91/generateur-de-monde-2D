@@ -254,7 +254,7 @@ A reflechir.
 ## On se mets d'accord sur l'orga de la semaine qui arrive
 
 - Changer les biomes pour les passer en dictionnaire
-  biome = { "Desert" : Biome (.......), } (à décider sur discord samedi 18/10)
+  biome = { "Desert" : Biome (.......), }
 
 ## Carlos s'occupe d'envoyer le sprint ce soir (18/10)
 
@@ -263,3 +263,25 @@ Répartition des points :
 - Yuna : 40
 - Carlos : 30
 - Jade : 30
+
+# Debrief réunion 23/10
+
+Un pays :
+
+- Un regroupement de zone
+- un pays ne peut pas se former sur les océans
+- Générateur de nom
+
+Un pays :
+
+- id
+- nom
+- liste des zones
+
+Important : la création de la fonction create_pays : dedans il faut implémenter la logique de création (à savoir que c'est des regroupement de zone qui sont frontalières.) Faire ça en fonction des graines
+
+## Déroulement de la semaine
+
+- Jade : create_country
+- Yuna : Biome en dico
+- Carlos : générateur de nom
