@@ -26,11 +26,11 @@ class Zone:
         self.biome = Biome.create_random_biome()
         self.pixels = pixels if pixels is not None else []
 
-        def __repr__(self):
-            """
-            Retourne une représentation de la zone sous forme de string.
-            """
-            return f"Zone(id={self.id}, size={self.size}, seed={self.seed}, pixels={self.pixels}, biome={self.biome})"
+    def __repr__(self):
+        """
+        Retourne une représentation de la zone sous forme de string.
+        """
+        return f"Zone(id={self.id}, size={self.size}, seed={self.seed}, biome={self.biome})"
 
 ######################### METHODS
 
@@ -40,23 +40,12 @@ class Zone:
 
         :return: Dictionnaire des informations de la zone
         """
-        print('ID :')
-        print(self.id)
-        print('\n')
-
-        print('Position du centre (seed)')
-        print(self.seed)
-        print('\n')
-
-        print('Nombre de pixels')
-        print(self.size)
-        print('\n')
-
-        print('Biome')
-        print(self.biome.get_biome_info()) # A creer
-        print('\n')
-
-        return 1
+        return {
+            'ID': self.id,
+            'Size': self.size,
+            'Seed': self.seed,
+            'Biome': self.biome
+        }
 
     @staticmethod
     def generate_voronoi_zones(width, height, num_zones, pixel_size=10):
@@ -88,11 +77,12 @@ class Zone:
                 closest_zone.pixels.append(pixel)  # Ajoute le pixel à la liste de pixels de la zone
                 closest_zone.size += 1  # Incrémente la taille de la zone
                 pixel_count += 1  # Incrémente le compteur de pixels
-                print(f"Pixel Info - X: {pixel.x}, Y: {pixel.y}, Color: {pixel.color}, Zone: {pixel.zone_id}")  # Ligne ajoutée
+                print(pixel)  # Affiche tout les pixels
 
         # Affiche les informations de chaque zone pour le débogage
         for zone in zones:
-            zone.get_info_zone()
+            print(zone)
+            print("\n")
 
         # Afficher le nombre total de pixels créés
         print(f"Total number of pixels created: {pixel_count}")
