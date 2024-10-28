@@ -295,3 +295,11 @@ Important : la création de la fonction create_pays : dedans il faut implémente
 - La fonction get_biome_info permet de récupérer les infos d'un biome sous forme de dico, le **repr** permet de les afficher seulement.
 
 - En plus j'ai fais la mise à jour de tout les fichiers en fonction de la doc technique, plus ajouter un **repr** pour toute les classes.
+
+# 28/10/2024
+
+### Update Carlos :
+
+It was a hard day to be honest. I searched a lot of libraries to generate countries names randomly but they didn't work at all. So I decided to use a manual creation based on list of characters, titles and random library and i think is a really good work.
+
+je parle bien anglais en vrai.
