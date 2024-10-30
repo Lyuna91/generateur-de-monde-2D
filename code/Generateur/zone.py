@@ -2,6 +2,7 @@ import random
 from scipy.spatial import Voronoi
 from .pixel import Pixel
 from .biome import Biome
+from math import sqrt
 
 class Zone:
     """
@@ -77,16 +78,25 @@ class Zone:
                 closest_zone.pixels.append(pixel)  # Ajoute le pixel à la liste de pixels de la zone
                 closest_zone.size += 1  # Incrémente la taille de la zone
                 pixel_count += 1  # Incrémente le compteur de pixels
-                print(pixel)  # Affiche tout les pixels
+                # print(pixel)  # Affiche tout les pixels
 
         # Affiche les informations de chaque zone pour le débogage
-        for zone in zones:
+        """for zone in zones:
             print(zone)
-            print("\n")
+            print("\n")"""
 
         # Afficher le nombre total de pixels créés
         print(f"Total number of pixels created: {pixel_count}")
 
         return zones
 
-   
+    def is_adjacent(self, other_zone, distance_threshold=20):
+        """
+        Vérifie si une autre zone est adjacente à cette zone.
+        
+        :param other_zone: L'autre zone à vérifier
+        :param distance_threshold: La distance maximale pour être considéré comme adjacent
+        :return: True si les zones sont adjacentes, False sinon
+        """
+        distance = sqrt((self.seed[0] - other_zone.seed[0]) ** 2 + (self.seed[1] - other_zone.seed[1]) ** 2)
+        return distance <= distance_threshold
