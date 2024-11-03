@@ -1,7 +1,7 @@
 from .zone import Zone
 import random
 from math import sqrt
-
+from .names import country_titles, prefixes, middles, suffixes
 
 
 class Country:
@@ -10,7 +10,7 @@ class Country:
 
 ######################### INIT
 
-    def __init__(self, id, name, size, zones):
+    def __init__(self, id, size, zones):
         """
         Initialise un pays avec ses caractéristiques de base.
         
@@ -19,7 +19,7 @@ class Country:
         :param zones: Liste des zones du pays
         """
         self.id = id
-        self.name = name
+        self.name = generate_country_name()
         self.zones = zones
 
     def __repr__(self):
@@ -50,7 +50,7 @@ class Country:
                 country_zones = random.sample(available_zones, k=random.randint(3, 7))
                 
                 # Créer un objet Country avec ces zones
-                new_country = Country(id=country_id, name=country_name, zones=country_zones)
+                new_country = Country(id=country_id, zones=country_zones)
                 countries.append(new_country)
                 
                 # Marquer les zones comme appartenant à ce pays
@@ -88,7 +88,6 @@ class Country:
             # Créer le pays avec les zones trouvées
             new_country = Country(
                 id=country_id,
-                name=f"Country_{country_id}",
                 size=len(country_zones),
                 zones=country_zones
             )
@@ -101,5 +100,11 @@ class Country:
                 print(f"  Zone ID: {zone.id}, Seed: {zone.seed}, Biome: {zone.biome.name}")
 
         return countries
+    
+    
+def generate_country_name():
+    title = random.choice(country_titles)
+    name = random.choice(prefixes) + random.choice(middles) + random.choice(suffixes)
+    return f"{title} {name}"
 
 

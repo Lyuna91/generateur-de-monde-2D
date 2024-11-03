@@ -1,5 +1,3 @@
-import random
-i = 0
 # Liste de 100 préfixes
 prefixes = [
     "Al", "Bel", "Car", "Dor", "El", "Fal", "Gar", "Hor", "Ith", "Jer", "Kor", "Lir", "Mor", "Nor", "Or",
@@ -36,42 +34,3 @@ suffixes = [
 country_titles = [
     "Royaume de", "Principauté de", "République de", "Confédération de", "Union de", "Empire de"
 ]
-
-def generate_country_name():
-    title = random.choice(country_titles)
-    name = random.choice(prefixes) + random.choice(middles) + random.choice(suffixes)
-    return f"{title} {name}"
-
-
-class Country:
-    """
-    Classe permettant de définir les pays."""
-
-######################### INIT
-
-    def __init__(self):
-        """
-        Initialise un pays avec ses caractéristiques de base.
-        
-        :param id: Identifiant unique du pays
-        :param name: Nom du pays
-        :param zones: Liste des zones du pays
-        """
-        self.id = i
-        self.name = generate_country_name()
-
-
-    def __repr__(self):
-        """
-        Retourne une représentation du pays sous forme de string.
-        """
-        return f"Country( id = {self.id}, name = {self.name})"
-
-# Fonction de génération de noms de pays
-
-
-# Générer quelques exemples de noms de pays
-for _ in range(10):
-    pays = Country()
-    print(pays)
-    i += 1
