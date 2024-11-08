@@ -10,7 +10,7 @@ class Border :
     def __init__(self, id, countries, size, pixels):
         """
         Initialise une frontière avec ses caractéristiques de base.
-        
+
         :param id: Identifiant unique de la frontière
         :param countries: Les deux pays séparés par la frontière
         :param size: La taille de la frontière
@@ -30,3 +30,10 @@ class Border :
 ######################### METHODS
     def create_border(self):
         pass
+
+
+"""
+Changement d'idee, la frontiere fait partie du pays
+les frontieres seront des sortes de double ligne de pixels et chaque pays frontaliers aura "sa frontiere"
+
+"""
