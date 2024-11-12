@@ -5,7 +5,22 @@ edited_seconds: 10
 
 # 12/11/2024
 
-Le retour du cahier de suivi !!!!
+Le retour du cahier de suivi !!!! je l'ai réimplémenté à l'envers comme je vous avez expliqué la dernière fois. Donc la première entrée est en réalité la dernière entrée faite dans le cahier !
+
+Mise à jours et implémentation correcte des pays :
+
+- Les pays regroupent plusieurs zones
+- les pays peuvent actuellement posséder entre 1 et 5 zones
+- les pays ne peuvent pas posséder de zones océans
+
+Dans le test on peut actuellement lire :
+
+- le pays ID
+- le pays NOM (avec l'algo de Carlos qui est incroyable merci)
+- Le nombre de zone
+  - et par zone : ID, Seed, Biome
+
+Je remets la documentation technique quand j'aurai un peu plus de temps <3
 
 ---
 

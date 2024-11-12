@@ -30,7 +30,7 @@ class Render:
         self.title = title
         self.screen = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption(self.title)
-        self.zones = Zone.generate_voronoi_zones(self.width, self.height, 10)  # Exemple avec 10 zones
+        self.zones = Zone.generate_voronoi_zones(self.width, self.height, 20)  # Exemple avec 10 zones
         self.countries = self.generate_countries(num_countries)  # Appel pour créer les pays
         self.country_colors = {
             country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
