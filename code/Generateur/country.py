@@ -1,7 +1,7 @@
 from .zone import Zone
 import random
 from math import sqrt
-from .names import country_titles, prefixes, middles, suffixes
+from .names_countries import country_titles, prefixes, middles, suffixes
 
 
 class Country:

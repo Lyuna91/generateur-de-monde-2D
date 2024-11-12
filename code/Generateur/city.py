@@ -1,4 +1,6 @@
 from .country import Country
+from .names_cities import introductions, prefixes, middles, suffixes
+import random
 
 class City:
     """
@@ -30,3 +32,8 @@ class City:
 
     def create_city(self):
         pass
+
+    def generate_city_name():
+        intro = random.choice(introductions)
+        name = random.choice(prefixes) + random.choice(middles) + random.choice(suffixes)
+        return f"{intro} {name}".strip()
