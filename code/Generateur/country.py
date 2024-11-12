@@ -21,6 +21,7 @@ class Country:
         self.name = generate_country_name()
         self.zones = zones
         self.size = len(zones)  # Taille calculée directement à partir du nombre de zones
+        self.border_pixels = self.get_border_pixels()
 
     def __repr__(self):
         """
@@ -87,7 +88,26 @@ class Country:
                 print(f"  Zone ID: {zone.id}, Seed: {zone.seed}, Biome: {zone.biome.name}")
 
         return countries
-
+    
+    def get_border_pixels(self):
+        """
+        Calcule et retourne une liste de pixels qui se trouvent à la bordure du pays.
+        """
+        border_pixels = set()
+        all_pixels = {pixel for zone in self.zones for pixel in zone.pixels}
+        for pixel in all_pixels:
+            x, y = pixel.x, pixel.y
+            # Vérifier les pixels adjacents
+            adjacent_pixels = [(x-10, y), (x+10, y), (x, y-10), (x, y+10)]
+            is_border = False
+            for adj_pixel in adjacent_pixels:
+                if not any(adj_pixel == (p.x, p.y) for p in all_pixels):
+                    is_border = True
+                    break
+            if is_border:
+                print(f"Border Pixel: {pixel.x}, {pixel.y}")
+                border_pixels.add(pixel)
+        return list(border_pixels)
 
 def generate_country_name():
     title = random.choice(country_titles)

@@ -79,6 +79,11 @@ class Render:
                 for pixel in zone.pixels:
                     pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, 10, 10))
 
+        # Affiche les pixels de bordure des pays en noir
+        for country in self.countries:
+            for pixel in country.border_pixels:
+                pygame.draw.rect(self.screen, (0,0,0), (pixel.x, pixel.y, 10, 10))
+
         # Affiche les graines des zones comme des cercles pour référence
         for zone in self.zones:
             pygame.draw.circle(self.screen, (0, 0, 0), zone.seed, 3)

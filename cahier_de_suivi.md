@@ -24,6 +24,16 @@ Je remets la documentation technique quand j'aurai un peu plus de temps <3
 
 ---
 
+# Update Yuna 12/11/2024
+
+J'ai mis en place les frontières, c'est dans country
+get_border_pixels, qui calcule les bordures à chaque création de pays et qui créer une liste de pixels. La liste est ensuite afficher après les pays dans display_pixels :D
+
+Note pour pas oublier:
+
+- pitié utilisez les fonctions repr si vous voulez afficher un ou plusieurs objets (c'est fait pour ça)
+- Avoir une variable pour stocker la taille des pixels sur l'écran et pas avoir a la retaper partout, pour le zoom ce sera plus simple après
+
 # Debrief Reunion 08/11/2024
 
 Pour le 13 Novembre 2024 :
