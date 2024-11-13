@@ -38,6 +38,3 @@ class City:
         name = random.choice(prefixes) + random.choice(middles) + random.choice(suffixes)
         return f"{intro} {name}".strip()
         
-        
-for i in range(10):
-    print(City.generate_city_name())
