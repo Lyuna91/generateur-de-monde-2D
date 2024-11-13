@@ -10,6 +10,7 @@ from Generateur.biome import Biome
 from Generateur.zone import Zone
 from Generateur.pixel import Pixel
 from Generateur.country import Country
+from Generateur.city import City
 
 
 class Render:
@@ -36,6 +37,7 @@ class Render:
             country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
             for country in self.countries
         }
+        self.cities = self.generate_cities(num_countries)
 
     def __repr__(self):
         """
@@ -63,6 +65,14 @@ class Render:
         Appelle la méthode de création des pays avec les zones disponibles.
         """
         return Country.create_countries_from_zones(self.zones, num_countries)
+    
+    def generate_cities(self, num_countries): 
+        """
+        Appelle la méthode de création des villes avec les pays disponibles.
+
+        """
+        num_cities = num_countries + random.randint(1, num_countries)
+        return City.create_cities_from_countries(self.countries, num_cities)
 
 
     def display_pixels(self):
@@ -87,6 +97,9 @@ class Render:
         # Affiche les graines des zones comme des cercles pour référence
         for zone in self.zones:
             pygame.draw.circle(self.screen, (0, 0, 0), zone.seed, 3)
+
+        for city in self.cities:
+            pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
         
 
 

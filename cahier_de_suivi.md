@@ -3,6 +3,22 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update 13/11/2024 apres la reunion
+
+## Update Carlos
+
+J'ai décidé de faire mon travail dès ce soir et il consistait à :
+
+- finir l'implementation des villes
+- effectuer la liaison entre les villes et les pays
+
+J'ai realier mes deux taches :
+
+- la creation des villes
+- l'assignation des villes a des pays
+- la repartition de villes de maniere pseudo aleatoire en fonction du nombre de pays
+- Vu que les villes sont crees en fonction des pays, j'ai pas eu besoin d'établir une regle pour les biome ocean.
+
 # Debrief Reunion 13/11/2024
 
 A ce jour, ce qui a été fiat
