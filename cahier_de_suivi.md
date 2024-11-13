@@ -3,6 +3,43 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Debrief Reunion 13/11/2024
+
+A ce jour, ce qui a été fiat
+
+- Les frontières sont fonctionnelles
+- Les pays sont fonctionnels
+- les noms de villes sont quasi fonctionnelles (juste un problème d'import à régler mais sinon ça fonctionnait jusqu'ici)
+
+## A FAIRE
+
+- Création de l'objet ville et placement sur la carte (les noms sont déjà fait)
+
+  - Une ville est un objet indépendant avec son ID, son nom, sa position et le pays dans lequel elle se trouve. En cas de modification par l'utilisateur des frontières du pays, c'est à la ville de recalculer son attribution si besoin.
+  - la ville prends en paramètre le pays dans lequel elle doit se placer
+  - Un nombre aléatoire de ville entre 0 et x pour déterminer les villes dans les pays
+  - Attribution des villes dans tous les pays créés
+
+- Création des routes et placement sur la carte. 2 types de routes
+
+  - Les routes qui relient des villes entre elles
+  - Les routes "esthétiques"
+
+  Une route = ID, une liste de pixel, ville_arrive, ville_depart
+
+  CARLOS RAJOUTE TON CODE ICI POUR EXPLIQUER LA DIFF
+
+## REPARTITION DES TACHES
+
+Carlos : s'occupe de la création des villes
+Yuna : genere_route (pas entre deux villes)
+Jade : tracer route + generate_route_entre_deux_villes
+
+- Jade : Tracer Route - Samedi Soir
+- Carlos : Création Ville + Generate Ville - Dimanche soir
+- Jade : generate_route_entre_deux_villes - Mercredi
+- Yuna : genere_route - Mercredi
+
 # 12/11/2024
 
 Le retour du cahier de suivi !!!! je l'ai réimplémenté à l'envers comme je vous avez expliqué la dernière fois. Donc la première entrée est en réalité la dernière entrée faite dans le cahier !
