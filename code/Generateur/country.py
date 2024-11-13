@@ -113,3 +113,4 @@ def generate_country_name():
     title = random.choice(country_titles)
     name = random.choice(prefixes) + random.choice(middles) + random.choice(suffixes)
     return f"{title} {name}"
+

@@ -1,6 +1,9 @@
 import random
 from .country import Country
+from .names_cities import introductions, prefixes, middles, suffixes
 id = 0
+import random
+
 class City:
     """
     Classe permettant de définir les villes."""
@@ -28,5 +31,17 @@ class City:
         return f"City(id={self.id}, name={self.name}, position={self.position}, country={self.country})"
 
 ######################### METHODS
+
+    def create_city(self):
+        pass
+
+    def generate_city_name():
+        intro = random.choice(introductions)
+        name = random.choice(prefixes) + random.choice(middles) + random.choice(suffixes)
+        return f"{intro} {name}".strip()
+        
+        
+for i in range(10):
+    print(City.generate_city_name())
 
         
