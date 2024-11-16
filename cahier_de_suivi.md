@@ -3,6 +3,31 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Jade - 16/11
+
+Tracer route est prêt à l'utilisation !
+
+On a un nouvel algorithme : l'ago de Bresenham
+
+Le but de l'algorithme de Bresenham est de tracer une ligne droite la plus proche possible de la trajectoire idéale sur une grille. Comme on ne peut pas dessiner une ligne continue sur une grille de pixels (chaque pixel est une case entière), l'algorithme choisit les pixels qui représentent au mieux cette ligne.
+
+- dans le generate_road_pixel, j'ai ajouté un effet avec des déviations aléatoires pour donner un effet un peu bourré aux chemins. le process c'est ça :
+
+* On calcule des points intermédiaires entre le point de départ et le point d'arrivée.
+* On décale aléatoirement et légèrement les points interméditaires de leur origine
+* On trace Bresenham
+
+Comme ça on a une impression de vrai chemin ! Parce que j'avais tracé des lignes droites à la base mais c'était vraiment moche.
+
+Donc pour résumé :
+
+- generate_road_pixels génère une route sinueuse avec des points intermédiaires et utilise \_bresenham_line pour connecter ces points.
+- \_bresenham_line trace une ligne droite pixel par pixel entre deux points.
+
+Pour tester, j'ai mis un generate_road dans le render qui relie les villes entre elles. Je l'ai copié collé dans la class Road pour voir ce que j'en fais plus tard après que Yuna ait regardé un peu et fait un retour. En tout cas c'est pas la version définitive et ça peut être supprimé pour les test, c'était juste pour voir la gueule des routes :)
+
+VOILAAAA
+
 # Update 13/11/2024 apres la reunion
 
 ## Update Carlos

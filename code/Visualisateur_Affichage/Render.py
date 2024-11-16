@@ -2,7 +2,7 @@ import sys
 import os
 import pygame
 import random
-from scipy.spatial import Voronoi #test
+from scipy.spatial import Voronoi
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from Generateur.map import Map
@@ -11,6 +11,7 @@ from Generateur.zone import Zone
 from Generateur.pixel import Pixel
 from Generateur.country import Country
 from Generateur.city import City
+from Generateur.road import Road
 
 
 class Render:
@@ -31,24 +32,77 @@ class Render:
         self.title = title
         self.screen = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption(self.title)
-        self.zones = Zone.generate_voronoi_zones(self.width, self.height, 20)  # Exemple avec 10 zones
+        self.zones = Zone.generate_voronoi_zones(self.width, self.height, 20)  # Exemple avec 20 zones
         self.countries = self.generate_countries(num_countries)  # Appel pour créer les pays
+        self.cities = self.generate_cities(num_countries)  # Appel pour créer les villes
+        self.roads = self.generate_roads()  # Appel pour créer les routes
         self.country_colors = {
             country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
             for country in self.countries
         }
-        self.cities = self.generate_cities(num_countries)
 
     def __repr__(self):
         """
         Retourne une représentation du rendu sous forme de string.
         """
-        return f"Render(width={self.width}, height={self.height}, title={self.title}, screen={self.screen}, zones={self.zones})"
+        return f"Render(width={self.width}, height={self.height}, title={self.title}, roads={len(self.roads)})"
 
 ######################### METHODS
 
-    def render_map(self, Map, options):
-        pass
+    def generate_countries(self, num_countries):
+        """
+        Appelle la méthode de création des pays avec les zones disponibles.
+        """
+        return Country.create_countries_from_zones(self.zones, num_countries)
+
+    def generate_cities(self, num_countries):
+        """
+        Appelle la méthode de création des villes avec les pays disponibles.
+        """
+        num_cities = num_countries + random.randint(1, num_countries)
+        return City.create_cities_from_countries(self.countries, num_cities)
+
+    def generate_roads(self):
+        """
+        Crée des routes connectant des villes aléatoires.
+        """
+        roads = []
+        if len(self.cities) < 2:
+            return roads  # Pas assez de villes pour créer des routes
+        
+        # Connecter chaque ville à une autre aléatoire
+        for i, city in enumerate(self.cities):
+            if i + 1 < len(self.cities):
+                next_city = self.cities[(i + 1) % len(self.cities)]
+                road = Road(id=len(roads), start_point=(city.position.x, city.position.y),
+                            end_point=(next_city.position.x, next_city.position.y))
+                roads.append(road)
+        return roads
+
+    def display_pixels(self):
+        """
+        Affiche les pixels des zones, pays, villes et routes.
+        """
+        # Affiche les pays et zones
+        for country in self.countries:
+            country_color = self.country_colors[country.id]
+            for zone in country.zones:
+                for pixel in zone.pixels:
+                    pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, 10, 10))
+
+        # Affiche les bordures des pays
+        for country in self.countries:
+            for pixel in country.border_pixels:
+                pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, 10, 10))
+
+        # Affiche les villes
+        for city in self.cities:
+            pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))  # Rouge
+
+        # Affiche les routes
+        for road in self.roads:
+            for pixel in road.pixels:
+                pygame.draw.rect(self.screen, pixel.color, (pixel.x, pixel.y, 2, 2))  # Routes jaunes
 
     def display_grid(self, pixel_size, couleur):
         """
@@ -58,51 +112,6 @@ class Render:
             pygame.draw.line(self.screen, couleur, (x, 0), (x, self.height))
         for y in range(0, self.height, pixel_size):
             pygame.draw.line(self.screen, couleur, (0, y), (self.width, y))
-
-
-    def generate_countries(self, num_countries):
-        """
-        Appelle la méthode de création des pays avec les zones disponibles.
-        """
-        return Country.create_countries_from_zones(self.zones, num_countries)
-    
-    def generate_cities(self, num_countries): 
-        """
-        Appelle la méthode de création des villes avec les pays disponibles.
-
-        """
-        num_cities = num_countries + random.randint(1, num_countries)
-        return City.create_cities_from_countries(self.countries, num_cities)
-
-
-    def display_pixels(self):
-        # Dessine chaque pixel de chaque zone
-        """for zone in self.zones:
-            for pixel in zone.pixels:
-                pygame.draw.rect(self.screen, pixel.color, (pixel.x, pixel.y, 10, 10))  # Taille du pixel 1x1
-"""
-
-         # Utilise les couleurs de chaque pays pour afficher les zones
-        for country in self.countries:
-            country_color = self.country_colors[country.id]  # Récupère la couleur du pays
-            for zone in country.zones:
-                for pixel in zone.pixels:
-                    pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, 10, 10))
-
-        # Affiche les pixels de bordure des pays en noir
-        for country in self.countries:
-            for pixel in country.border_pixels:
-                pygame.draw.rect(self.screen, (0,0,0), (pixel.x, pixel.y, 10, 10))
-
-        # Affiche les graines des zones comme des cercles pour référence
-        for zone in self.zones:
-            pygame.draw.circle(self.screen, (0, 0, 0), zone.seed, 3)
-
-        for city in self.cities:
-            pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
-        
-
-
 
     def display_window(self):
         """
@@ -118,7 +127,5 @@ class Render:
             self.display_pixels()  # Afficher les pixels
             self.display_grid(10, (200, 200, 200))  # Afficher le quadrillage
             pygame.display.flip()  # Mettre à jour l'affichage
-        pygame.quit()
 
-    def add_pixel(self, pixel):
-        self.pixels.append(pixel)
+        pygame.quit()
