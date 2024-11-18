@@ -26,7 +26,7 @@ class Road:
         """
         Retourne une représentation de la route sous forme de string.
         """
-        return f"Road(id={self.id}, start_point={self.start_point}, end_point={self.end_point}, num_pixels={len(self.pixels)})"
+        return f"Road(id={self.id}, start_point={self.start_point}, end_point={self.end_point}"
 
 ######################### METHODS
 
@@ -38,6 +38,7 @@ class Road:
         pixels = []
         x1, y1 = self.start_point
         x2, y2 = self.end_point
+        print(self)
 
         # Générer quelques points intermédiaires pour créer un chemin naturel
         num_segments = 5  # Divise la route en segments
@@ -98,6 +99,7 @@ class Road:
         while True:
             pixels.append(Pixel(x1, y1, (255, 255, 0), zone_id=None, element="Road"))  # Couleur jaune
 
+
             if (x1, y1) == (x2, y2):
                 break
 
@@ -108,7 +110,6 @@ class Road:
             if e2 < dx:
                 err += dx
                 y1 += sy
-
         return pixels
 
 def create_road(self):

@@ -35,7 +35,7 @@ class Render:
         self.zones = Zone.generate_voronoi_zones(self.width, self.height, 20)  # Exemple avec 20 zones
         self.countries = self.generate_countries(num_countries)  # Appel pour créer les pays
         self.cities = self.generate_cities(num_countries)  # Appel pour créer les villes
-        self.roads = self.generate_roads()  # Appel pour créer les routes
+        self.roads = self.generate_roads(10)  # Appel pour créer les routes
         self.country_colors = {
             country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
             for country in self.countries
@@ -62,21 +62,39 @@ class Render:
         num_cities = num_countries + random.randint(1, num_countries)
         return City.create_cities_from_countries(self.countries, num_cities)
 
-    def generate_roads(self):
+    def generate_roads(self, max_roads):
         """
-        Crée des routes connectant des villes aléatoires.
+        Crée des routes connectant des villes aléatoires et des points aléatoires sur la carte.
+        Chaque ville aura entre 1 et 2 routes, avec un nombre total de routes limité par max_roads.
         """
         roads = []
         if len(self.cities) < 2:
             return roads  # Pas assez de villes pour créer des routes
-        
-        # Connecter chaque ville à une autre aléatoire
-        for i, city in enumerate(self.cities):
-            if i + 1 < len(self.cities):
-                next_city = self.cities[(i + 1) % len(self.cities)]
-                road = Road(id=len(roads), start_point=(city.position.x, city.position.y),
-                            end_point=(next_city.position.x, next_city.position.y))
+
+        total_roads = 0
+
+        while total_roads < max_roads:
+            city = random.choice(self.cities)
+            # Chaque ville aura entre 1 et 2 routes
+            num_roads = random.randint(1, 2)
+            for _ in range(num_roads):
+                if total_roads >= max_roads:
+                    break
+                if random.choice([True, False]):
+                    # Connecter à une autre ville aléatoire
+                    next_city = random.choice(self.cities)
+                    while next_city == city:
+                        next_city = random.choice(self.cities)
+                    road = Road(id=len(roads), start_point=(city.position.x, city.position.y),
+                                end_point=(next_city.position.x, next_city.position.y))
+                else:
+                    # Connecter à un point aléatoire sur la carte
+                    random_point = (random.randint(0, self.width), random.randint(0, self.height))
+                    road = Road(id=len(roads), start_point=(city.position.x, city.position.y),
+                                end_point=random_point)
                 roads.append(road)
+                total_roads += 1
+
         return roads
 
     def display_pixels(self):

@@ -3,6 +3,12 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Yuna - 18/11
+
+J'ai vraiment juste ajouter 5 lignes pour que les chemins soit tracés d'une ville à un points aléatoire dans le generate_roads() de jade dans le render. (Merci Rhade)
+
+Pour les routes maintenant il faudrait juste que les routes sois sous forme de pixel et un peu plus d'aléatoire :D
+
 # Update Jade - 16/11
 
 Tracer route est prêt à l'utilisation !

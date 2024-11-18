@@ -105,7 +105,6 @@ class Country:
                     is_border = True
                     break
             if is_border:
-                print(f"Border Pixel: {pixel.x}, {pixel.y}")
                 border_pixels.add(pixel)
         return list(border_pixels)
 
