@@ -3,6 +3,12 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Yuna - 19/11 (suite)
+
+J'ai regarder pour que les routes soit afficher en mode pixel et on a un problème, pour l'instant pour créer une route ça créer des nouveaux pixels jaune sur le coup alors qu'on a déjà tout les pixel générer et qu'il faut changer leur couleur.
+
+Je pense qu'il faut en fait, au lieu de passer en paramètre des coordonnées, il faut y passer nos pixel déjà prêt, enfin bref on en discute demain à la réu.
+
 # Update Yuna - 18/11
 
 J'ai vraiment juste ajouter 5 lignes pour que les chemins soit tracés d'une ville à un points aléatoire dans le generate_roads() de jade dans le render. (Merci Rhade)

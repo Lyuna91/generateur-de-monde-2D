@@ -74,8 +74,7 @@ class Render:
         total_roads = 0
 
         while total_roads < max_roads:
-            city = random.choice(self.cities)
-            # Chaque ville aura entre 1 et 2 routes
+            city = random.choice(self.cities) # Choisir une ville aléatoire
             num_roads = random.randint(1, 2)
             for _ in range(num_roads):
                 if total_roads >= max_roads:
@@ -89,7 +88,9 @@ class Render:
                                 end_point=(next_city.position.x, next_city.position.y))
                 else:
                     # Connecter à un point aléatoire sur la carte
-                    random_point = (random.randint(0, self.width), random.randint(0, self.height))
+                    random_zone = random.choice(self.zones)
+                    random_pixel = random.choice(random_zone.pixels)
+                    random_point = (random_pixel.x, random_pixel.y)
                     road = Road(id=len(roads), start_point=(city.position.x, city.position.y),
                                 end_point=random_point)
                 roads.append(road)

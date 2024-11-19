@@ -66,5 +66,6 @@ def generate_position(Country):
     pixel = zone.pixels[random.randint(0, len(zone.pixels)-1)]
     while pixel in Country.border_pixels:
         pixel = zone.pixels[random.randint(0, len(zone.pixels)-1)]
+        pixel.set_element("city")
     return pixel
         

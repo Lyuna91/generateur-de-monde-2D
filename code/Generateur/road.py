@@ -86,9 +86,18 @@ class Road:
         :param end: Point d'arrivée (x, y)
         :return: Liste des pixels
         """
+
+        def round_to_nearest_10(value):
+            return round(value / 10) * 10
+        
         x1, y1 = start
         x2, y2 = end
         pixels = []
+
+        x1 = round_to_nearest_10(x1)
+        y1 = round_to_nearest_10(y1)
+        x2 = round_to_nearest_10(x2)
+        y2 = round_to_nearest_10(y2)
 
         dx = abs(x2 - x1)
         dy = abs(y2 - y1)
