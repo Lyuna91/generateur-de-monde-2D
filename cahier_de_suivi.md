@@ -3,6 +3,31 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Debrief réunion 20/11/2024
+
+Attention les routes créent des nouveaux pixels au lieu d'utiliser ceux existants et les placer dans une liste. A modifier.
+
+Gestion des océans : actuellement, la route passe sur le biome océan. Donc on s'est posé la question de comment gérer la route sur le biome. on a trouvé 3 solutions
+
+- Solution 1 : on demande à la route de faire le tour du biome océan et de le contourner.
+- Solution 2 : On supprime la liste de pixel de la route qui se trouve sur le biome océan, créant ainsi 2 portions de route qui rejoignent l'océan
+- Solution 3 : on implémente les deux
+
+Il a été décidé d'implémenter en priorité la solution 1, et d'essayer d'implémenter la solution 2 en plus si on a le temps.
+
+Il faut ajouter des ramifications entre les routes. Idem pour les rivières. Un peu à la façon d'un réseau véineux ou un arbre.
+
+Pour créer la rivière : on part du biome océan (en vérifiant si il existe des biomes océans) et on crée des rivières à partir du biome océans qui s'étendent sur les alentours.
+
+## REPARTITION DU TRAVAIL
+
+Jade : corriger le problème des listes de pixels de route (point 1) - dealine vendredi soir
+Commencer à rédiger le rapport du sprint - deadline mardi soir
+
+Yuna : Implementer la logique des ramifications entre les routes notamment + suppression des routes sur l'eau - deadline dimanche soir
+
+Carlos : Créer les rivières et leur logique + Corriger le print - deadline mardi
+
 # Update Yuna - 19/11 (suite)
 
 J'ai regarder pour que les routes soit afficher en mode pixel et on a un problème, pour l'instant pour créer une route ça créer des nouveaux pixels jaune sur le coup alors qu'on a déjà tout les pixel générer et qu'il faut changer leur couleur.
