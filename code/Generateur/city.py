@@ -26,7 +26,7 @@ class City:
         """
         Retourne une représentation de la ville sous forme de string.
         """
-        return f"City(id={self.id}, name={self.name}, position={self.position}, country={self.country})"
+        return f"City {self.id}: {self.name}, Position: ({self.position.x}, {self.position.y}), Country: {self.country.name}"
 
 ######################### METHODS
 
@@ -41,7 +41,7 @@ class City:
             city = City(i, position, country)
             cities.append(city)
             i += 1
-            print(f"City {i}: {city.name}, Position: ({city.position.x}, {city.position.y}), Country: {city.country.name}")
+            print(city)
         cities_positions = [city.position for city in cities]
         if i < num_cities:
             while i < num_cities:
@@ -52,7 +52,7 @@ class City:
                 cities.append(city)
                 cities_positions.append(position)
                 i += 1
-                print(f"City {i}: {city.name}, Position: ({city.position.x}, {city.position.y}), Country: {city.country.name}")
+                print(city)
         return cities
     
 def generate_city_name():
@@ -64,7 +64,7 @@ def generate_city_name():
 def generate_position(Country):
     zone = Country.zones[random.randint(0, len(Country.zones)-1)]
     pixel = zone.pixels[random.randint(0, len(zone.pixels)-1)]
-    while pixel in Country.border_pixels:
+    while pixel in Country.border_pixels or zone.biome.name == "Ocean" or zone.biome.name == "Lake":
         pixel = zone.pixels[random.randint(0, len(zone.pixels)-1)]
         pixel.set_element("city")
     return pixel
