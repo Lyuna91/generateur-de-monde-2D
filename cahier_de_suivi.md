@@ -3,6 +3,10 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Carlos 28/11
+
+J'ai du modifier villes, pour les empeche de spawn sur des lacs, j'ai donc du modifier les pays pour empecher la creation d'un pays avec que des biomes lacs. En parallele j'avance sur l'interface utilisateur, j'ai deux bouttons permets de reinitialiser la map, ou juste les villes (et donc les routes). I feel like Kanye West...
+
 # Update Yuna 28/11
 
 J'ai terminé les routes, enfin du moins entre villes, je ferais le reste demain ou plus tard. Les routes sont désormais segmentées et sont plus aléatoires dans leurs déplacements. Elle ne sont désormais plus afficher quand elles passent sur un biome océan ou lac.
