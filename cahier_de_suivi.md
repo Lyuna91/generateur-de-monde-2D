@@ -3,6 +3,10 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Yuna 28/11
+
+J'ai terminé les routes, enfin du moins entre villes, je ferais le reste demain ou plus tard. Les routes sont désormais segmentées et sont plus aléatoires dans leurs déplacements. Elle ne sont désormais plus afficher quand elles passent sur un biome océan ou lac.
+
 # Debrief réunion 20/11/2024
 
 Attention les routes créent des nouveaux pixels au lieu d'utiliser ceux existants et les placer dans une liste. A modifier.

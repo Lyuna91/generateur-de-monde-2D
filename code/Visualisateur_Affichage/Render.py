@@ -60,22 +60,30 @@ class Render:
         Appelle la méthode de création des villes avec les pays disponibles.
         """
         num_cities = num_countries + random.randint(1, num_countries)
-        return City.create_cities_from_countries(self.countries, num_cities)
+        cities = City.create_cities_from_countries(self.countries, num_cities)
+        # for city in cities:
+        #     print(city)
+        return cities
 
     def generate_roads(self):
         """
         Génère des routes connectant les villes avec les pixels existants.
         """
         all_pixels = [pixel for zone in self.zones for pixel in zone.pixels]  # Liste de tous les pixels
-        roads = Road.create_roads_between_cities(self.cities, all_pixels)
-        for road in roads:
-            print(road)  # Print des informations des routes pour vérification
+        roads = Road.create_roads_between_cities(self.cities, all_pixels, 3)
+        # for road in roads:
+        #     print(road)
         return roads
 
     def display_pixels(self):
         """
         Affiche les pixels des zones, pays, villes et routes.
         """
+
+        # for zone in self.zones:
+        #     for pixel in zone.pixels:
+        #         pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
+
         # Affiche les pays et zones
         for country in self.countries:
             country_color = self.country_colors[country.id]
@@ -88,24 +96,20 @@ class Render:
             for pixel in country.border_pixels:
                 pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, 10, 10))
 
+        # Affiche les routes
+        for road in self.roads:
+            for pixel in road.route_pixels:
+                for zone in self.zones:
+                    if (zone.id == pixel.zone_id):
+                        if(zone.biome.name == "Ocean" or zone.biome.name == "Lake"):
+                            pass
+                        else:
+                            pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, 10, 10))
+                        
+
         # Affiche les villes
         for city in self.cities:
             pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))  # Rouge
-
-        # Affiche les routes
-        self.display_routes()
-
-    def display_routes(self):
-        """
-        Affiche les pixels des routes en jaune.
-        """
-        for road in self.roads:
-            for pixel in road.route_pixels:
-                 if(pixel.element == "city"):
-                     pygame.draw.rect(self.screen, (255, 0, 0), (pixel.x, pixel.y, 10, 10))  # Jaune pour la route
-                 else:
-                     pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, 10, 10))  # Jaune pour la route
-               
 
 
     def display_grid(self, pixel_size, couleur):
@@ -129,7 +133,7 @@ class Render:
 
             self.screen.fill((255, 255, 255))  # Remplir l'écran de blanc
             self.display_pixels()  # Afficher les pixels
-            self.display_grid(10, (200, 200, 200))  # Afficher le quadrillage
+            # self.display_grid(10, (200, 200, 200))  # Afficher le quadrillage
             pygame.display.flip()  # Mettre à jour l'affichage
 
         pygame.quit()
