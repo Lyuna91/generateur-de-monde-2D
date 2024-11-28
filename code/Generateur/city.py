@@ -61,11 +61,32 @@ def generate_city_name():
     return f"{intro} {name}".strip()
 
 
-def generate_position(Country):
-    zone = Country.zones[random.randint(0, len(Country.zones)-1)]
-    pixel = zone.pixels[random.randint(0, len(zone.pixels)-1)]
-    while pixel in Country.border_pixels or zone.biome.name == "Ocean" or zone.biome.name == "Lake":
-        pixel = zone.pixels[random.randint(0, len(zone.pixels)-1)]
-        pixel.set_element("city")
-    return pixel
+def generate_position(country):
+    """
+    Génère une position valide pour une ville dans un pays donné.
+    """
+    TENTATIVES_MAX = 1000
+    tentatives = 0
+    
+    # Obtenir tous les pixels valides du pays
+    pixels_valides = []
+    for zone in country.zones:
+        if zone.biome.name not in ["Ocean"]:
+            pixels_valides.extend([p for p in zone.pixels if p not in country.border_pixels])
+    
+    # Si aucun pixel valide n'est trouvé, utiliser n'importe quel pixel non-océanique
+    if not pixels_valides:
+        for zone in country.zones:
+            if zone.biome.name not in ["Ocean"]:
+                pixels_valides.extend(zone.pixels)
+    
+    # Si toujours aucun pixel valide, lever une exception
+    if not pixels_valides:
+        raise ValueError(f"Impossible de trouver une position valide pour une ville dans le pays {country.id}")
+    
+    # Sélectionner un pixel aléatoire parmi les pixels valides
+    position = random.choice(pixels_valides)
+    position.set_element("city")
+
+    return position
         
