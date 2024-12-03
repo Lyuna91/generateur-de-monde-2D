@@ -3,6 +3,8 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Jade 29/11
+
 # Update Carlos 28/11
 
 J'ai du modifier villes, pour les empeche de spawn sur des lacs, j'ai donc du modifier les pays pour empecher la creation d'un pays avec que des biomes lacs. En parallele j'avance sur l'interface utilisateur, j'ai deux bouttons permets de reinitialiser la map, ou juste les villes (et donc les routes). I feel like Kanye West...

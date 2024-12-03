@@ -41,7 +41,7 @@ class City:
             city = City(i, position, country)
             cities.append(city)
             i += 1
-            print(city)
+            #print(city)
         cities_positions = [city.position for city in cities]
         if i < num_cities:
             while i < num_cities:
@@ -52,7 +52,7 @@ class City:
                 cities.append(city)
                 cities_positions.append(position)
                 i += 1
-                print(city)
+                #print(city)
         return cities
     
 def generate_city_name():

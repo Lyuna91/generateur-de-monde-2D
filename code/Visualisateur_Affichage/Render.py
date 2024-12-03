@@ -12,6 +12,7 @@ from Generateur.pixel import Pixel
 from Generateur.country import Country
 from Generateur.city import City
 from Generateur.road import Road
+from Generateur.river import River
 
 
 class Render:
@@ -26,20 +27,25 @@ class Render:
         :param width: Largeur de la fenêtre
         :param height: Hauteur de la fenêtre
         :param title: Titre de la fenêtre
+        :param num_countries: Nombre de pays à générer
         """
         self.width = width
         self.height = height
         self.title = title
         self.screen = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption(self.title)
-        self.zones = Zone.generate_voronoi_zones(self.width, self.height, 20)  # Exemple avec 20 zones
-        self.countries = self.generate_countries(num_countries)  # Appel pour créer les pays
-        self.cities = self.generate_cities(num_countries)  # Appel pour créer les villes
-        self.roads = self.generate_roads()  # Génère les routes
-        self.country_colors = {
-            country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-            for country in self.countries
-        }
+
+        # Génération des zones Voronoi
+        self.zones = Zone.generate_voronoi_zones(self.width, self.height, 20)
+
+        # Génération des pays, villes, routes et rivières
+        self.countries = self.generate_countries(num_countries)
+        self.cities = self.generate_cities(num_countries)
+        self.roads = self.generate_roads()
+
+        # Génération des rivières
+        self.rivers = self.generate_rivers(5)  # Génère 5 rivières
+
 
     def __repr__(self):
         """
@@ -74,22 +80,42 @@ class Render:
         # for road in roads:
         #     print(road)
         return roads
+    
+    def generate_rivers(self, num_rivers):
+        """
+        Génère des rivières à partir des zones océaniques.
+
+        :param num_rivers: Nombre de rivières à générer.
+        """
+        ocean_zones = [zone for zone in self.zones if zone.biome.name == "Ocean"]
+        if not ocean_zones:
+            print("Aucune zone océanique trouvée.")
+            return []
+
+        # Extraire les pixels des zones océaniques
+        ocean_pixels = [pixel for zone in ocean_zones for pixel in zone.pixels]
+        print(f"Nombre de pixels océaniques disponibles : {len(ocean_pixels)}")
+
+        # Créer les rivières
+        rivers = River.create_rivers_from_oceans(ocean_pixels, num_rivers)
+        print(f"Nombre de rivières générées : {len(rivers)}")
+        return rivers
 
     def display_pixels(self):
         """
         Affiche les pixels des zones, pays, villes et routes.
         """
 
-        # for zone in self.zones:
-        #     for pixel in zone.pixels:
-        #         pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
+        for zone in self.zones:
+            for pixel in zone.pixels:
+                pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
 
         # Affiche les pays et zones
-        for country in self.countries:
-            country_color = self.country_colors[country.id]
-            for zone in country.zones:
-                for pixel in zone.pixels:
-                    pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, 10, 10))
+        #for country in self.countries:
+        #    country_color = self.country_colors[country.id]
+        #    for zone in country.zones:
+        #        for pixel in zone.pixels:
+        #            pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, 10, 10))
 
         # Affiche les bordures des pays
         for country in self.countries:
@@ -111,6 +137,12 @@ class Render:
         for city in self.cities:
             pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))  # Rouge
 
+        # Affiche les rivières
+        for river in self.rivers:
+            for pixel in river.route_pixels:
+                pygame.draw.rect(self.screen, (0, 0, 255), (pixel.x, pixel.y, 10, 10))  # Bleu pour les rivières
+
+        
 
     def display_grid(self, pixel_size, couleur):
         """
