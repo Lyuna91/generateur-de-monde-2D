@@ -5,69 +5,81 @@ class River:
     Classe permettant de définir les rivières à partir des pixels océaniques.
     """
 
-    def __init__(self, id, start_pixel, all_pixels):
+    def __init__(self, id, start_pixel, all_pixels, map_width, map_height):
         """
         Initialise une rivière avec ses caractéristiques de base.
 
         :param id: Identifiant unique de la rivière
         :param start_pixel: Pixel de départ (dans un biome océanique)
         :param all_pixels: Liste de tous les pixels disponibles
+        :param map_width: Largeur de la carte
+        :param map_height: Hauteur de la carte
         """
         self.id = id
         self.start_pixel = start_pixel
-        self.route_pixels = self.create_route_pixels(all_pixels)
+        self.all_pixels = all_pixels
+        self.map_width = map_width
+        self.map_height = map_height
+        self.route_pixels = self.create_route_pixels()
 
     def __repr__(self):
         """
         Retourne une représentation de la rivière sous forme de chaîne de caractères.
         """
-        return f"River(id={self.id}, start_pixel=({self.start_pixel.x}, {self.start_pixel.y}), pixels={len(self.route_pixels)})"
+        end_pixel = self.route_pixels[-1] if self.route_pixels else None
+        end_coords = (end_pixel.x, end_pixel.y) if end_pixel else "Inconnu"
+        return f"River(id={self.id}, start=({self.start_pixel.x}, {self.start_pixel.y}), end={end_coords}, length={len(self.route_pixels)})"
 
-    def create_route_pixels(self, all_pixels):
+    def create_route_pixels(self):
         """
-        Crée une rivière à partir d'un point de départ en suivant une logique similaire à celle des routes.
-
-        :param all_pixels: Liste des pixels disponibles.
-        :return: Liste des pixels formant la rivière.
+        Génère une rivière avec une trajectoire organique.
         """
         current_pixel = self.start_pixel
         route_pixels = [current_pixel]
+        max_length = 50
+        deviation_chance = 0.3  # Probabilité de changer de direction
 
-        for _ in range(30):  # Limite de longueur de la rivière
-            adjacent_pixels = [
-                p for p in all_pixels
-                if (abs(p.x - current_pixel.x) == 10 and p.y == current_pixel.y) or
-                   (abs(p.y - current_pixel.y) == 10 and p.x == current_pixel.x)
+        print(f"[DEBUG] Début de la création de la rivière depuis ({current_pixel.x}, {current_pixel.y})")
+
+        for _ in range(max_length):
+            # Choix aléatoire d'un pixel adjacent
+            possible_directions = [
+                (10, 0), (-10, 0), (0, 10), (0, -10),
+                (10, 10), (-10, -10), (10, -10), (-10, 10)
             ]
+            if random.random() < deviation_chance:
+                random.shuffle(possible_directions)  # Ajout de variété dans les directions
 
-            if not adjacent_pixels:
-                break
+            for dx, dy in possible_directions:
+                next_x = current_pixel.x + dx
+                next_y = current_pixel.y + dy
 
-            next_pixel = random.choice(adjacent_pixels)
-            next_pixel.set_element("River")
-            route_pixels.append(next_pixel)
-            current_pixel = next_pixel
+                if 0 <= next_x < self.map_width and 0 <= next_y < self.map_height:
+                    next_pixel = next((p for p in self.all_pixels if p.x == next_x and p.y == next_y), None)
+                    if next_pixel and next_pixel not in route_pixels:
+                        next_pixel.set_element("River")
+                        route_pixels.append(next_pixel)
+                        current_pixel = next_pixel
+                        break
 
+        print(f"[DEBUG] Fin de la création de la rivière. Longueur totale : {len(route_pixels)}")
         return route_pixels
 
     @staticmethod
-    def create_rivers_from_oceans(ocean_pixels, num_rivers):
+    def create_rivers_from_oceans(ocean_pixels, all_pixels, num_rivers, map_width, map_height):
         """
-        Génère plusieurs rivières à partir des pixels des zones océaniques.
-
-        :param ocean_pixels: Liste des pixels des zones océaniques.
-        :param num_rivers: Nombre de rivières à générer.
-        :return: Liste d'objets River.
+        Génère plusieurs rivières à partir des pixels océaniques.
         """
-        if not ocean_pixels:
-            print("Aucun pixel océan trouvé. Impossible de générer des rivières.")
-            return []
-
         rivers = []
-        for i in range(min(num_rivers, len(ocean_pixels))):
+        for i in range(num_rivers):
             start_pixel = random.choice(ocean_pixels)
-            river = River(id=i, start_pixel=start_pixel, all_pixels=ocean_pixels)
-            if river.route_pixels:
-                rivers.append(river)
+            river = River(id=i, start_pixel=start_pixel, all_pixels=all_pixels, map_width=map_width, map_height=map_height)
 
+            if len(river.route_pixels) >= 10:  # Filtrer les rivières trop courtes
+                rivers.append(river)
+                print(f"[DEBUG] Rivière générée : {river}")
+            else:
+                print(f"[DEBUG] Rivière ignorée (trop courte)")
+
+        print(f"[DEBUG] Nombre total de rivières générées : {len(rivers)}")
         return rivers
