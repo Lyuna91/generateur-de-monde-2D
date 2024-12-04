@@ -3,7 +3,52 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
-# Update Jade 29/11
+# DEBRIEF COURS - 04/12
+
+### Il reste à faire :
+
+- des routes pour toute les villes
+- Gestion rivieres - Lac
+- Transformer un lac en point sur le pays -- donc un Element plutot qu'un biome
+- Revoir la taille des pixel
+
+---
+
+Il faut aussi :
+
+- Bouton d'affichage (biome, pays, altitude)
+- Taille de la carte (petit, moyen, grand)
+- Mode de generation (archipel ,continent, pangee) (3 boutton cliquable)
+- Reset (River, road, pays, ville, biome, all)
+- Nombre de villes (Cursoeur sous barre)
+- Modifier nom de villes et pays
+- Télécharger l'image en png
+
+Bonus :
+
+- curseur route
+- curseur rivière
+- bouton suprresion à l'unité (après avoir selectionné une rivière par exemple)
+- faire une plage
+- ajouter infrastructure (port, arbre, montagne, vague dans l'eau, etc etc )
+
+### Définitions des éléments
+
+AFFICHAGE
+Grand : - Ville (0 et 30) - Rivière (0 et 10) - Zone (100) - Pays (10)
+Moyen : - Ville (0 et 20) - Rivière (0 et 6) - Zone (50) - Pays (7)
+Petit : - Ville (0 et 10) - Rivière (0 et 3) - Zone (20) - Pays (5)
+
+TYPE
+Continent : creer la map
+Archipel : créer la fonction
+Pangée : créer la fonction
+
+### Qui fait quoi ?
+
+Yuna : Créer_pangée + Ajouter des routes pour chaque ville + compte rendu
+Jade : Créer_archipelle + telecharger PNG
+Carlos : Bouton_utilisateur + Grand/moyen/petit
 
 # Update Carlos 28/11
 
