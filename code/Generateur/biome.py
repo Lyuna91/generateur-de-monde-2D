@@ -47,7 +47,7 @@ class Biome:
         "Mountain": (139, 137, 137),
         "Ocean": (0, 105, 148),
         "Plains": (124, 252, 0),
-        "Lake": (138, 43, 226),  # Bleu royal ou d'après Carlos "du bleu c'est du bleu" - j'ai changé en violet pour mieux tester mes rivières
+        "Lake": (173, 216, 230),  # Bleu royal ou d'après Carlos "du bleu c'est du bleu" - j'ai changé en violet pour mieux tester mes rivières
     }
 
 ######################### METHODS

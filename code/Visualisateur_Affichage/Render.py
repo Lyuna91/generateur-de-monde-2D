@@ -97,14 +97,13 @@ class Render:
 
         print(f"[DEBUG] Nombre de pixels océaniques disponibles : {len(ocean_pixels)}")
 
-        rivers = River.create_rivers_from_oceans(ocean_pixels, all_pixels, num_rivers, self.width, self.height)
+        rivers = River.create_rivers_from_oceans(ocean_pixels, all_pixels, num_rivers)
         for river in rivers:
             print(f"[DEBUG] Rivière générée : {river}")
 
         return rivers
-
-
     
+
     def display_pixels(self):
         """
         Affiche les pixels des zones, pays, villes et routes.
@@ -145,7 +144,7 @@ class Render:
 
         for river in self.rivers:
             for pixel in river.route_pixels:
-                pygame.draw.rect(self.screen, (0, 0, 255), (pixel.x, pixel.y, 10, 10))  # Bleu pour les rivières
+                pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, 10, 10))  # Bleu pour les rivières
 
         
 
