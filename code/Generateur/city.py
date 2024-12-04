@@ -41,7 +41,7 @@ class City:
             city = City(i, position, country)
             cities.append(city)
             i += 1
-            #print(city)
+            print(city)
         cities_positions = [city.position for city in cities]
         if i < num_cities:
             while i < num_cities:
@@ -52,7 +52,7 @@ class City:
                 cities.append(city)
                 cities_positions.append(position)
                 i += 1
-                #print(city)
+                print(city)
         return cities
     
 def generate_city_name():
@@ -71,13 +71,13 @@ def generate_position(country):
     # Obtenir tous les pixels valides du pays
     pixels_valides = []
     for zone in country.zones:
-        if zone.biome.name not in ["Ocean"]:
+        if zone.biome.name not in ["Ocean", "Lake"]:
             pixels_valides.extend([p for p in zone.pixels if p not in country.border_pixels])
     
     # Si aucun pixel valide n'est trouvé, utiliser n'importe quel pixel non-océanique
     if not pixels_valides:
         for zone in country.zones:
-            if zone.biome.name not in ["Ocean"]:
+            if zone.biome.name not in ["Ocean", "Lake"]:
                 pixels_valides.extend(zone.pixels)
     
     # Si toujours aucun pixel valide, lever une exception
@@ -89,4 +89,3 @@ def generate_position(country):
     position.set_element("city")
 
     return position
-        

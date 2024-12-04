@@ -111,6 +111,8 @@ class Country:
                 print(f"  Zone ID: {zone.id}, Seed: {zone.seed}, Biome: {zone.biome.name}")
 
         return countries
+
+
     
     def get_border_pixels(self):
         """

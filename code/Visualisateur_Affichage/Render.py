@@ -21,55 +21,33 @@ class Render:
     """
 
     def __init__(self, width, height, title, num_countries):
-        """
-        Initialise un rendu avec une largeur, une hauteur et un titre de fenêtre.
-
-        :param width: Largeur de la fenêtre
-        :param height: Hauteur de la fenêtre
-        :param title: Titre de la fenêtre
-        :param num_countries: Nombre de pays à générer
-        """
         self.width = width
         self.height = height
         self.title = title
-        self.screen = pygame.display.set_mode((self.width, self.height))
-        pygame.display.set_caption(self.title)
+        self.num_countries = num_countries
+        self.screen = pygame.Surface((self.width, self.height))
+        self.generate_map()  # Générer la carte initiale
 
-        # Génération des zones Voronoi
+    def generate_map(self):
+        """
+        Génère la carte en recréant les pays, villes, routes et zones Voronoi.
+        """
         self.zones = Zone.generate_voronoi_zones(self.width, self.height, 20)
-
-        # Génération des pays, villes, routes et rivières
-        self.countries = self.generate_countries(num_countries)
-        self.cities = self.generate_cities(num_countries)
+        self.countries = self.generate_countries(self.num_countries)
+        self.cities = self.generate_cities(self.num_countries)
         self.roads = self.generate_roads()
-
-        # Génération des rivières
-        self.rivers = self.generate_rivers(5)  # Générer 5 rivières
-
-
-    def __repr__(self):
-        """
-        Retourne une représentation du rendu sous forme de string.
-        """
-        return f"Render(width={self.width}, height={self.height}, title={self.title}, roads={len(self.roads)})"
-
-    ######################### METHODS
+        self.country_colors = {
+            country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+            for country in self.countries
+        }
+        self.rivers = self.generate_rivers(5)
 
     def generate_countries(self, num_countries):
-        """
-        Appelle la méthode de création des pays avec les zones disponibles.
-        """
         return Country.create_countries_from_zones(self.zones, num_countries)
 
     def generate_cities(self, num_countries):
-        """
-        Appelle la méthode de création des villes avec les pays disponibles.
-        """
         num_cities = num_countries + random.randint(1, num_countries)
-        cities = City.create_cities_from_countries(self.countries, num_cities)
-        # for city in cities:
-        #     print(city)
-        return cities
+        return City.create_cities_from_countries(self.countries, num_cities)
 
     def generate_roads(self):
         """
@@ -103,29 +81,42 @@ class Render:
 
         return rivers
     
-
+    def delete_all_road(self):
+        self.roads = []
+        return self.roads
+    
+    def delete_all_city(self):
+        self.cities = []
+        return self.cities
+    
+    def delete_all_river(self):
+        self.rivers = []
+        return self.rivers
+    
     def display_pixels(self):
         """
-        Affiche les pixels des zones, pays, villes et routes.
+        Dessine les éléments de la carte (pays, villes, routes) sur la surface.
         """
-
+        self.screen.fill((255, 255, 255))  # Remplir l'écran de blanc
         for zone in self.zones:
-            for pixel in zone.pixels:
-                pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
+            if zone.biome.name == "Ocean" or zone.biome.name == "Lake":
+                for pixel in zone.pixels:
+                    pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
 
-        # Affiche les pays et zones
-        #for country in self.countries:
-        #    country_color = self.country_colors[country.id]
-        #    for zone in country.zones:
-        #        for pixel in zone.pixels:
-        #            pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, 10, 10))
+        for river in self.rivers:
+            for pixel in river.route_pixels:
+                pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, 10, 10))
 
-        # Affiche les bordures des pays
+        for country in self.countries:
+            country_color = self.country_colors[country.id]
+            for zone in country.zones:
+                for pixel in zone.pixels:
+                    pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, 10, 10))
+
         for country in self.countries:
             for pixel in country.border_pixels:
                 pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, 10, 10))
 
-        # Affiche les routes
         for road in self.roads:
             for pixel in road.route_pixels:
                 for zone in self.zones:
@@ -134,42 +125,6 @@ class Render:
                             pass
                         else:
                             pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, 10, 10))
-                        
 
-        # Affiche les villes
         for city in self.cities:
-            pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))  # Rouge
-
-        # Affiche les rivières
-
-        for river in self.rivers:
-            for pixel in river.route_pixels:
-                pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, 10, 10))  # Bleu pour les rivières
-
-        
-
-    def display_grid(self, pixel_size, couleur):
-        """
-        Affiche un quadrillage sur la fenêtre.
-        """
-        for x in range(0, self.width, pixel_size):
-            pygame.draw.line(self.screen, couleur, (x, 0), (x, self.height))
-        for y in range(0, self.height, pixel_size):
-            pygame.draw.line(self.screen, couleur, (0, y), (self.width, y))
-
-    def display_window(self):
-        """
-        Permet d'afficher la fenêtre et de la maintenir ouverte.
-        """
-        running = True
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-
-            self.screen.fill((255, 255, 255))  # Remplir l'écran de blanc
-            self.display_pixels()  # Afficher les pixels
-            # self.display_grid(10, (200, 200, 200))  # Afficher le quadrillage
-            pygame.display.flip()  # Mettre à jour l'affichage
-
-        pygame.quit()
+            pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
