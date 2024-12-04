@@ -83,3 +83,16 @@ class River:
                 print(f"[DEBUG] Rivière ignorée (trop courte) : {river}")
 
         return rivers
+    
+    @staticmethod
+    def delete_all_rivers(rivers):
+        """
+        Supprime toutes les rivières en vidant la liste fournie et réinitialisant les pixels associés.
+
+        :param rivers: Liste des objets River à supprimer
+        """
+        for river in rivers:
+            for pixel in river.route_pixels:
+                pixel.set_element(None)  # Réinitialise les pixels de la rivière
+        rivers.clear()
+        print("[DEBUG] Toutes les rivières ont été supprimées.")
