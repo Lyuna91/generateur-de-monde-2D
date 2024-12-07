@@ -45,6 +45,7 @@ class Map:
     def generate_empty_map(self, size):
         pass
 
+
     def generate_map(self, num_countries):
         """
         Génère la carte en recréant les pays, villes, routes et zones Voronoi.
