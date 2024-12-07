@@ -1,6 +1,12 @@
 import tkinter as tk
+import sys
+import os
 from PIL import Image, ImageTk
 import pygame
+
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from Generateur.map import Map
 from Render import Render
 
 CANVAS_WIDTH = 800
@@ -53,19 +59,19 @@ class MapApp:
     def reset_cities_and_roads(self):
         """Reset cities and roads and generate new ones"""
         # Delete existing cities and roads
-        self.render.delete_all_city()
-        self.render.delete_all_road()
+        self.render.map.delete_all_city()
+        self.render.map.delete_all_road()
         
         # Generate new cities and roads
-        self.render.cities = self.render.generate_cities(self.render.num_countries)
-        self.render.roads = self.render.generate_roads()
+        self.render.map.cities = self.render.map.generate_cities(self.render.num_countries)
+        self.render.map.roads = self.render.map.generate_roads()
         
         # Update display
         self.update_canvas()
 
     def reset_rivers(self):
-        self.render.delete_all_river()
-        self.render.rivers = self.render.generate_rivers(5)
+        self.render.map.delete_all_river()
+        self.render.map.rivers = self.render.map.generate_rivers(5)
         self.update_canvas()
 
     def update_canvas(self):
