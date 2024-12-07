@@ -3,6 +3,13 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Yuna 07/12
+
+J'ai commencé par déplacer toutes les fonctions generate de render.py dans map.py
+Le code est plus clair comme ça je trouve et ça décharge pas mal le render.
+
+J'ai fais les modifications nécessaire dans le main aussi car il appelais les fonctions dans render alors qu'elles n'y étaient plus : Tout fonctionne normalement.
+
 # DEBRIEF COURS - 04/12
 
 ### Il reste à faire :
