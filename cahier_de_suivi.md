@@ -10,6 +10,13 @@ Le code est plus clair comme ça je trouve et ça décharge pas mal le render.
 
 J'ai fais les modifications nécessaire dans le main aussi car il appelais les fonctions dans render alors qu'elles n'y étaient plus : Tout fonctionne normalement.
 
+J'ai finis les routes, chaque ville en a au moins une.
+
+On va avoir un problème avec la formation de pangée ou d'archipel. De base, il aurait
+fallu pouvoir gérer la génération des biomes, mais ils sont directement créer en même temps que les zones ce qui rend impossible d'avoir un controle dessus.
+Il faudrait délier les zones et les biomes, de facon qu'ils soient générés indépendament.
+On pourrait donc, choisir en fonction de la position des zones, quel biome serait plus approprié.
+
 # DEBRIEF COURS - 04/12
 
 ### Il reste à faire :
