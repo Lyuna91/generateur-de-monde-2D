@@ -3,6 +3,11 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Carlos 11/12
+
+J'ai fais le menu et les bouttons grands moyen petit...
+html css js vous me manquez un peu.
+
 # Update Yuna 07/12
 
 J'ai commencé par déplacer toutes les fonctions generate de render.py dans map.py
