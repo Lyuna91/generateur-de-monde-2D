@@ -20,11 +20,14 @@ class Render:
     Classe permettant de gérer l'affichage de la carte générée.
     """
 
-    def __init__(self, width, height, title, num_countries):
+    def __init__(self, width, height, title, num_countries, num_cities, num_rivers, num_zones):
         self.width = width
         self.height = height
         self.title = title
         self.num_countries = num_countries
+        self.num_cities = num_cities
+        self.num_rivers = num_rivers
+        self.num_zones = num_zones
         self.screen = pygame.Surface((self.width, self.height))
         self.map = Map(name="Pangea", size=(self.width, self.height), options={})
         self.generate_map()  # Générer la carte initiale
@@ -33,7 +36,7 @@ class Render:
         """
         Génère la carte en utilisant la classe Map.
         """
-        self.map.generate_map(self.num_countries)
+        self.map.generate_map(self.num_countries, self.num_cities, self.num_rivers, self.num_zones)
 
     def display_pixels(self):
         """

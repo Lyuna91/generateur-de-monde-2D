@@ -45,25 +45,24 @@ class Map:
     def generate_empty_map(self, size):
         pass
 
-    def generate_map(self, num_countries):
+    def generate_map(self, num_countries, num_cities, num_rivers, num_zones):
         """
         Génère la carte en recréant les pays, villes, routes et zones Voronoi.
         """
-        self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], 20)
+        self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], num_zones)
         self.countries = self.generate_countries(num_countries)
-        self.cities = self.generate_cities(num_countries)
+        self.cities = self.generate_cities(num_cities)
         self.roads = self.generate_roads()
         self.country_colors = {
             country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
             for country in self.countries
         }
-        self.rivers = self.generate_rivers(5)
+        self.rivers = self.generate_rivers(num_rivers)
 
     def generate_countries(self, num_countries):
         return Country.create_countries_from_zones(self.zones, num_countries)
 
-    def generate_cities(self, num_countries):
-        num_cities = num_countries + random.randint(1, num_countries)
+    def generate_cities(self, num_cities):
         return City.create_cities_from_countries(self.countries, num_cities)
 
     def generate_roads(self):
