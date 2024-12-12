@@ -73,3 +73,11 @@ class Render:
 
         for city in self.map.cities:
             pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
+
+    def save_image(self, filename):
+            """
+            Sauvegarde l'image actuelle affichée dans un fichier.
+            :param filename: Nom du fichier où sauvegarder l'image (avec extension, ex. 'map.png').
+            """
+            pygame.image.save(self.screen, filename)
+            print(f"[DEBUG] Image sauvegardée sous : {filename}")

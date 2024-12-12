@@ -3,6 +3,12 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Jade 12/12
+
+J'ai ajouté le bouton pour télécharger l'image map, pour l'instant elle se stocke dans le dossier courant et faut juste qu'on reparle des petites fonctionnalités pour voir comme faire le téléchargement.
+
+J'ai pas essayé d'implémenter l'archipel vu que Yuna a dit qu'il y avait un problème -> a voir en réunion
+
 # Update Carlos 11/12
 
 J'ai fais le menu et les bouttons grands moyen petit...

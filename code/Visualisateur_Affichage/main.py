@@ -88,6 +88,14 @@ class MapApp:
         # Créer les widgets Tkinter
         self.create_widgets()
         self.update_canvas()  # Affiche la première carte
+    
+    def download_image(self):
+        """
+        Télécharge l'image actuelle de la carte en tant que fichier PNG.
+        """
+        filename = "map.png"  # Vous pouvez le rendre configurable
+        self.render.save_image(filename)
+        print(f"[INFO] L'image a été téléchargée : {filename}")
 
     def create_widgets(self):
         # Create main container
@@ -111,6 +119,19 @@ class MapApp:
         # Create canvas on the right
         self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
         self.canvas.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
+
+        self.download_button = tk.Button(
+        button_frame,
+        text="Télécharger l'image",
+        command=self.download_image,
+        width=BUTTON_WIDTH,
+        height=BUTTON_HEIGHT,
+        font=BUTTON_FONT,
+        bg=BG_COLOR,
+        fg=FG_COLOR
+        )
+        self.download_button.pack(pady=5)
+
 
     def generate_new_map(self):
         # Régénère une nouvelle carte dans l'objet Render
