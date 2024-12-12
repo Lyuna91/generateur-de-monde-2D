@@ -50,6 +50,7 @@ class Map:
         Génère la carte en recréant les pays, villes, routes et zones Voronoi.
         """
         self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], num_zones)
+        self.generate_biomes()
         self.countries = self.generate_countries(num_countries)
         self.cities = self.generate_cities(num_cities)
         self.roads = self.generate_roads()
@@ -58,6 +59,14 @@ class Map:
             for country in self.countries
         }
         self.rivers = self.generate_rivers(num_rivers)
+
+    def generate_biomes(self):
+        """
+        Génère les biomes pour chaque zone de la carte.
+        """
+        for zone in self.zones:
+            zone.biome = Biome.create_random_biome()
+        
 
     def generate_countries(self, num_countries):
         return Country.create_countries_from_zones(self.zones, num_countries)

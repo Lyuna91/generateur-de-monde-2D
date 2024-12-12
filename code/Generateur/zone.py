@@ -24,7 +24,7 @@ class Zone:
         self.id = id
         self.seed = seed
         self.size = size
-        self.biome = Biome.create_random_biome()
+        self.biome = None
         self.pixels = pixels if pixels is not None else []
 
     def __repr__(self):
@@ -74,7 +74,7 @@ class Zone:
             for y in range(0, height, pixel_size):
                 # Trouver la zone la plus proche pour chaque pixel
                 closest_zone = min(zones, key=lambda zone: (zone.seed[0] - x) ** 2 + (zone.seed[1] - y) ** 2)
-                pixel = Pixel(x, y, closest_zone.biome.color, zone_id=closest_zone.id)  # Crée le pixel avec l'ID de la zone
+                pixel = Pixel(x, y, (255,255,255), zone_id=closest_zone.id)  # Crée le pixel avec l'ID de la zone
                 closest_zone.pixels.append(pixel)  # Ajoute le pixel à la liste de pixels de la zone
                 closest_zone.size += 1  # Incrémente la taille de la zone
                 pixel_count += 1  # Incrémente le compteur de pixels
