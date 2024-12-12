@@ -3,6 +3,11 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Carlos 12/12
+
+J'ai fait les checkbox pour les modes d'affichages
+je voudrais dedier cette realisation a YUNA qui n'a pas cru en moi. SHE IS A NON-BELIEVER...
+
 # Update Jade 12/12
 
 J'ai ajouté le bouton pour télécharger l'image map, pour l'instant elle se stocke dans le dossier courant et faut juste qu'on reparle des petites fonctionnalités pour voir comme faire le téléchargement.

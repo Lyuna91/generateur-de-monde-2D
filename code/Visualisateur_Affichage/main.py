@@ -23,6 +23,7 @@ BUTTON_FONT = ('Helvetica', 12, 'bold')
 BG_COLOR = '#4a90e2'  # Blue
 HOVER_COLOR = '#357abd'  # Darker blue
 FG_COLOR = 'white'
+CHECK_BG = 'white'
 
 def set_parameter(size):
     global COUNTRIES, CITIES, RIVERS, ZONES
@@ -116,9 +117,17 @@ class MapApp:
         self.reset_rivers_button = tk.Button(button_frame,text="Réinitialiser rivières",command=self.reset_rivers,width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR)
         self.reset_rivers_button.pack(pady=5)
 
-        # Create canvas on the right
-        self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
-        self.canvas.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
+        self.display_countries_button = tk.Button(button_frame,text="Mode Pays",command=lambda: self.render.toggle_display_mode("pays"),width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR)
+        self.display_countries_button.pack(pady=5)
+
+        self.show_countries = tk.BooleanVar(value=True)
+        self.show_biomes = tk.BooleanVar(value=False)
+
+        self.countries_check = tk.Checkbutton(button_frame,text="Afficher Pays",variable=self.show_countries,command=lambda: self.handle_checkbox_change("pays"),bg=CHECK_BG,font=BUTTON_FONT)
+        self.countries_check.pack(pady=5, anchor='w')
+
+        self.biomes_check = tk.Checkbutton(button_frame,text="Afficher Biomes",variable=self.show_biomes,command=lambda: self.handle_checkbox_change("biome"),bg=CHECK_BG,font=BUTTON_FONT)
+        self.biomes_check.pack(pady=5, anchor='w')
 
         self.download_button = tk.Button(
         button_frame,
@@ -132,6 +141,26 @@ class MapApp:
         )
         self.download_button.pack(pady=5)
 
+        self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
+        self.canvas.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
+
+
+    def handle_checkbox_change(self, mode):
+        """Gère le changement d'état des checkboxes"""
+        if mode == "pays":
+            self.show_biomes.set(False)
+            self.show_countries.set(True)
+        else:  # mode == "biome"
+            self.show_countries.set(False)
+            self.show_biomes.set(True)
+        self.update_display()
+
+    
+    def update_display(self):
+        """Met à jour l'affichage"""
+        mode = "pays" if self.show_countries.get() else "biome"
+        self.render.toggle_display_mode(mode)
+        self.update_canvas()
 
     def generate_new_map(self):
         # Régénère une nouvelle carte dans l'objet Render
