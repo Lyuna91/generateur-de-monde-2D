@@ -20,11 +20,14 @@ class Render:
     Classe permettant de gérer l'affichage de la carte générée.
     """
 
-    def __init__(self, width, height, title, num_countries):
+    def __init__(self, width, height, title, num_countries, num_cities, num_rivers, num_zones):
         self.width = width
         self.height = height
         self.title = title
         self.num_countries = num_countries
+        self.num_cities = num_cities
+        self.num_rivers = num_rivers
+        self.num_zones = num_zones
         self.screen = pygame.Surface((self.width, self.height))
         self.map = Map(name="Pangea", size=(self.width, self.height), options={})
         self.generate_map()  # Générer la carte initiale
@@ -33,7 +36,7 @@ class Render:
         """
         Génère la carte en utilisant la classe Map.
         """
-        self.map.generate_map(self.num_countries)
+        self.map.generate_map(self.num_countries, self.num_cities, self.num_rivers, self.num_zones)
 
     def display_pixels(self):
         """
@@ -70,3 +73,11 @@ class Render:
 
         for city in self.map.cities:
             pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
+
+    def save_image(self, filename):
+            """
+            Sauvegarde l'image actuelle affichée dans un fichier.
+            :param filename: Nom du fichier où sauvegarder l'image (avec extension, ex. 'map.png').
+            """
+            pygame.image.save(self.screen, filename)
+            print(f"[DEBUG] Image sauvegardée sous : {filename}")
