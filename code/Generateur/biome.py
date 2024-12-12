@@ -104,6 +104,15 @@ class Biome:
         return liste[rdn_num]
     
     @classmethod
+    def create_random_biome_2(cls):
+        """
+        Crée et retourne un biome au hasard, sans inclure les biomes océan ou lac.
+        """
+        liste = [cls.create_forest_biome(), cls.create_desert_biome(), cls.create_mountain_biome(), cls.create_plains_biome()]
+        rdn_num = randint(0, len(liste) - 1)
+        return liste[rdn_num]
+    
+    @classmethod
     def create_biomes(self):
         """
         Crée et retourne un dictionnaire de biomes.

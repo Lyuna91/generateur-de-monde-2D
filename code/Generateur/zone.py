@@ -90,7 +90,7 @@ class Zone:
 
         return zones
 
-    def is_adjacent(self, other_zone, distance_threshold=20):
+    def is_adjacent(self, other_zone, distance_threshold=150):
         """
         Vérifie si une autre zone est adjacente à cette zone.
         

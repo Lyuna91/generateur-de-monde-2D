@@ -50,7 +50,7 @@ class Map:
         Génère la carte en recréant les pays, villes, routes et zones Voronoi.
         """
         self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], num_zones)
-        self.generate_biomes()
+        self.assign_biomes_for_island()
         self.countries = self.generate_countries(num_countries)
         self.cities = self.generate_cities(num_cities)
         self.roads = self.generate_roads()
@@ -60,18 +60,33 @@ class Map:
         }
         self.rivers = self.generate_rivers(num_rivers)
 
-    def generate_biomes(self):
+    def assign_biomes(self):
+        """
+        Assigne des biomes aléatoires aux zones après leur génération.
+        """
+        for zone in self.zones:
+            zone.biome = Biome.create_random_biome()
+            for pixel in zone.pixels:
+                pixel.color = zone.biome.color
+
+    def generate_biomes_1(self):
         """
         Génère les biomes pour chaque zone de la carte.
         """
         for zone in self.zones:
             zone.biome = Biome.create_random_biome()
-        
+
+    def generate_biomes_2(self):
+        """
+        Génère des biomes désert pour chaque zone de la carte, sauf pour la zone centrale et quelques zones adjacentes qui seront des biomes océan.
+        """
+        self.assign_biomes_for_island()
 
     def generate_countries(self, num_countries):
         return Country.create_countries_from_zones(self.zones, num_countries)
 
     def generate_cities(self, num_cities):
+        num_cities = num_cities + random.randint(1, num_cities)
         return City.create_cities_from_countries(self.countries, num_cities)
 
     def generate_roads(self):
@@ -115,3 +130,58 @@ class Map:
     def delete_all_river(self):
         self.rivers = []
         return self.rivers
+
+    def find_central_pixel(self):
+        """
+        Trouve le pixel le plus au centre de la carte.
+        :return: Le pixel le plus au centre de la carte.
+        """
+        width, height = self.size
+        center_x, center_y = width // 2, height // 2
+
+        min_distance = float('inf')
+        central_pixel = None
+
+        for zone in self.zones:
+            for pixel in zone.pixels:
+                distance = math.sqrt((pixel.x - center_x) ** 2 + (pixel.y - center_y) ** 2)
+                if distance < min_distance:
+                    min_distance = distance
+                    central_pixel = pixel
+
+        return central_pixel
+
+    def assign_biomes_for_island(self):
+        """
+        Assigne des biomes de manière à former une île centrale entourée d'océans.
+        """
+        central_pixel = self.find_central_pixel()
+        central_zone = next(zone for zone in self.zones if central_pixel in zone.pixels)
+
+        island_zone = [central_zone]
+        checked_zones = set(island_zone)
+
+        # Trouver les zones adjacentes et les ajouter à la liste
+        while len(island_zone) < 20:  # Assurer qu'il y ait au moins 5 zones océaniques
+            new_adjacent_zones = []
+            for zone in island_zone:
+                for other_zone in self.zones:
+                    if other_zone not in checked_zones and zone.is_adjacent(other_zone):
+                        new_adjacent_zones.append(other_zone)
+                        checked_zones.add(other_zone)
+            if not new_adjacent_zones:
+                print("test")
+                break  # Si aucune nouvelle zone adjacente n'est trouvée, arrêter la boucle
+            island_zone.extend(new_adjacent_zones)
+
+        for zone in island_zone:
+            zone.biome = Biome.create_random_biome_2()
+            for pixel in zone.pixels:
+                pixel.color = zone.biome.color
+
+        # Assigner des biomes désert aux autres zones
+        for zone in self.zones:
+            if zone not in island_zone:
+                zone.biome = Biome.create_ocean_biome()
+                for pixel in zone.pixels:
+                    pixel.color = zone.biome.color
