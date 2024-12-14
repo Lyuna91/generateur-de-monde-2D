@@ -8,6 +8,17 @@ edited_seconds: 10
 J'ai fait les checkbox pour les modes d'affichages
 je voudrais dedier cette realisation a YUNA qui n'a pas cru en moi. SHE IS A NON-BELIEVER...
 
+# Update Reunion 12/12
+
+## A faire
+
+(j'avais oublié de commit hier sorry)
+
+- archipel - Jade
+- pangée - Yuna
+- bouton d'affichage - Carlos
+  (régler le problème avec les biomes)
+
 # Update Jade 12/12
 
 J'ai ajouté le bouton pour télécharger l'image map, pour l'instant elle se stocke dans le dossier courant et faut juste qu'on reparle des petites fonctionnalités pour voir comme faire le téléchargement.
