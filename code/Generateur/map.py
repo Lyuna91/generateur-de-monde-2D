@@ -50,7 +50,7 @@ class Map:
         Génère la carte en recréant les pays, villes, routes et zones Voronoi.
         """
         self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], num_zones)
-        self.assign_biomes_for_island()
+        self.generate_biomes_for_pangea()
         self.countries = self.generate_countries(num_countries)
         self.cities = self.generate_cities(num_cities)
         self.roads = self.generate_roads()
@@ -69,14 +69,14 @@ class Map:
             for pixel in zone.pixels:
                 pixel.color = zone.biome.color
 
-    def generate_biomes_1(self):
+    def generate_biomes_for_continents(self):
         """
         Génère les biomes pour chaque zone de la carte.
         """
         for zone in self.zones:
             zone.biome = Biome.create_random_biome()
 
-    def generate_biomes_2(self):
+    def generate_biomes_for_pangea(self):
         """
         Génère des biomes désert pour chaque zone de la carte, sauf pour la zone centrale et quelques zones adjacentes qui seront des biomes océan.
         """
@@ -158,30 +158,35 @@ class Map:
         central_pixel = self.find_central_pixel()
         central_zone = next(zone for zone in self.zones if central_pixel in zone.pixels)
 
-        island_zone = [central_zone]
-        checked_zones = set(island_zone)
+        island_zones = [central_zone]
+        checked_zones = set(island_zones)
+        nb_pixels = central_zone.size
 
         # Trouver les zones adjacentes et les ajouter à la liste
-        while len(island_zone) < 20:  # Assurer qu'il y ait au moins 5 zones océaniques
+        while nb_pixels < 2400:  # Assurer qu'il y ait au moins 5 zones océaniques
             new_adjacent_zones = []
-            for zone in island_zone:
+            for zone in island_zones:
                 for other_zone in self.zones:
                     if other_zone not in checked_zones and zone.is_adjacent(other_zone):
                         new_adjacent_zones.append(other_zone)
+                        nb_pixels += other_zone.size
+                        if nb_pixels >= 2400:
+                            break
                         checked_zones.add(other_zone)
-            if not new_adjacent_zones:
-                print("test")
+            if not new_adjacent_zones or nb_pixels >= 2400:
                 break  # Si aucune nouvelle zone adjacente n'est trouvée, arrêter la boucle
-            island_zone.extend(new_adjacent_zones)
-
-        for zone in island_zone:
-            zone.biome = Biome.create_random_biome_2()
-            for pixel in zone.pixels:
-                pixel.color = zone.biome.color
+            island_zones.extend(new_adjacent_zones)
+            print(f"[DEBUG] Nombre de pixels de l'île : {nb_pixels}")
 
         # Assigner des biomes désert aux autres zones
         for zone in self.zones:
-            if zone not in island_zone:
+            if zone not in island_zones:
                 zone.biome = Biome.create_ocean_biome()
                 for pixel in zone.pixels:
                     pixel.color = zone.biome.color
+
+        # Assigner des biomes aléatoires (sans eau) aux zones de l'île
+        for zone in island_zones:
+            zone.biome = Biome.create_random_biome_2()
+            for pixel in zone.pixels:
+                pixel.color = zone.biome.color

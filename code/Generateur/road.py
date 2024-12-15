@@ -109,8 +109,9 @@ class Road:
         """
         roads = []
         city_pairs = set()
+        connected_cities = set()
 
-        # Connecter chaque ville à au moins une autre ville
+        # Connecter chaque ville à une autre ville de manière séquentielle
         for i in range(len(cities)):
             start_city = cities[i]
             end_city = cities[(i + 1) % len(cities)]
@@ -118,13 +119,18 @@ class Road:
                 road = Road(id=len(roads), start_city=start_city, end_city=end_city, pixels=all_pixels)
                 roads.append(road)
                 city_pairs.add((start_city, end_city))
+                connected_cities.add(start_city)
+                connected_cities.add(end_city)
 
-        # Ajouter des routes supplémentaires de manière aléatoire
+        # Ajouter des routes supplémentaires de manière aléatoire sans dépasser une route par ville
         while len(roads) < max_roads and len(city_pairs) < len(cities) * (len(cities) - 1) // 2:
             start_city, end_city = random.sample(cities, 2)
             if (start_city, end_city) not in city_pairs and (end_city, start_city) not in city_pairs:
-                road = Road(id=len(roads), start_city=start_city, end_city=end_city, pixels=all_pixels)
-                roads.append(road)
-                city_pairs.add((start_city, end_city))
+                if start_city not in connected_cities or end_city not in connected_cities:
+                    road = Road(id=len(roads), start_city=start_city, end_city=end_city, pixels=all_pixels)
+                    roads.append(road)
+                    city_pairs.add((start_city, end_city))
+                    connected_cities.add(start_city)
+                    connected_cities.add(end_city)
 
         return roads

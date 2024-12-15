@@ -56,9 +56,8 @@ class Render:
 
         elif self.display_mode == "pays":
             for zone in self.map.zones:
-                if zone.biome.name == "Ocean" or zone.biome.name == "Lake":
-                    for pixel in zone.pixels:
-                        pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
+                for pixel in zone.pixels:
+                    pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
 
             for river in self.map.rivers:
                 for pixel in river.route_pixels:
