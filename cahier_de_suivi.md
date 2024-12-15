@@ -3,6 +3,18 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Yuna 15/12
+
+J'ai finis le prototype de pangée et corriger le problème avec les biomes.
+Maintenant les zones sont générer entièrement sans biomes puis les biomes sont assignés après.
+Comme ça, c'est beaucoup plus simple de créer des changements dans la forme des maps (former une grosse ile, plusieurs petites iles) si on a la main sur la façon dont est générer les biomes.
+
+J'ai créer une nouvelle fonction, generate_pangea, qui, en gros, trouve la zone la plus au centre de la map, l'ajoute dans une liste, ajoute à cette liste les zones proches jusqu'à ce que la moitié de la map sois dans cette liste. Une fois la liste prête, assigne des biomes aléatoire à ses zones et le reste de la map devient océan.
+
+J'ai aussi corrigé les routes car je trouve qu'il y en avait trop. Maintenant, chaque ville a au MAXIMUM une route dont elle est l'origine.
+
+Je me souviens pas d'avoir dit ne pas avoir cru en Carlos, mais vu que je suis une meuf chill, je vais pas mentionner que les rivières disparaissent quand on est en affichage mode biome et que j'ai corrigé le fais qu'en mode pays, les zones qui n'avais pas de biome océan ou lac était juste afficher en blanc :D
+
 # Update Carlos 12/12
 
 J'ai fait les checkbox pour les modes d'affichages
