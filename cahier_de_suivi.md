@@ -5,7 +5,22 @@ edited_seconds: 10
 
 # Update Cours 16/12
 
-Continent
+MAJ des lacs
+Affichage frontières dans affichage Biomes
+Revoir la taille pixel (potentiellement créer une variable globale)
+Reset biome
+Créer un affichage des noms de pays et des noms de ville
+
+BONUS :
+
+- Curseur
+- Infrastructure (Plage, arbre montagne vague ville)
+
+## Qui fait quoi ?
+
+- Carlos : Bonus Curseur + Reset Biome + revoir les pixels
+- Yuna : Lac + Bonus infrastructure
+- Jade : Affichage des frontières + Compte rendu
 
 # Update Jade 16/12
 
