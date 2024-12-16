@@ -102,15 +102,17 @@ class Biome:
         liste = [self.create_forest_biome(), self.create_desert_biome(), self.create_mountain_biome(), self.create_ocean_biome(), self.create_plains_biome(), self.create_lake_biome()]
         rdn_num = randint(0, len(liste) - 1)
         return liste[rdn_num]
-    
+
     @classmethod
-    def create_random_biome_2(cls):
+    def create_random_biome_2(self):
         """
         Crée et retourne un biome au hasard, sans inclure les biomes océan ou lac.
         """
-        liste = [cls.create_forest_biome(), cls.create_desert_biome(), cls.create_mountain_biome(), cls.create_plains_biome()]
+        liste = [self.create_forest_biome(), self.create_desert_biome(), self.create_mountain_biome(), self.create_plains_biome()]
         rdn_num = randint(0, len(liste) - 1)
         return liste[rdn_num]
+    
+    
     
     @classmethod
     def create_biomes(self):

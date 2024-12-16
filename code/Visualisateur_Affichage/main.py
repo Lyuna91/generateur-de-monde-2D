@@ -162,7 +162,9 @@ class MapApp:
         tk.Button(button_frame, text="Régénérer la carte", command=self.generate_new_map,
                   width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
                   bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
-
+        
+        tk.Button(button_frame, text="Réinitialiser biomes", command=self.reset_biomes, width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)        
+            
         tk.Button(button_frame, text="Réinitialiser villes/routes", command=self.reset_cities_and_roads,
                   width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
                   bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
@@ -219,6 +221,14 @@ class MapApp:
         Régénère une nouvelle carte.
         """
         self.render.generate_map()
+        self.update_canvas()
+
+    def reset_biomes(self):
+        """
+        Réinitialise les biomes, puis en génère de nouveaux.
+        """
+        self.render.map.delete_all_biome()
+        self.render.map.biomes = self.render.map.generate_biomes_after_deletion()
         self.update_canvas()
 
     def reset_cities_and_roads(self):
