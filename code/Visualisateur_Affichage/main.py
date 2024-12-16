@@ -72,6 +72,7 @@ def create_menu():
 
     root.mainloop()
 
+
 create_menu()
 
 class MapApp:

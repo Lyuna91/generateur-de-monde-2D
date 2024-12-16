@@ -50,7 +50,7 @@ class Map:
         Génère la carte en recréant les pays, villes, routes et zones Voronoi.
         """
         self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], num_zones)
-        self.generate_biomes_for_pangea()
+        self.generate_biomes_for_archipel()
         self.countries = self.generate_countries(num_countries)
         self.cities = self.generate_cities(num_cities)
         self.roads = self.generate_roads()
@@ -188,5 +188,19 @@ class Map:
         # Assigner des biomes aléatoires (sans eau) aux zones de l'île
         for zone in island_zones:
             zone.biome = Biome.create_random_biome_2()
+            for pixel in zone.pixels:
+                pixel.color = zone.biome.color
+
+
+    def generate_biomes_for_archipel(self):
+        """
+        Génère des biomes sous forme d'archipel, avec des îles dispersées au milieu d'une carte océanique.
+        """
+        for zone in self.zones:
+            if random.random() < 0.2:  # 20% des zones deviennent des îles
+                zone.biome = Biome.create_random_biome_2()  # Biome terrestre (sans eau)
+            else:
+                zone.biome = Biome.create_ocean_biome()
+
             for pixel in zone.pixels:
                 pixel.color = zone.biome.color
