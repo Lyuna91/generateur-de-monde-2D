@@ -36,20 +36,38 @@ def set_parameters(size, mode):
 
     # Configurer les paramètres en fonction de la taille
     if size == 'Petit':
-        COUNTRIES = 5
-        CITIES = random.randint(0, 10)
-        RIVERS = random.randint(0, 3)
-        ZONES = 20
+        if mode == "Pangea" :
+            COUNTRIES = 5
+            CITIES = random.randint(7, 10)
+            RIVERS = random.randint(1, 3)
+            ZONES = 20
+        if mode == "Archipel" :
+            COUNTRIES = 5
+            CITIES = random.randint(2, 5)
+            RIVERS = random.randint(0, 2)
+            ZONES = 20
     elif size == 'Moyen':
-        COUNTRIES = 7
-        CITIES = random.randint(0, 20)
-        RIVERS = random.randint(0, 6)
-        ZONES = 50
+        if mode == "Pangea" :
+            COUNTRIES = 7
+            CITIES = random.randint(10, 20)
+            RIVERS = random.randint(1, 6)
+            ZONES = 50
+        if mode == "Archipel" :
+            COUNTRIES = 5
+            CITIES = random.randint(2, 15)
+            RIVERS = random.randint(0, 5)
+            ZONES = 50
     elif size == 'Grand':
-        COUNTRIES = 10
-        CITIES = random.randint(0, 30)
-        RIVERS = random.randint(0, 10)
-        ZONES = 100
+        if mode == "Pangea" :
+            COUNTRIES = 10
+            CITIES = random.randint(7, 30)
+            RIVERS = random.randint(2, 10)
+            ZONES = 100
+        if mode == "Archipel" :
+            COUNTRIES = 10
+            CITIES = random.randint(0, 20)
+            RIVERS = random.randint(0, 7)
+            ZONES = 100
 
     print(f"Paramètres configurés : Taille={size}, Mode={MAP_MODE}")
 
