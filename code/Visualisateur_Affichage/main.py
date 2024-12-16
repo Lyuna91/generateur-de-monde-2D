@@ -92,7 +92,7 @@ def create_menu():
 
     # Choix du mode
     tk.Label(root, text="Choisissez le mode de génération :", font=BUTTON_FONT).pack(pady=10)
-    for mode in ['Pangea', 'Archipel']:
+    for mode in ['Pangea', 'Archipel', 'Continent']:
         tk.Radiobutton(
             root, text=mode, variable=mode_var, value=mode,
             font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR

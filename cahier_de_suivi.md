@@ -3,6 +3,14 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Cours 16/12
+
+Continent
+
+# Update Jade 16/12
+
+J'ai fais l'archipel + j'ai créé les boutons pour selectionner les tailles + modes
+
 # Update Yuna 15/12
 
 J'ai finis le prototype de pangée et corriger le problème avec les biomes.

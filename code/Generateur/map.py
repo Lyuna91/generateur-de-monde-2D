@@ -61,6 +61,8 @@ class Map:
             self.generate_biomes_for_pangea()
         elif mode == "Archipel":
             self.generate_biomes_for_archipel()
+        elif mode == "Continent" :
+            self.generate_biomes_for_continents()
         else:
             raise ValueError(f"[ERROR] Mode inconnu : {mode}")
 
