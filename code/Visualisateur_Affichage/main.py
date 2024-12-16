@@ -16,6 +16,7 @@ COUNTRIES = 10
 CITIES = 10
 RIVERS = 5
 ZONES = 100
+MAP_MODE = "Pangea"
 
 BUTTON_WIDTH = 20
 BUTTON_HEIGHT = 2
@@ -26,7 +27,9 @@ FG_COLOR = 'white'
 CHECK_BG = 'white'
 
 def set_parameter(size):
-    global COUNTRIES, CITIES, RIVERS, ZONES
+    global COUNTRIES, CITIES, RIVERS, ZONES, MAP_MODE
+    
+    # Définir les paramètres de la carte en fonction de la taille choisie
     if size == 'Petit': 
         COUNTRIES = 5
         CITIES = random.randint(0, 10)
@@ -43,7 +46,35 @@ def set_parameter(size):
         RIVERS = random.randint(0, 10)
         ZONES = 100
     
-    print(f"Parametres de la Carte : {size}")
+    print(f"Paramètres de la Carte : {size}")
+
+    # Ouvrir une fenêtre pour choisir le mode de génération
+    choose_mode()
+
+def choose_mode():
+    """
+    Ouvre une fenêtre pour choisir entre le mode Pangée et Archipel.
+    """
+    def set_mode(mode):
+        global MAP_MODE
+        MAP_MODE = mode
+        print(f"[INFO] Mode sélectionné : {MAP_MODE}")
+        root.destroy()  # Fermer la fenêtre après le choix
+
+    root = tk.Tk()
+    root.title("Choix du mode de génération")
+
+    tk.Label(root, text="Choisissez le mode de génération :", font=BUTTON_FONT).pack(pady=10)
+
+    pangea_button = tk.Button(root, text="Pangée", command=lambda: set_mode("Pangea"),
+                              width=BUTTON_WIDTH, height=BUTTON_HEIGHT, bg=BG_COLOR, fg=FG_COLOR)
+    pangea_button.pack(pady=5)
+
+    archipel_button = tk.Button(root, text="Archipel", command=lambda: set_mode("Archipel"),
+                                width=BUTTON_WIDTH, height=BUTTON_HEIGHT, bg=BG_COLOR, fg=FG_COLOR)
+    archipel_button.pack(pady=5)
+
+    root.mainloop()
 
 def on_enter(e):
     e.widget['background'] = HOVER_COLOR
@@ -52,25 +83,85 @@ def on_leave(e):
     e.widget['background'] = BG_COLOR
 
 def create_menu():
+    """
+    Menu principal : choix de la taille de la carte, puis du mode de génération.
+    """
+    def set_parameter_and_mode(size):
+        """
+        Configure les paramètres en fonction de la taille et ouvre le menu pour choisir le mode.
+        """
+        global COUNTRIES, CITIES, RIVERS, ZONES, MAP_MODE
+
+        # Paramètres en fonction de la taille
+        if size == 'Petit': 
+            COUNTRIES = 5
+            CITIES = random.randint(0, 10)
+            RIVERS = random.randint(0, 3)
+            ZONES = 20
+        elif size == 'Moyen':
+            COUNTRIES = 7
+            CITIES = random.randint(0, 20)
+            RIVERS = random.randint(0, 6)
+            ZONES = 50
+        elif size == 'Grand':
+            COUNTRIES = 10
+            CITIES = random.randint(0, 30)
+            RIVERS = random.randint(0, 10)
+            ZONES = 100
+        
+        print(f"Paramètres de la Carte : {size}")
+
+        # Détruire la fenêtre actuelle avant d'ouvrir le choix de mode
+        root.destroy()
+
+        # Ouvrir le menu pour choisir le mode de génération
+        choose_mode()
+
+    def choose_mode():
+        """
+        Menu secondaire pour choisir entre Pangée et Archipel.
+        """
+        def set_mode(mode):
+            global MAP_MODE
+            MAP_MODE = mode
+            print(f"[INFO] Mode sélectionné : {MAP_MODE}")
+            mode_root.destroy()  # Fermer la fenêtre après le choix
+
+        mode_root = tk.Tk()
+        mode_root.title("Choix du mode de génération")
+
+        tk.Label(mode_root, text="Choisissez le mode de génération :", font=BUTTON_FONT).pack(pady=10)
+
+        pangea_button = tk.Button(mode_root, text="Pangée", command=lambda: set_mode("Pangea"),
+                                  width=BUTTON_WIDTH, height=BUTTON_HEIGHT, bg=BG_COLOR, fg=FG_COLOR)
+        pangea_button.pack(pady=5)
+
+        archipel_button = tk.Button(mode_root, text="Archipel", command=lambda: set_mode("Archipel"),
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, bg=BG_COLOR, fg=FG_COLOR)
+        archipel_button.pack(pady=5)
+
+        mode_root.mainloop()
+
+    # Fenêtre principale pour la taille
     root = tk.Tk()
-    root.title("Select Map Size")
+    root.title("Sélectionnez la taille de la carte")
 
-    small_button = tk.Button(root,text="Petite",command=lambda: [set_parameter('Petit'), root.destroy()],width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR,relief='flat',cursor='hand2')
-    small_button.pack(pady=10)
-    small_button.bind("<Enter>", on_enter)
-    small_button.bind("<Leave>", on_leave)
+    tk.Label(root, text="Choisissez la taille de la carte :", font=BUTTON_FONT).pack(pady=10)
 
-    medium_button = tk.Button(root,text="Moyenne",command=lambda: [set_parameter('Moyen'), root.destroy()],width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR,relief='flat',cursor='hand2')
-    medium_button.pack(pady=10)
-    medium_button.bind("<Enter>", on_enter)
-    medium_button.bind("<Leave>", on_leave)
+    small_button = tk.Button(root, text="Petite", command=lambda: set_parameter_and_mode('Petit'),
+                             width=BUTTON_WIDTH, height=BUTTON_HEIGHT, bg=BG_COLOR, fg=FG_COLOR)
+    small_button.pack(pady=5)
 
-    large_button = tk.Button(root,text="Grande",command=lambda: [set_parameter('Grand'), root.destroy()],width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR,relief='flat',cursor='hand2')
-    large_button.pack(pady=10)
-    large_button.bind("<Enter>", on_enter)
-    large_button.bind("<Leave>", on_leave)
+    medium_button = tk.Button(root, text="Moyenne", command=lambda: set_parameter_and_mode('Moyen'),
+                              width=BUTTON_WIDTH, height=BUTTON_HEIGHT, bg=BG_COLOR, fg=FG_COLOR)
+    medium_button.pack(pady=5)
+
+    large_button = tk.Button(root, text="Grande", command=lambda: set_parameter_and_mode('Grand'),
+                             width=BUTTON_WIDTH, height=BUTTON_HEIGHT, bg=BG_COLOR, fg=FG_COLOR)
+    large_button.pack(pady=5)
 
     root.mainloop()
+
 
 
 create_menu()
@@ -85,7 +176,9 @@ class MapApp:
         pygame.display.init()
 
         # Créer l'instance Render
-        self.render = Render(CANVAS_WIDTH, CANVAS_HEIGHT, "Carte", num_countries=COUNTRIES, num_cities=CITIES, num_rivers=RIVERS, num_zones=ZONES)
+        self.render = Render(CANVAS_WIDTH, CANVAS_HEIGHT, "Carte", 
+                     num_countries=COUNTRIES, num_cities=CITIES, 
+                     num_rivers=RIVERS, num_zones=ZONES, mode=MAP_MODE)
 
         # Créer les widgets Tkinter
         self.create_widgets()

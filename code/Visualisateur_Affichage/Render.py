@@ -20,7 +20,7 @@ class Render:
     Classe permettant de gérer l'affichage de la carte générée.
     """
 
-    def __init__(self, width, height, title, num_countries, num_cities, num_rivers, num_zones):
+    def __init__(self, width, height, title, num_countries, num_cities, num_rivers, num_zones, mode):
         self.width = width
         self.height = height
         self.title = title
@@ -28,9 +28,10 @@ class Render:
         self.num_cities = num_cities
         self.num_rivers = num_rivers
         self.num_zones = num_zones
+        self.mode = mode  # Ajout du mode
         self.screen = pygame.Surface((self.width, self.height))
-        self.map = Map(name="Pangea", size=(self.width, self.height), options={})
-        self.display_mode = "pays" # Mode d'affichage par défaut
+        self.map = Map(name=title, size=(self.width, self.height), options={})
+        self.display_mode = "pays"  # Mode d'affichage par défaut
         self.generate_map()  # Générer la carte initiale
 
     def toggle_display_mode(self, mode):
@@ -41,7 +42,7 @@ class Render:
         """
         Génère la carte en utilisant la classe Map.
         """
-        self.map.generate_map(self.num_countries, self.num_cities, self.num_rivers, self.num_zones)
+        self.map.generate_map(self.num_countries, self.num_cities, self.num_rivers, self.num_zones, self.mode)
 
     def display_pixels(self):
         """

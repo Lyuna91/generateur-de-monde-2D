@@ -45,20 +45,35 @@ class Map:
     def generate_empty_map(self, size):
         pass
 
-    def generate_map(self, num_countries, num_cities, num_rivers, num_zones):
+    def generate_map(self, num_countries, num_cities, num_rivers, num_zones, mode):
         """
-        Génère la carte en recréant les pays, villes, routes et zones Voronoi.
+        Génère la carte en fonction des paramètres et du mode de génération.
+
+        :param num_countries: Nombre de pays
+        :param num_cities: Nombre de villes
+        :param num_rivers: Nombre de rivières
+        :param num_zones: Nombre de zones Voronoi
+        :param mode: Mode de génération (Pangea ou Archipel)
         """
         self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], num_zones)
-        self.generate_biomes_for_archipel()
+        
+        if mode == "Pangea":
+            self.generate_biomes_for_pangea()
+        elif mode == "Archipel":
+            self.generate_biomes_for_archipel()
+        else:
+            raise ValueError(f"[ERROR] Mode inconnu : {mode}")
+
         self.countries = self.generate_countries(num_countries)
         self.cities = self.generate_cities(num_cities)
         self.roads = self.generate_roads()
+        self.rivers = self.generate_rivers(num_rivers)
+
+         # Assigner des couleurs aléatoires à chaque pays
         self.country_colors = {
             country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-            for country in self.countries
-        }
-        self.rivers = self.generate_rivers(num_rivers)
+            for country in self.countries}
+
 
     def assign_biomes(self):
         """
@@ -86,7 +101,6 @@ class Map:
         return Country.create_countries_from_zones(self.zones, num_countries)
 
     def generate_cities(self, num_cities):
-        num_cities = num_cities + random.randint(1, num_cities)
         return City.create_cities_from_countries(self.countries, num_cities)
 
     def generate_roads(self):
