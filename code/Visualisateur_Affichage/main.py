@@ -139,6 +139,9 @@ class MapApp:
         self.show_borders = tk.BooleanVar(value=False)  # Ajouter cette ligne avant create_widgets
         self.show_countries = tk.BooleanVar(value=True)
         self.show_biomes = tk.BooleanVar(value=False)
+        self.show_roads = tk.BooleanVar(value=False)  # Par défaut, routes masquées
+        self.show_cities = tk.BooleanVar(value=False)  # Par défaut, villes masquées
+
 
         # Créer les widgets Tkinter
         self.create_widgets()
@@ -199,6 +202,13 @@ class MapApp:
                command=self.update_display,
                font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
+        tk.Checkbutton(button_frame, text="Afficher Routes", variable=self.show_roads,
+               command=self.update_display,
+               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
+
+        tk.Checkbutton(button_frame, text="Afficher Villes", variable=self.show_cities,
+               command=self.update_display,
+               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
         # Canvas pour afficher la carte
         self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
@@ -219,12 +229,13 @@ class MapApp:
 
     def update_display(self):
         """
-        Met à jour l'affichage selon le mode sélectionné (Pays ou Biomes).
+        Met à jour l'affichage selon les options sélectionnées.
         """
         mode = "pays" if self.show_countries.get() else "biome"
-        show_borders = self.show_borders.get()  # Récupère l'état du bouton "Afficher Frontières"
+        self.render.show_borders = self.show_borders.get()
+        self.render.show_roads = self.show_roads.get()
+        self.render.show_cities = self.show_cities.get()
         self.render.toggle_display_mode(mode)
-        self.render.show_borders = show_borders  # Passer l'état au rendu
         self.update_canvas()
 
 

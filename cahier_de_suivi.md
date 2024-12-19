@@ -3,6 +3,16 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Jade 19/12
+
+J'ai pété un cable et j'ai un peu modifié pleins de trucs
+On avait dit notamment qu'on ajoutait un bouton pour afficher ou non les frontières sur la vue biome.
+Bah je l'ai fais mais j'ai fais mieux que ça !
+Maintenant y'a deux vue : vue biome et vue frontière
+Et par dessus LES DEUX VUES, on peut choisir d'afficher les frontières, les villes, les routes :)
+
+Comme ça c'est mieux et on est tranquille
+
 # Update Cours 16/12
 
 MAJ des lacs
