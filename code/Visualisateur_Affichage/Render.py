@@ -29,6 +29,7 @@ class Render:
         self.num_rivers = num_rivers
         self.num_zones = num_zones
         self.mode = mode  # Ajout du mode
+        self.show_borders = False  # Par défaut, les frontières ne sont pas affichées
         self.screen = pygame.Surface((self.width, self.height))
         self.map = Map(name=title, size=(self.width, self.height), options={})
         self.display_mode = "pays"  # Mode d'affichage par défaut
@@ -51,9 +52,16 @@ class Render:
         self.screen.fill((255, 255, 255))  # Remplir l'écran de blanc
 
         if self.display_mode == "biome":
+            # Affichage des biomes
             for zone in self.map.zones:
                 for pixel in zone.pixels:
                     pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
+            
+            # Ajout conditionnel des frontières
+            if self.show_borders:
+                for country in self.map.countries:
+                    for pixel in country.border_pixels:
+                        pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, 10, 10))
 
         elif self.display_mode == "pays":
             for zone in self.map.zones:

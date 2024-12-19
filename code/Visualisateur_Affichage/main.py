@@ -135,10 +135,14 @@ class MapApp:
             num_rivers=RIVERS, num_zones=ZONES, mode=MAP_MODE
         )
 
+        # Initialiser les variables de contrôle
+        self.show_borders = tk.BooleanVar(value=False)  # Ajouter cette ligne avant create_widgets
+        self.show_countries = tk.BooleanVar(value=True)
+        self.show_biomes = tk.BooleanVar(value=False)
+
         # Créer les widgets Tkinter
         self.create_widgets()
         self.update_canvas()  # Affiche la première carte
-
         
 
     def download_image(self):
@@ -189,6 +193,11 @@ class MapApp:
                        command=lambda: self.handle_checkbox_change("biome"),
                        font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
+        tk.Checkbutton(button_frame, text="Afficher Frontières", variable=self.show_borders,
+               command=self.update_display,
+               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
+
+
         # Canvas pour afficher la carte
         self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
         self.canvas.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
@@ -211,8 +220,11 @@ class MapApp:
         Met à jour l'affichage selon le mode sélectionné (Pays ou Biomes).
         """
         mode = "pays" if self.show_countries.get() else "biome"
+        show_borders = self.show_borders.get()  # Récupère l'état du bouton "Afficher Frontières"
         self.render.toggle_display_mode(mode)
+        self.render.show_borders = show_borders  # Passer l'état au rendu
         self.update_canvas()
+
 
     def generate_new_map(self):
         """
