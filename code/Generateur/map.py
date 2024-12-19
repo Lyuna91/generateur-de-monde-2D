@@ -139,6 +139,27 @@ class Map:
         self.roads = []
         return self.roads
 
+    def delete_all_biome(self):
+        for zone in self.zones:
+            if zone.biome.name != "Ocean":
+                zone.biome = None
+                for pixel in zone.pixels:
+                    pixel.color = (255, 255, 255)
+        return self.zones
+
+    def generate_biomes_after_deletion(self):
+
+        """
+        Creation des nouveaux biomes après la suppression des biomes existants.
+        """
+        for zone in self.zones: 
+            if zone.biome is None: 
+                zone.biome = Biome.create_random_biome_2()
+                for pixel in zone.pixels:
+                    pixel.color = zone.biome.color
+
+        return self.zones
+
     def delete_all_city(self):
         self.cities = []
         return self.cities
