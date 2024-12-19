@@ -3,6 +3,12 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Jade 19/12 .bis
+
+Vu que les arrêts maladie ça me réussi pas, je suis allée un peu plus loin que prévu dans le projet
+Donc maintenant on a aussi l'affichage des noms de pays et de ville qui est possible grâce aux boutons sur l'interface
+Je commit ça et je me lance dans la taille des pixels comme prévu
+
 # Update Jade 19/12
 
 J'ai pété un cable et j'ai un peu modifié pleins de trucs
@@ -28,9 +34,9 @@ BONUS :
 
 ## Qui fait quoi ?
 
-- Carlos : Bonus Curseur + Reset Biome + revoir les pixels
+- Carlos : Bonus Curseur + Reset Biome + Compte rendu
 - Yuna : Lac + Bonus infrastructure
-- Jade : Affichage des frontières + Compte rendu
+- Jade : Affichage des frontières + revoir les pixels
 
 # Update Jade 16/12
 

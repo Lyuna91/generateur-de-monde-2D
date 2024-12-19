@@ -18,6 +18,9 @@ RIVERS = 5
 ZONES = 100
 MAP_MODE = "Pangea"
 
+PIXEL_SIZE = 10
+
+
 BUTTON_WIDTH = 20
 BUTTON_HEIGHT = 2
 BUTTON_FONT = ('Helvetica', 12, 'bold')
@@ -141,6 +144,8 @@ class MapApp:
         self.show_biomes = tk.BooleanVar(value=False)
         self.show_roads = tk.BooleanVar(value=False)  # Par défaut, routes masquées
         self.show_cities = tk.BooleanVar(value=False)  # Par défaut, villes masquées
+        self.show_city_names = tk.BooleanVar(value=False)  # Par défaut, noms des villes masqués
+        self.show_country_names = tk.BooleanVar(value=False)  # Par défaut, noms des pays masqués
 
 
         # Créer les widgets Tkinter
@@ -209,6 +214,15 @@ class MapApp:
         tk.Checkbutton(button_frame, text="Afficher Villes", variable=self.show_cities,
                command=self.update_display,
                font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
+        
+        tk.Checkbutton(button_frame, text="Afficher Noms Villes", variable=self.show_city_names,
+               command=self.update_display,
+               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
+
+        tk.Checkbutton(button_frame, text="Afficher Noms Pays", variable=self.show_country_names,
+               command=self.update_display,
+               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
+
 
         # Canvas pour afficher la carte
         self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
@@ -235,6 +249,8 @@ class MapApp:
         self.render.show_borders = self.show_borders.get()
         self.render.show_roads = self.show_roads.get()
         self.render.show_cities = self.show_cities.get()
+        self.render.show_city_names = self.show_city_names.get()  # Nouvel état pour les noms des villes
+        self.render.show_country_names = self.show_country_names.get()  # Nouvel état pour les noms des pays
         self.render.toggle_display_mode(mode)
         self.update_canvas()
 

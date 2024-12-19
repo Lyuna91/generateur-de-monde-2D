@@ -37,6 +37,14 @@ class Render:
         self.display_mode = "pays"  # Mode d'affichage par défaut
         self.generate_map()  # Générer la carte initiale
 
+        self.show_city_names = False  # Par défaut, noms des villes masqués
+        self.show_country_names = False  # Par défaut, noms des pays masqués
+
+
+        pygame.font.init()  # Initialiser les polices
+        self.font = pygame.font.SysFont('Arial', 15, bold=True)  # Police plus grande et en gras
+
+
     def toggle_display_mode(self, mode):
         self.display_mode = mode
         self.display_pixels()
@@ -79,6 +87,25 @@ class Render:
             if self.show_cities:
                 for city in self.map.cities:
                     pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
+                    
+
+            if self.show_city_names:
+                for city in self.map.cities:
+                    city_name = city.name
+                    text_surface = self.font.render(city_name, True, (0, 0, 255))
+                    text_rect = text_surface.get_rect(center=(city.position.x, city.position.y - 10))
+                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(10, 10))
+                    self.screen.blit(text_surface, text_rect)
+
+            if self.show_country_names:
+                for country in self.map.countries:
+                    avg_x = sum(pixel.x for zone in country.zones for pixel in zone.pixels) // max(1, sum(len(zone.pixels) for zone in country.zones))
+                    avg_y = sum(pixel.y for zone in country.zones for pixel in zone.pixels) // max(1, sum(len(zone.pixels) for zone in country.zones))
+                    country_name = country.name
+                    text_surface = self.font.render(country_name, True, (0, 0, 0))
+                    text_rect = text_surface.get_rect(center=(avg_x, avg_y))
+                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(10, 10))
+                    self.screen.blit(text_surface, text_rect)
 
         elif self.display_mode == "pays":
             for zone in self.map.zones:
@@ -111,6 +138,26 @@ class Render:
             if self.show_cities:
                 for city in self.map.cities:
                     pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
+                    
+            if self.show_city_names:
+                for city in self.map.cities:
+                    city_name = city.name
+                    text_surface = self.font.render(city_name, True, (0, 0, 255))
+                    text_rect = text_surface.get_rect(center=(city.position.x, city.position.y - 10))
+                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(10, 10))
+                    self.screen.blit(text_surface, text_rect)
+
+            if self.show_country_names:
+                for country in self.map.countries:
+                    avg_x = sum(pixel.x for zone in country.zones for pixel in zone.pixels) // max(1, sum(len(zone.pixels) for zone in country.zones))
+                    avg_y = sum(pixel.y for zone in country.zones for pixel in zone.pixels) // max(1, sum(len(zone.pixels) for zone in country.zones))
+                    country_name = country.name
+                    text_surface = self.font.render(country_name, True, (0, 0, 0))
+                    text_rect = text_surface.get_rect(center=(avg_x, avg_y))
+                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(10, 10))
+                    self.screen.blit(text_surface, text_rect)
+
+
 
 
         """
