@@ -3,6 +3,19 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Jade 19/12 .ter
+
+J'ai géré l'affaire des pixels.
+Pour le moment il y a une variable globale dans CHAQUE fichier ou c'est nécessaire d'avoir un pixel size. Vous pouvez le retrouver en allant dans l'onglet avec la loupe et en tapant "PIXEL_SIZE =" et la vous aurez asccès à tout ça
+
+ça à l'air de fonctionner à une exception près : les pangées
+
+je peux donc effectuée le changement de taille de pixel sans problème et ça modifie correctement la carte pour tous les modes, mais pour la pangée on se retrouve avec un seul pays, une seule parcelle de terre et je sais pas pourquoi
+
+en vrai YUNA si t'as deux minutes pour regarder vu que c'est toi qui t'ai occupé des pangées je suis chaud parce que j'ai pas trouvé le problème :)
+
+Merci et bonne nuit :)
+
 # Update Jade 19/12 .bis
 
 Vu que les arrêts maladie ça me réussi pas, je suis allée un peu plus loin que prévu dans le projet

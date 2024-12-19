@@ -1,6 +1,8 @@
 import random
 import math
 
+PIXEL_SIZE = 5
+
 class Road:
     """
     Classe permettant de définir les routes à partir des pixels existants sur la carte.
@@ -60,7 +62,7 @@ class Road:
                 y += dy
                 divergence_x = random.uniform(-divergence, divergence) * dx
                 divergence_y = random.uniform(-divergence, divergence) * dy
-                liste_intersections.append((round((x + divergence_x) / 10) * 10, round((y + divergence_y) / 10) * 10))
+                liste_intersections.append((round((x + divergence_x) / PIXEL_SIZE) * PIXEL_SIZE, round((y + divergence_y) / PIXEL_SIZE) * PIXEL_SIZE))
             liste_intersections.append(fin)  # Ajouter le point d'arrivée
             return liste_intersections
 

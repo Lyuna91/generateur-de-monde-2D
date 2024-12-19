@@ -1,5 +1,7 @@
 import random
 
+PIXEL_SIZE = 5
+
 class River:
     """
     Classe permettant de définir les rivières à partir des pixels océaniques.
@@ -43,11 +45,11 @@ class River:
 
             # Déterminer une direction prioritaire
             if abs(dx) > abs(dy):
-                step_x = 10 if dx > 0 else -10
+                step_x = PIXEL_SIZE if dx > 0 else -PIXEL_SIZE
                 step_y = 0
             else:
                 step_x = 0
-                step_y = 10 if dy > 0 else -10
+                step_y = PIXEL_SIZE if dy > 0 else -PIXEL_SIZE
 
             # Ajouter un mouvement organique
             if random.random() > 0.7:  # 30% de chance de variation

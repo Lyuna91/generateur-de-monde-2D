@@ -3,6 +3,8 @@ import random
 from math import sqrt
 from .names_countries import country_titles, prefixes, middles, suffixes
 
+PIXEL_SIZE = 5
+
 class Country:
     """
     Classe permettant de définir les pays.
@@ -123,7 +125,7 @@ class Country:
         for pixel in all_pixels:
             x, y = pixel.x, pixel.y
             # Vérifier les pixels adjacents
-            adjacent_pixels = [(x-10, y), (x+10, y), (x, y-10), (x, y+10)]
+            adjacent_pixels = [(x-PIXEL_SIZE, y), (x+PIXEL_SIZE, y), (x, y-PIXEL_SIZE), (x, y+PIXEL_SIZE)]
             is_border = False
             for adj_pixel in adjacent_pixels:
                 if not any(adj_pixel == (p.x, p.y) for p in all_pixels):

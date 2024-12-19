@@ -4,6 +4,8 @@ from .pixel import Pixel
 from .biome import Biome
 from math import sqrt
 
+PIXEL_SIZE = 5
+
 class Zone:
     """
     Classe permettant de définir les zones de Voronoi.
@@ -49,7 +51,7 @@ class Zone:
         }
 
     @staticmethod
-    def generate_voronoi_zones(width, height, num_zones, pixel_size=10):
+    def generate_voronoi_zones(width, height, num_zones, pixel_size=PIXEL_SIZE):
         """
         Génère des pixels individuels, assignés aux zones de Voronoi les plus proches.
 

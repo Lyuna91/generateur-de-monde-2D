@@ -14,6 +14,7 @@ from Generateur.city import City
 from Generateur.road import Road
 from Generateur.river import River
 
+PIXEL_SIZE = 5
 
 class Render:
     """
@@ -65,36 +66,36 @@ class Render:
             # Affichage des biomes
             for zone in self.map.zones:
                 for pixel in zone.pixels:
-                    pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
+                    pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
             
             for river in self.map.rivers:
                 for pixel in river.route_pixels:
-                    pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, 10, 10))
+                    pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
             
             # Affichage conditionnel des frontières
             if self.show_borders:
                 for country in self.map.countries:
                     for pixel in country.border_pixels:
-                        pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, 10, 10))
+                        pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
         
             # Affichage conditionnel des routes
             if self.show_roads:
                 for road in self.map.roads:
                     for pixel in road.route_pixels:
-                        pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, 10, 10))
+                        pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
             
             # Affichage conditionnel des villes
             if self.show_cities:
                 for city in self.map.cities:
-                    pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
+                    pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, PIXEL_SIZE, PIXEL_SIZE))
                     
 
             if self.show_city_names:
                 for city in self.map.cities:
                     city_name = city.name
                     text_surface = self.font.render(city_name, True, (0, 0, 255))
-                    text_rect = text_surface.get_rect(center=(city.position.x, city.position.y - 10))
-                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(10, 10))
+                    text_rect = text_surface.get_rect(center=(city.position.x, city.position.y - PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(PIXEL_SIZE, PIXEL_SIZE))
                     self.screen.blit(text_surface, text_rect)
 
             if self.show_country_names:
@@ -104,47 +105,47 @@ class Render:
                     country_name = country.name
                     text_surface = self.font.render(country_name, True, (0, 0, 0))
                     text_rect = text_surface.get_rect(center=(avg_x, avg_y))
-                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(10, 10))
+                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(PIXEL_SIZE, PIXEL_SIZE))
                     self.screen.blit(text_surface, text_rect)
 
         elif self.display_mode == "pays":
             for zone in self.map.zones:
                 for pixel in zone.pixels:
-                    pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, 10, 10))
+                    pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
 
             for river in self.map.rivers:
                 for pixel in river.route_pixels:
-                    pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, 10, 10))
+                    pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
 
             for country in self.map.countries:
                 country_color = self.map.country_colors[country.id]
                 for zone in country.zones:
                     for pixel in zone.pixels:
-                        pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, 10, 10))
+                        pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
 
            # Affichage conditionnel des frontières
             if self.show_borders:
                 for country in self.map.countries:
                     for pixel in country.border_pixels:
-                        pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, 10, 10))
+                        pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
         
             # Affichage conditionnel des routes
             if self.show_roads:
                 for road in self.map.roads:
                     for pixel in road.route_pixels:
-                        pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, 10, 10))
+                        pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
             
             # Affichage conditionnel des villes
             if self.show_cities:
                 for city in self.map.cities:
-                    pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
+                    pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, PIXEL_SIZE, PIXEL_SIZE))
                     
             if self.show_city_names:
                 for city in self.map.cities:
                     city_name = city.name
                     text_surface = self.font.render(city_name, True, (0, 0, 255))
-                    text_rect = text_surface.get_rect(center=(city.position.x, city.position.y - 10))
-                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(10, 10))
+                    text_rect = text_surface.get_rect(center=(city.position.x, city.position.y - PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(PIXEL_SIZE, PIXEL_SIZE))
                     self.screen.blit(text_surface, text_rect)
 
             if self.show_country_names:
@@ -154,7 +155,7 @@ class Render:
                     country_name = country.name
                     text_surface = self.font.render(country_name, True, (0, 0, 0))
                     text_rect = text_surface.get_rect(center=(avg_x, avg_y))
-                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(10, 10))
+                    pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(PIXEL_SIZE, PIXEL_SIZE))
                     self.screen.blit(text_surface, text_rect)
 
 
