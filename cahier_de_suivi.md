@@ -3,6 +3,23 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Réunion 20/12
+
+### Trucs qui restent à faire :
+
+- MAJ LAC
+- Curseur
+- Bonus infrastructure
+- Corriger Pangée
+- Supprimer à l'unité
+- Modification des noms des villes et pays
+- Placer rivière au dessus de coloration des pays pour l'affichage en vue pays
+- Bonus : faire un executable
+
+Yuna : MAJ lac + Bonus infrastructure + Corigée Pangée
+Carlos : Curseur + placer rivière au dessus de pays + Bonus faire exe
+Jade : Supprimer à l'unité + Modif noms villes et pays + Bonus : Amélioration de l'interface
+
 # Update Jade 19/12 .ter
 
 J'ai géré l'affaire des pixels.

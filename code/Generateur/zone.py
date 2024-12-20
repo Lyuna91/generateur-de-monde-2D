@@ -92,7 +92,7 @@ class Zone:
 
         return zones
 
-    def is_adjacent(self, other_zone, distance_threshold=150):
+    def is_adjacent(self, other_zone, distance_threshold=350):
         """
         Vérifie si une autre zone est adjacente à cette zone.
         
@@ -101,4 +101,5 @@ class Zone:
         :return: True si les zones sont adjacentes, False sinon
         """
         distance = sqrt((self.seed[0] - other_zone.seed[0]) ** 2 + (self.seed[1] - other_zone.seed[1]) ** 2)
+        print(distance)
         return distance <= distance_threshold
