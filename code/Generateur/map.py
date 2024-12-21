@@ -241,3 +241,5 @@ class Map:
 
             for pixel in zone.pixels:
                 pixel.color = zone.biome.color
+
+

@@ -223,6 +223,13 @@ class MapApp:
                command=self.update_display,
                font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
+        tk.Button(button_frame, text="Modifier Nom Ville", command=self.edit_city_name,
+          width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
+          bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
+
+        tk.Button(button_frame, text="Modifier Nom Pays", command=self.edit_country_name,
+          width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
+          bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
 
         # Canvas pour afficher la carte
         self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
@@ -287,6 +294,79 @@ class MapApp:
         self.render.map.delete_all_river()
         self.render.map.rivers = self.render.map.generate_rivers(RIVERS)
         self.update_canvas()
+
+    def edit_city_name(self):
+        """
+        Permet de modifier le nom d'une ville sélectionnée.
+        """
+        # Fenêtre popup pour choisir une ville
+        popup = tk.Toplevel(self.root)
+        popup.title("Modifier le nom de la ville")
+
+        tk.Label(popup, text="Choisissez une ville :", font=BUTTON_FONT).pack(pady=5)
+
+        # Liste déroulante pour les villes
+        city_var = tk.StringVar(value=self.render.map.cities[0].name if self.render.map.cities else "")
+        city_menu = tk.OptionMenu(popup, city_var, *[city.name for city in self.render.map.cities])
+        city_menu.pack(pady=5)
+
+        # Entrée pour le nouveau nom
+        tk.Label(popup, text="Nouveau nom :", font=BUTTON_FONT).pack(pady=5)
+        new_name_entry = tk.Entry(popup, font=BUTTON_FONT)
+        new_name_entry.pack(pady=5)
+
+        # Bouton pour valider
+        def update_city_name():
+            selected_city = next(city for city in self.render.map.cities if city.name == city_var.get())
+            new_name = new_name_entry.get()
+            if new_name:
+                selected_city.name = new_name
+                print(f"[INFO] Nom de la ville modifié : {selected_city.name}")
+                self.update_canvas()
+            popup.destroy()
+
+        tk.Button(popup, text="Valider", command=update_city_name,
+                width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
+                bg=BG_COLOR, fg=FG_COLOR).pack(pady=10)
+
+        popup.mainloop()
+
+    def edit_country_name(self):
+        """
+        Permet de modifier le nom d'un pays sélectionné.
+        """
+        # Fenêtre popup pour choisir un pays
+        popup = tk.Toplevel(self.root)
+        popup.title("Modifier le nom du pays")
+
+        tk.Label(popup, text="Choisissez un pays :", font=BUTTON_FONT).pack(pady=5)
+
+        # Liste déroulante pour les pays
+        country_var = tk.StringVar(value=self.render.map.countries[0].name if self.render.map.countries else "")
+        country_menu = tk.OptionMenu(popup, country_var, *[country.name for country in self.render.map.countries])
+        country_menu.pack(pady=5)
+
+        # Entrée pour le nouveau nom
+        tk.Label(popup, text="Nouveau nom :", font=BUTTON_FONT).pack(pady=5)
+        new_name_entry = tk.Entry(popup, font=BUTTON_FONT)
+        new_name_entry.pack(pady=5)
+
+        # Bouton pour valider
+        def update_country_name():
+            selected_country = next(country for country in self.render.map.countries if country.name == country_var.get())
+            new_name = new_name_entry.get()
+            if new_name:
+                selected_country.name = new_name
+                print(f"[INFO] Nom du pays modifié : {selected_country.name}")
+                self.update_canvas()
+            popup.destroy()
+
+        tk.Button(popup, text="Valider", command=update_country_name,
+                width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
+                bg=BG_COLOR, fg=FG_COLOR).pack(pady=10)
+
+        popup.mainloop()
+
 
     def update_canvas(self):
         """
