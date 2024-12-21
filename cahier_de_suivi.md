@@ -3,6 +3,10 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Jade 21/12
+
+On peut changer le nom des villes et des pays maintenant ^^ Je vois pour faire la suppression à l'unité plus tard :)
+
 # Update Réunion 20/12
 
 ### Trucs qui restent à faire :
