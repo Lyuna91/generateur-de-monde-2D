@@ -3,6 +3,11 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Carlos 23/12
+
+Le slider est operationnel et les riviere sont placé sur les pays.
+En bonus j'ai trouvé la methode pour transformer notre projet en executable avec toute nos dépendances, il ne reste plus qu'a attendre la version Finale du projet.
+
 # Update Jade 21/12
 
 On peut changer le nom des villes et des pays maintenant ^^ Je vois pour faire la suppression à l'unité plus tard :)
