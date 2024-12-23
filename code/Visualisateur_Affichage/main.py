@@ -17,6 +17,8 @@ CITIES = 10
 RIVERS = 5
 ZONES = 100
 MAP_MODE = "Pangea"
+MIN_VILLE = COUNTRIES
+MAX_VILLE = 15
 
 PIXEL_SIZE = 5
 
@@ -32,7 +34,7 @@ def set_parameters(size, mode):
     """
     Configure les paramètres globaux en fonction de la taille et du mode sélectionnés.
     """
-    global COUNTRIES, CITIES, RIVERS, ZONES, MAP_MODE
+    global COUNTRIES, CITIES, RIVERS, ZONES, MAP_MODE, MIN_VILLE, MAX_VILLE
 
     # Mettre à jour le mode de génération
     MAP_MODE = mode
@@ -43,33 +45,66 @@ def set_parameters(size, mode):
             COUNTRIES = 5
             CITIES = random.randint(7, 10)
             RIVERS = random.randint(1, 3)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 10
             ZONES = 20
         if mode == "Archipel" :
             COUNTRIES = 5
             CITIES = random.randint(2, 5)
             RIVERS = random.randint(0, 2)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 5
+            ZONES = 20
+        if mode == "Continent" :
+            COUNTRIES = 5
+            CITIES = random.randint(5, 10)
+            RIVERS = random.randint(0, 3)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 10
             ZONES = 20
     elif size == 'Moyen':
         if mode == "Pangea" :
             COUNTRIES = 7
             CITIES = random.randint(10, 20)
             RIVERS = random.randint(1, 6)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 20
             ZONES = 50
         if mode == "Archipel" :
             COUNTRIES = 5
             CITIES = random.randint(2, 15)
             RIVERS = random.randint(0, 5)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 15
+            ZONES = 50
+        if mode == "Continent" :
+            COUNTRIES = 7
+            CITIES = random.randint(7, 20)
+            RIVERS = random.randint(0, 6)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 20
             ZONES = 50
     elif size == 'Grand':
         if mode == "Pangea" :
             COUNTRIES = 10
             CITIES = random.randint(7, 30)
             RIVERS = random.randint(2, 10)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 30
             ZONES = 100
         if mode == "Archipel" :
             COUNTRIES = 10
             CITIES = random.randint(0, 20)
             RIVERS = random.randint(0, 7)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 20
+            ZONES = 100
+        if mode == "Continent" :
+            COUNTRIES = 10
+            CITIES = random.randint(7, 30)
+            RIVERS = random.randint(0, 10)
+            MIN_VILLE = COUNTRIES
+            MAX_VILLE = 30
             ZONES = 100
 
     print(f"Paramètres configurés : Taille={size}, Mode={MAP_MODE}")
@@ -146,7 +181,7 @@ class MapApp:
         self.show_cities = tk.BooleanVar(value=False)  # Par défaut, villes masquées
         self.show_city_names = tk.BooleanVar(value=False)  # Par défaut, noms des villes masqués
         self.show_country_names = tk.BooleanVar(value=False)  # Par défaut, noms des pays masqués
-
+        self.city_slider = None
 
         # Créer les widgets Tkinter
         self.create_widgets()
@@ -177,6 +212,14 @@ class MapApp:
         
         tk.Button(button_frame, text="Réinitialiser biomes", command=self.reset_biomes, width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)        
             
+        slider_label = tk.Label(button_frame, text="Parametre : ")
+        slider_label.pack(pady=5)
+        self.city_slider = tk.Scale(button_frame, from_=MIN_VILLE, to=MAX_VILLE, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
+        self.city_slider.pack(pady=5)
+
+        tk.Button(button_frame, text="Valider",command=self.validate_cities,width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR).pack(pady=5)
+
+
         tk.Button(button_frame, text="Réinitialiser villes/routes", command=self.reset_cities_and_roads,
                   width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
                   bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
@@ -247,6 +290,14 @@ class MapApp:
             self.show_biomes.set(True)
 
         self.update_display()
+
+    def validate_cities(self):
+        nb_cities = self.city_slider.get()
+        self.render.map.delete_all_city()
+        self.render.map.delete_all_road()
+        self.render.map.cities = self.render.map.generate_cities(nb_cities)
+        self.render.map.roads = self.render.map.generate_roads()
+        self.update_canvas()
 
     def update_display(self):
         """

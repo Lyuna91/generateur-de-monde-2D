@@ -113,15 +113,15 @@ class Render:
                 for pixel in zone.pixels:
                     pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
 
-            for river in self.map.rivers:
-                for pixel in river.route_pixels:
-                    pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
-
             for country in self.map.countries:
                 country_color = self.map.country_colors[country.id]
                 for zone in country.zones:
                     for pixel in zone.pixels:
                         pygame.draw.rect(self.screen, country_color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
+            
+            for river in self.map.rivers:
+                for pixel in river.route_pixels:
+                    pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
 
            # Affichage conditionnel des frontières
             if self.show_borders:
