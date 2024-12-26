@@ -67,7 +67,10 @@ class Render:
             # Affichage des biomes
             for zone in self.map.zones:
                 for pixel in zone.pixels:
-                    pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
+                    color = zone.biome.color
+                    if zone.biome.name == "Forest" and random.random() < 0.2:  # 10% des pixels seront plus foncés
+                        color = (max(0, color[0] - 30), max(0, color[1] - 30), max(0, color[2] - 30))
+                    pygame.draw.rect(self.screen, color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
             
             for lake in self.map.lakes:
                 for pixel in lake.lake_pixels:
