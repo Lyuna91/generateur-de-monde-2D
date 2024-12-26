@@ -101,5 +101,4 @@ class Zone:
         :return: True si les zones sont adjacentes, False sinon
         """
         distance = sqrt((self.seed[0] - other_zone.seed[0]) ** 2 + (self.seed[1] - other_zone.seed[1]) ** 2)
-        print(f"DISTANCEE : {distance} DISTANCE THRESHOLD : {distance_threshold}")
         return distance <= distance_threshold

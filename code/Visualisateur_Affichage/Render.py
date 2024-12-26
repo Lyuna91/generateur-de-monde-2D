@@ -68,6 +68,11 @@ class Render:
                 for pixel in zone.pixels:
                     pygame.draw.rect(self.screen, zone.biome.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
             
+            for lake in self.map.lakes:
+                for pixel in lake.lake_pixels:
+                    pygame.draw.rect(self.screen, pixel.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
+
+
             for river in self.map.rivers:
                 for pixel in river.route_pixels:
                     pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
@@ -87,8 +92,11 @@ class Render:
             # Affichage conditionnel des villes
             if self.show_cities:
                 for city in self.map.cities:
-                    pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, PIXEL_SIZE, PIXEL_SIZE))
-                    
+                    pygame.draw.rect(self.screen, (100, 100, 100), (city.position.x - PIXEL_SIZE*2, city.position.y, PIXEL_SIZE * 5, PIXEL_SIZE * 2))
+                    pygame.draw.rect(self.screen, (100, 100, 100), (city.position.x - PIXEL_SIZE*2, city.position.y - PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (100, 100, 100), (city.position.x, city.position.y - PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (100, 100, 100), (city.position.x + PIXEL_SIZE*2, city.position.y - PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (165, 70, 70), (city.position.x, city.position.y + PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
 
             if self.show_city_names:
                 for city in self.map.cities:
@@ -138,7 +146,11 @@ class Render:
             # Affichage conditionnel des villes
             if self.show_cities:
                 for city in self.map.cities:
-                    pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, PIXEL_SIZE, PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (100, 100, 100), (city.position.x - PIXEL_SIZE*2, city.position.y, PIXEL_SIZE * 5, PIXEL_SIZE * 2))
+                    pygame.draw.rect(self.screen, (100, 100, 100), (city.position.x - PIXEL_SIZE*2, city.position.y - PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (100, 100, 100), (city.position.x, city.position.y - PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (100, 100, 100), (city.position.x + PIXEL_SIZE*2, city.position.y - PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
+                    pygame.draw.rect(self.screen, (165, 70, 70), (city.position.x, city.position.y + PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
                     
             if self.show_city_names:
                 for city in self.map.cities:

@@ -47,7 +47,6 @@ class Biome:
         "Mountain": (139, 137, 137),
         "Ocean": (0, 105, 148),
         "Plains": (124, 252, 0),
-        "Lake": (173, 216, 230),  # Bleu royal ou d'après Carlos "du bleu c'est du bleu" - j'ai changé en violet pour mieux tester mes rivières
     }
 
 ######################### METHODS
@@ -87,19 +86,19 @@ class Biome:
         """
         return Biome(id=5, name="Plains", color=Biome.biome_colors["Plains"], altitude_avg=100)
 
-    @staticmethod
-    def create_lake_biome():
-        """
-        Crée et retourne un biome lac.
-        """
-        return Biome(id=6, name="Lake", color=Biome.biome_colors["Lake"], altitude_avg=0)
+    # @staticmethod
+    # def create_lake_biome():
+    #     """
+    #     Crée et retourne un biome lac.
+    #     """
+    #     return Biome(id=6, name="Lake", color=Biome.biome_colors["Lake"], altitude_avg=0)
 
     @classmethod
     def create_random_biome(self):
         """
         Crée et retourne un biome au hasard.
         """
-        liste = [self.create_forest_biome(), self.create_desert_biome(), self.create_mountain_biome(), self.create_ocean_biome(), self.create_plains_biome(), self.create_lake_biome()]
+        liste = [self.create_forest_biome(), self.create_desert_biome(), self.create_mountain_biome(), self.create_ocean_biome(), self.create_plains_biome()]
         rdn_num = randint(0, len(liste) - 1)
         return liste[rdn_num]
 
@@ -125,7 +124,6 @@ class Biome:
             "Mountain": Biome.create_mountain_biome(),
             "Ocean": Biome.create_ocean_biome(),
             "Plains": Biome.create_plains_biome(),
-            "Lake": Biome.create_lake_biome(),
         }
         return biomes
     

@@ -6,6 +6,7 @@ from .city import City
 from .biome import Biome
 from .country import Country
 from .zone import Zone
+from .lake import Lake
 
 import random
 import math
@@ -33,6 +34,7 @@ class Map:
         self.cities = []
         self.roads = []
         self.rivers = []
+        self.lakes = []
 
     def __repr__(self):
         """
@@ -45,7 +47,7 @@ class Map:
     def generate_empty_map(self, size):
         pass
 
-    def generate_map(self, num_countries, num_cities, num_rivers, num_zones, mode):
+    def generate_map(self, num_countries, num_cities, num_rivers, num_zones, mode, lake_size_min=10, lake_size_max=50, num_lakes=10):
         """
         Génère la carte en fonction des paramètres et du mode de génération.
 
@@ -54,6 +56,9 @@ class Map:
         :param num_rivers: Nombre de rivières
         :param num_zones: Nombre de zones Voronoi
         :param mode: Mode de génération (Pangea ou Archipel)
+        :param lake_size_min: Taille minimale de chaque lac en nombre de pixels
+        :param lake_size_max: Taille maximale de chaque lac en nombre de pixels
+        :param num_lakes: Nombre de lacs à créer
         """
         self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], num_zones)
         
@@ -70,6 +75,7 @@ class Map:
         self.cities = self.generate_cities(num_cities)
         self.roads = self.generate_roads()
         self.rivers = self.generate_rivers(num_rivers)
+        self.lakes = self.generate_lakes(lake_size_min, lake_size_max, num_lakes)
 
          # Assigner des couleurs aléatoires à chaque pays
         self.country_colors = {
@@ -147,6 +153,10 @@ class Map:
             print(f"[DEBUG] Rivière générée : {river}")
 
         return rivers
+    
+    def generate_lakes(self, lake_size_min, lake_size_max, num_lakes):
+        self.lakes = Lake.create_lakes(self.zones, lake_size_min, lake_size_max, num_lakes)
+        return self.lakes
 
     def delete_all_road(self):
         self.roads = []
@@ -200,6 +210,7 @@ class Map:
                     central_pixel = pixel
 
         return central_pixel
+    
 
     def assign_biomes_for_island(self):
         """
@@ -216,22 +227,18 @@ class Map:
         while nb_pixels < max_pixels: 
             new_adjacent_zones = []
             for zone in island_zones:
-                print(f"LA ZONE {zone}")
                 for other_zone in self.zones:
-                    print(f"OTHER ZONE {other_zone}")
                     if other_zone not in checked_zones and zone.is_adjacent(other_zone):
-                        print(" AJOUTER")
                         new_adjacent_zones.append(other_zone)
                         nb_pixels += other_zone.size
                         if nb_pixels >= max_pixels:
                             break
                         checked_zones.add(other_zone)
-            print(f"MAX_PIXELS: {max_pixels}, nb_pixels: {nb_pixels}")
             if not new_adjacent_zones:
-                print("WTF")
+                print("[DEBUG] Aucune zone pour pangée trouvée")
                 break  # Si aucune nouvelle zone adjacente n'est trouvée, arrêter la boucle
             island_zones.extend(new_adjacent_zones)
-            print(f"[DEBUG] Nombre de pixels de l'île : {nb_pixels}")
+
 
         # Assigner des biomes désert aux autres zones
         for zone in self.zones:
@@ -245,8 +252,3 @@ class Map:
             zone.biome = Biome.create_random_biome_2()
             for pixel in zone.pixels:
                 pixel.color = zone.biome.color
-
-
-
-
-
