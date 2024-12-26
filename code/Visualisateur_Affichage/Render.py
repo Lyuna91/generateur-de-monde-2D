@@ -21,13 +21,14 @@ class Render:
     Classe permettant de gérer l'affichage de la carte générée.
     """
 
-    def __init__(self, width, height, title, num_countries, num_cities, num_rivers, num_zones, mode):
+    def __init__(self, width, height, title, num_countries, num_cities, num_rivers, num_zones, mode, num_lakes):
         self.width = width
         self.height = height
         self.title = title
         self.num_countries = num_countries
         self.num_cities = num_cities
         self.num_rivers = num_rivers
+        self.num_lakes = num_lakes
         self.num_zones = num_zones
         self.mode = mode  # Ajout du mode
         self.show_borders = False  # Par défaut, frontières masquées
@@ -54,7 +55,7 @@ class Render:
         """
         Génère la carte en utilisant la classe Map.
         """
-        self.map.generate_map(self.num_countries, self.num_cities, self.num_rivers, self.num_zones, self.mode)
+        self.map.generate_map(self.num_countries, self.num_cities, self.num_rivers, self.num_zones, self.mode,10,50, self.num_lakes)
 
     def display_pixels(self):
         """

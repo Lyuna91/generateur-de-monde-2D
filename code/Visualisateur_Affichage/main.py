@@ -16,6 +16,7 @@ COUNTRIES = 10
 CITIES = 10
 RIVERS = 5
 ZONES = 100
+LAKES = random.randint(3, 6)
 MAP_MODE = "Pangea"
 MIN_VILLE = COUNTRIES
 MAX_VILLE = 15
@@ -34,7 +35,7 @@ def set_parameters(size, mode):
     """
     Configure les paramètres globaux en fonction de la taille et du mode sélectionnés.
     """
-    global COUNTRIES, CITIES, RIVERS, ZONES, MAP_MODE, MIN_VILLE, MAX_VILLE
+    global COUNTRIES, CITIES, RIVERS, ZONES, MAP_MODE, MIN_VILLE, MAX_VILLE, LAKES
 
     # Mettre à jour le mode de génération
     MAP_MODE = mode
@@ -48,6 +49,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 10
             ZONES = 20
+            LAKES = random.randint(0, 2)
         if mode == "Archipel" :
             COUNTRIES = 5
             CITIES = random.randint(2, 5)
@@ -55,6 +57,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 5
             ZONES = 20
+            LAKES = random.randint(0, 2)
         if mode == "Continent" :
             COUNTRIES = 5
             CITIES = random.randint(5, 10)
@@ -62,6 +65,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 10
             ZONES = 20
+            LAKES = random.randint(0, 2)
     elif size == 'Moyen':
         if mode == "Pangea" :
             COUNTRIES = 7
@@ -70,6 +74,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 20
             ZONES = 50
+            LAKES = random.randint(3, 6)
         if mode == "Archipel" :
             COUNTRIES = 5
             CITIES = random.randint(2, 15)
@@ -77,6 +82,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 15
             ZONES = 50
+            LAKES = random.randint(3, 6)
         if mode == "Continent" :
             COUNTRIES = 7
             CITIES = random.randint(7, 20)
@@ -84,6 +90,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 20
             ZONES = 50
+            LAKES = random.randint(3, 6)
     elif size == 'Grand':
         if mode == "Pangea" :
             COUNTRIES = 10
@@ -92,6 +99,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 30
             ZONES = 100
+            LAKES = random.randint(6, 10)
         if mode == "Archipel" :
             COUNTRIES = 10
             CITIES = random.randint(0, 20)
@@ -99,6 +107,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 20
             ZONES = 100
+            LAKES = random.randint(6, 10)
         if mode == "Continent" :
             COUNTRIES = 10
             CITIES = random.randint(7, 30)
@@ -106,6 +115,7 @@ def set_parameters(size, mode):
             MIN_VILLE = COUNTRIES
             MAX_VILLE = 30
             ZONES = 100
+            LAKES = random.randint(6, 10)
 
     print(f"Paramètres configurés : Taille={size}, Mode={MAP_MODE}")
 
@@ -170,7 +180,7 @@ class MapApp:
         self.render = Render(
             CANVAS_WIDTH, CANVAS_HEIGHT, "Carte",
             num_countries=COUNTRIES, num_cities=CITIES,
-            num_rivers=RIVERS, num_zones=ZONES, mode=MAP_MODE
+            num_rivers=RIVERS, num_zones=ZONES, mode=MAP_MODE, num_lakes=LAKES
         )
 
         # Initialiser les variables de contrôle

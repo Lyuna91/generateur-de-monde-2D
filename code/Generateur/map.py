@@ -47,7 +47,7 @@ class Map:
     def generate_empty_map(self, size):
         pass
 
-    def generate_map(self, num_countries, num_cities, num_rivers, num_zones, mode, lake_size_min=10, lake_size_max=50, num_lakes=10):
+    def generate_map(self, num_countries, num_cities, num_rivers, num_zones, mode, lake_size_min, lake_size_max, num_lakes):
         """
         Génère la carte en fonction des paramètres et du mode de génération.
 
