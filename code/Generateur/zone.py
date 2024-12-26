@@ -83,16 +83,16 @@ class Zone:
                 # print(pixel)  # Affiche tout les pixels
 
         # Affiche les informations de chaque zone pour le débogage
-        """for zone in zones:
+        for zone in zones:
             print(zone)
-            print("\n")"""
+            print("\n")
 
         # Afficher le nombre total de pixels créés
         print(f"Total number of pixels created: {pixel_count}")
 
         return zones
 
-    def is_adjacent(self, other_zone, distance_threshold=350):
+    def is_adjacent(self, other_zone, distance_threshold=200):
         """
         Vérifie si une autre zone est adjacente à cette zone.
         
@@ -101,5 +101,5 @@ class Zone:
         :return: True si les zones sont adjacentes, False sinon
         """
         distance = sqrt((self.seed[0] - other_zone.seed[0]) ** 2 + (self.seed[1] - other_zone.seed[1]) ** 2)
-        print(distance)
+        print(f"DISTANCEE : {distance} DISTANCE THRESHOLD : {distance_threshold}")
         return distance <= distance_threshold

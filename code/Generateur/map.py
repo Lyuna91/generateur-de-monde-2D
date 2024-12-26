@@ -93,6 +93,19 @@ class Map:
         for zone in self.zones:
             zone.biome = Biome.create_random_biome()
 
+    def generate_biomes_for_archipel(self):
+        """
+        Génère des biomes sous forme d'archipel, avec des îles dispersées au milieu d'une carte océanique.
+        """
+        for zone in self.zones:
+            if random.random() < 0.2:  # 20% des zones deviennent des îles
+                zone.biome = Biome.create_random_biome_2()  # Biome terrestre (sans eau)
+            else:
+                zone.biome = Biome.create_ocean_biome()
+
+            for pixel in zone.pixels:
+                pixel.color = zone.biome.color
+
     def generate_biomes_for_pangea(self):
         """
         Génère des biomes désert pour chaque zone de la carte, sauf pour la zone centrale et quelques zones adjacentes qui seront des biomes océan.
@@ -198,19 +211,24 @@ class Map:
         island_zones = [central_zone]
         checked_zones = set(island_zones)
         nb_pixels = central_zone.size
-
+        max_pixels = sum(zone.size for zone in self.zones) // 2  # Limite de pixels pour l'île
         # Trouver les zones adjacentes et les ajouter à la liste
-        while nb_pixels < 2400:  # Assurer qu'il y ait au moins 5 zones océaniques
+        while nb_pixels < max_pixels: 
             new_adjacent_zones = []
             for zone in island_zones:
+                print(f"LA ZONE {zone}")
                 for other_zone in self.zones:
+                    print(f"OTHER ZONE {other_zone}")
                     if other_zone not in checked_zones and zone.is_adjacent(other_zone):
+                        print(" AJOUTER")
                         new_adjacent_zones.append(other_zone)
                         nb_pixels += other_zone.size
-                        if nb_pixels >= 2400:
+                        if nb_pixels >= max_pixels:
                             break
                         checked_zones.add(other_zone)
-            if not new_adjacent_zones or nb_pixels >= 2400:
+            print(f"MAX_PIXELS: {max_pixels}, nb_pixels: {nb_pixels}")
+            if not new_adjacent_zones:
+                print("WTF")
                 break  # Si aucune nouvelle zone adjacente n'est trouvée, arrêter la boucle
             island_zones.extend(new_adjacent_zones)
             print(f"[DEBUG] Nombre de pixels de l'île : {nb_pixels}")
@@ -229,17 +247,6 @@ class Map:
                 pixel.color = zone.biome.color
 
 
-    def generate_biomes_for_archipel(self):
-        """
-        Génère des biomes sous forme d'archipel, avec des îles dispersées au milieu d'une carte océanique.
-        """
-        for zone in self.zones:
-            if random.random() < 0.2:  # 20% des zones deviennent des îles
-                zone.biome = Biome.create_random_biome_2()  # Biome terrestre (sans eau)
-            else:
-                zone.biome = Biome.create_ocean_biome()
 
-            for pixel in zone.pixels:
-                pixel.color = zone.biome.color
 
 
