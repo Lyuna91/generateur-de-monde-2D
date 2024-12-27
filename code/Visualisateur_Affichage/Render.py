@@ -81,6 +81,8 @@ class Render:
                 for pixel in river.route_pixels:
                     pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
             
+            # self.display_beaches()
+            
             # Affichage conditionnel des frontières
             if self.show_borders:
                 for country in self.map.countries:
@@ -211,6 +213,20 @@ class Render:
             pygame.draw.rect(self.screen, (255, 0, 0), (city.position.x, city.position.y, 10, 10))
 
             """
+    def display_beaches(self):
+        """
+        Affiche les plages en colorant les pixels à la bordure des zones terrestres adjacentes à l'océan en jaune.
+        """
+        for zone in self.map.zones:
+            if zone.biome.name != "Ocean":
+                for pixel in zone.pixels:
+                    x, y = pixel.x, pixel.y
+                    adjacent_pixels = [(x-PIXEL_SIZE, y), (x+PIXEL_SIZE, y), (x, y-PIXEL_SIZE), (x, y+PIXEL_SIZE)]
+                    for adj_x, adj_y in adjacent_pixels:
+                        adj_pixel = next((p for z in self.map.zones if z.biome.name == "Ocean" for p in z.pixels if p.x == adj_x and p.y == adj_y), None)
+                        if adj_pixel:
+                            pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
+                            break
 
     def save_image(self, filename):
             """
