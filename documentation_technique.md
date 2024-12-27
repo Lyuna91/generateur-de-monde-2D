@@ -1,6 +1,7 @@
 ---
-updated_at: 2024-10-12T17:13:41.768+02:00
 ---
+
+Le retour!
 
 # Documentation technique
 
