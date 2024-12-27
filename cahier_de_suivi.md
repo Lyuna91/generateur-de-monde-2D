@@ -3,6 +3,24 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Update Réunion 27/12
+
+#### Kifékoi
+
+Carlos : Ajout des curseurs pour les rivières et les lacs deadline lundi/mardi
+Yuna : Supprimer à l'unité
+Jade : Amélioration de l'interface (bouton / plein écran)
+
+A faire pour le 2 janvier
+
+#### Késeki restera à faire
+
+- Compte rendu
+- Présentation
+- Exécutable
+- Documentation du code
+- Documentation technique
+
 # Update Carlos 23/12
 
 Le slider est operationnel et les riviere sont placé sur les pays.
