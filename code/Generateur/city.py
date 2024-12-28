@@ -72,7 +72,7 @@ def generate_position(country):
     pixels_valides = []
     for zone in country.zones:
         if zone.biome.name not in ["Ocean", "Lake"]:
-            pixels_valides.extend([p for p in zone.pixels if p not in country.border_pixels])
+            pixels_valides.extend([p for p in zone.pixels if p not in country.border_pixels and p.element is None])
     
     # Si aucun pixel valide n'est trouvé, utiliser n'importe quel pixel non-océanique
     if not pixels_valides:

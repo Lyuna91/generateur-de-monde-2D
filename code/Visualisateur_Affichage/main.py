@@ -15,12 +15,15 @@ CANVAS_HEIGHT = 600
 COUNTRIES = 10
 CITIES = 10
 RIVERS = 5
+R_MAX = 5 # Nombre de rivières pour le slider
 ZONES = 100
 LAKES = random.randint(3, 6)
 MAP_MODE = "Pangea"
 MIN_VILLE = COUNTRIES
 MAX_VILLE = 15
-
+L_MAX = 5 # Nombre de lacs pour le slider
+L_MIN_SIZE = 10
+L_MAX_SIZE = 50
 PIXEL_SIZE = 5
 
 
@@ -50,6 +53,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 10
             ZONES = 20
             LAKES = random.randint(0, 2)
+            R_MAX = 3
+            L_MAX = 2
         if mode == "Archipel" :
             COUNTRIES = 5
             CITIES = random.randint(2, 5)
@@ -58,6 +63,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 5
             ZONES = 20
             LAKES = random.randint(0, 2)
+            R_MAX = 2
+            L_MAX = 2
         if mode == "Continent" :
             COUNTRIES = 5
             CITIES = random.randint(5, 10)
@@ -66,6 +73,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 10
             ZONES = 20
             LAKES = random.randint(0, 2)
+            R_MAX = 3
+            L_MAX = 2
     elif size == 'Moyen':
         if mode == "Pangea" :
             COUNTRIES = 7
@@ -75,6 +84,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 20
             ZONES = 50
             LAKES = random.randint(3, 6)
+            R_MAX = 6
+            L_MAX = 5
         if mode == "Archipel" :
             COUNTRIES = 5
             CITIES = random.randint(2, 15)
@@ -83,6 +94,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 15
             ZONES = 50
             LAKES = random.randint(3, 6)
+            R_MAX = 5
+            L_MAX = 6
         if mode == "Continent" :
             COUNTRIES = 7
             CITIES = random.randint(7, 20)
@@ -91,6 +104,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 20
             ZONES = 50
             LAKES = random.randint(3, 6)
+            R_MAX = 6
+            L_MAX = 6
     elif size == 'Grand':
         if mode == "Pangea" :
             COUNTRIES = 10
@@ -100,6 +115,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 30
             ZONES = 100
             LAKES = random.randint(6, 10)
+            R_MAX = 10
+            L_MAX = 10
         if mode == "Archipel" :
             COUNTRIES = 10
             CITIES = random.randint(0, 20)
@@ -108,6 +125,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 20
             ZONES = 100
             LAKES = random.randint(6, 10)
+            R_MAX = 7
+            L_MAX = 10
         if mode == "Continent" :
             COUNTRIES = 10
             CITIES = random.randint(7, 30)
@@ -116,6 +135,8 @@ def set_parameters(size, mode):
             MAX_VILLE = 30
             ZONES = 100
             LAKES = random.randint(6, 10)
+            R_MAX = 10
+            L_MAX = 10
 
     print(f"Paramètres configurés : Taille={size}, Mode={MAP_MODE}")
 
@@ -191,7 +212,11 @@ class MapApp:
         self.show_cities = tk.BooleanVar(value=False)  # Par défaut, villes masquées
         self.show_city_names = tk.BooleanVar(value=False)  # Par défaut, noms des villes masqués
         self.show_country_names = tk.BooleanVar(value=False)  # Par défaut, noms des pays masqués
+        
+        #Initialiser les sliders des villes , rivières et lacs
         self.city_slider = None
+        self.river_slider = None
+        self.lake_slider = None
 
         # Créer les widgets Tkinter
         self.create_widgets()
@@ -222,12 +247,19 @@ class MapApp:
         
         tk.Button(button_frame, text="Réinitialiser biomes", command=self.reset_biomes, width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)        
             
-        slider_label = tk.Label(button_frame, text="Parametre : ")
-        slider_label.pack(pady=5)
+        # Sliders pour le nombre de villes, rivières et lacs
+
         self.city_slider = tk.Scale(button_frame, from_=MIN_VILLE, to=MAX_VILLE, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
         self.city_slider.pack(pady=5)
 
-        tk.Button(button_frame, text="Valider",command=self.validate_cities,width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR).pack(pady=5)
+        self.river_slider = tk.Scale(button_frame, from_=0, to=R_MAX, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
+        self.river_slider.pack(pady=5)
+
+        self.lake_slider = tk.Scale(button_frame, from_=0, to=L_MAX, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
+        self.lake_slider.pack(pady=5)
+
+
+        tk.Button(button_frame, text="Valider",command=self.validate_sliders,width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR).pack(pady=5)
 
 
         tk.Button(button_frame, text="Réinitialiser villes/routes", command=self.reset_cities_and_roads,
@@ -307,7 +339,31 @@ class MapApp:
         self.render.map.delete_all_road()
         self.render.map.cities = self.render.map.generate_cities(nb_cities)
         self.render.map.roads = self.render.map.generate_roads()
+
+
+    def validate_rivers(self):
+        nb_rivers = self.river_slider.get()
+        self.render.map.delete_all_river()
+        self.render.map.rivers = self.render.map.generate_rivers(nb_rivers)
+        
+    
+    def validate_lakes(self):
+        nb_lakes = self.lake_slider.get()
+        self.render.map.delete_all_lake()
+        self.render.map.lakes = self.render.map.generate_lakes(L_MIN_SIZE, L_MAX_SIZE, nb_lakes)
+        
+
+    def validate_sliders(self):
+        """
+        Valide les valeurs des sliders et met à jour la carte.
+        """
+        self.validate_cities()
+        self.validate_rivers()
+        self.validate_lakes()
         self.update_canvas()
+        
+
+
 
     def update_display(self):
         """

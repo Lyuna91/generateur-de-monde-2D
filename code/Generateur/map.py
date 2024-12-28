@@ -158,6 +158,10 @@ class Map:
         self.lakes = Lake.create_lakes(self.zones, lake_size_min, lake_size_max, num_lakes)
         return self.lakes
 
+    def delete_all_lake(self):
+        self.lakes = []
+        return self.lakes
+        
     def delete_all_road(self):
         self.roads = []
         return self.roads
