@@ -240,6 +240,15 @@ class MapApp:
         button_frame = tk.Frame(main_container)
         button_frame.pack(side=tk.LEFT, pady=10, padx=10, fill=tk.Y)
 
+        # Conteneur pour la carte
+        map_frame = tk.Frame(main_container)
+        map_frame.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
+
+        #Conteneur bouton a droite
+        button_frame_right = tk.Frame(main_container)
+        button_frame_right.pack(side=tk.RIGHT, pady=10, padx=10, fill=tk.Y)
+
+
         # Boutons de contrôle
         tk.Button(button_frame, text="Régénérer la carte", command=self.generate_new_map,
                   width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
@@ -249,17 +258,20 @@ class MapApp:
             
         # Sliders pour le nombre de villes, rivières et lacs
 
+        tk.Label(button_frame, text="Nombre de villes :", font=BUTTON_FONT).pack(pady=5)
         self.city_slider = tk.Scale(button_frame, from_=MIN_VILLE, to=MAX_VILLE, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
         self.city_slider.pack(pady=5)
 
+        tk.Label(button_frame, text="Nombre de rivières :", font=BUTTON_FONT).pack(pady=5)
         self.river_slider = tk.Scale(button_frame, from_=0, to=R_MAX, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
         self.river_slider.pack(pady=5)
 
+        tk.Label(button_frame, text="Nombre de lacs :", font=BUTTON_FONT).pack(pady=5)
         self.lake_slider = tk.Scale(button_frame, from_=0, to=L_MAX, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
         self.lake_slider.pack(pady=5)
 
 
-        tk.Button(button_frame, text="Valider",command=self.validate_sliders,width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR).pack(pady=5)
+        tk.Button(button_frame, text="Valider les Sliders",command=self.validate_sliders,width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR).pack(pady=5)
 
 
         tk.Button(button_frame, text="Réinitialiser villes/routes", command=self.reset_cities_and_roads,
@@ -280,45 +292,45 @@ class MapApp:
         self.show_biomes = tk.BooleanVar(value=False)
 
         # Boutons pour afficher les pays ou les biomes
-        tk.Checkbutton(button_frame, text="Afficher Pays", variable=self.show_countries,
+        tk.Checkbutton(button_frame_right, text="Afficher Pays", variable=self.show_countries,
                        command=lambda: self.handle_checkbox_change("pays"),
                        font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
-        tk.Checkbutton(button_frame, text="Afficher Biomes", variable=self.show_biomes,
+        tk.Checkbutton(button_frame_right, text="Afficher Biomes", variable=self.show_biomes,
                        command=lambda: self.handle_checkbox_change("biome"),
                        font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
-        tk.Checkbutton(button_frame, text="Afficher Frontières", variable=self.show_borders,
+        tk.Checkbutton(button_frame_right, text="Afficher Frontières", variable=self.show_borders,
                command=self.update_display,
                font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
-        tk.Checkbutton(button_frame, text="Afficher Routes", variable=self.show_roads,
+        tk.Checkbutton(button_frame_right, text="Afficher Routes", variable=self.show_roads,
                command=self.update_display,
                font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
-        tk.Checkbutton(button_frame, text="Afficher Villes", variable=self.show_cities,
+        tk.Checkbutton(button_frame_right, text="Afficher Villes", variable=self.show_cities,
                command=self.update_display,
                font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
         
-        tk.Checkbutton(button_frame, text="Afficher Noms Villes", variable=self.show_city_names,
+        tk.Checkbutton(button_frame_right, text="Afficher Noms Villes", variable=self.show_city_names,
                command=self.update_display,
                font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
-        tk.Checkbutton(button_frame, text="Afficher Noms Pays", variable=self.show_country_names,
+        tk.Checkbutton(button_frame_right, text="Afficher Noms Pays", variable=self.show_country_names,
                command=self.update_display,
                font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
 
-        tk.Button(button_frame, text="Modifier Nom Ville", command=self.edit_city_name,
+        tk.Button(button_frame_right, text="Modifier Nom Ville", command=self.edit_city_name,
           width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
           bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
 
-        tk.Button(button_frame, text="Modifier Nom Pays", command=self.edit_country_name,
+        tk.Button(button_frame_right, text="Modifier Nom Pays", command=self.edit_country_name,
           width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
           bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
 
         # Canvas pour afficher la carte
         self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
-        self.canvas.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
+        self.canvas.pack(in_=map_frame, expand=True, fill=tk.BOTH)
 
     def handle_checkbox_change(self, mode):
         """
