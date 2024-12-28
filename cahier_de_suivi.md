@@ -3,6 +3,10 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Up to the date Carlos 28/12
+
+J'ai fait un peu bcp de choses, les sliders pour les lacs et les rivieres, meme si j'ai remarque que les rivieres peuvent parfois se regenerer sur une autre rivieres c'est chelou. Ensuite j'ai arranger l'interfaces pour que tout s'affiche et j'ai ajouter une ligne dans city pour eviter que les villes spawn sur des Lacs.
+
 # Update Réunion 27/12
 
 #### Kifékoi
