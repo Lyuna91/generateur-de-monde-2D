@@ -30,9 +30,23 @@ PIXEL_SIZE = 5
 BUTTON_WIDTH = 20
 BUTTON_HEIGHT = 2
 BUTTON_FONT = ('Helvetica', 12, 'bold')
-BG_COLOR = '#4a90e2'  # Blue
-HOVER_COLOR = '#357abd'  # Darker blue
-FG_COLOR = 'white'
+# Couleurs générales
+BG_COLOR = "#4a90e2"  # Bleu par défaut
+HOVER_COLOR = "#357abd"  # Hover bleu foncé
+FG_COLOR = "white"
+
+# Couleurs pour les boutons jaunes (modification)
+MODIFY_BUTTON_COLOR = "#ffcc00"
+MODIFY_HOVER_COLOR = "#ffd700"
+
+# Couleurs pour les boutons rouges (suppression)
+DELETE_BUTTON_COLOR = "#ff4444"
+DELETE_HOVER_COLOR = "#ff6666"
+
+# Couleurs pour les boutons verts (téléchargement)
+DOWNLOAD_BUTTON_COLOR = "#4CAF50"
+DOWNLOAD_HOVER_COLOR = "#45A049"
+
 
 def set_parameters(size, mode):
     """
@@ -236,114 +250,138 @@ class MapApp:
         main_container = tk.Frame(self.root)
         main_container.pack(expand=True, fill=tk.BOTH)
 
-        # Conteneur pour les boutons
-        button_frame = tk.Frame(main_container)
-        button_frame.pack(side=tk.LEFT, pady=10, padx=10, fill=tk.Y)
+        # Conteneur pour les boutons (gauche)
+        button_frame_left = tk.Frame(main_container)
+        button_frame_left.pack(side=tk.LEFT, padx=10, pady=10, fill=tk.Y)
 
         # Conteneur pour la carte
         map_frame = tk.Frame(main_container)
         map_frame.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
 
-        #Conteneur bouton a droite
+        # Conteneur pour les boutons (droite)
         button_frame_right = tk.Frame(main_container)
-        button_frame_right.pack(side=tk.RIGHT, pady=10, padx=10, fill=tk.Y)
+        button_frame_right.pack(side=tk.RIGHT, padx=10, pady=10, fill=tk.Y)
 
+        # Effet hover pour les boutons
+        def on_enter(e, widget, hover_color): 
+            widget.config(bg=hover_color)
 
-        # Boutons de contrôle
-        tk.Button(button_frame, text="Régénérer la carte", command=self.generate_new_map,
-                  width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-                  bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
-        
-        tk.Button(button_frame, text="Réinitialiser biomes", command=self.reset_biomes, width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)        
-            
-        # Sliders pour le nombre de villes, rivières et lacs
+        def on_leave(e, widget, default_color): 
+            widget.config(bg=default_color)
 
-        tk.Label(button_frame, text="Nombre de villes :", font=BUTTON_FONT).pack(pady=5)
-        self.city_slider = tk.Scale(button_frame, from_=MIN_VILLE, to=MAX_VILLE, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
+        ### Boutons à gauche : Actions principales et curseurs ###
+        tk.Label(button_frame_left, text="Actions principales", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=5)
+
+        btn_generate = tk.Button(button_frame_left, text="Régénérer la carte", command=self.generate_new_map, 
+                                width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
+        btn_generate.pack(pady=5)
+        btn_generate.bind("<Enter>", lambda e: on_enter(e, btn_generate, HOVER_COLOR))
+        btn_generate.bind("<Leave>", lambda e: on_leave(e, btn_generate, BG_COLOR))
+
+        btn_reset_biomes = tk.Button(button_frame_left, text="Réinitialiser biomes", command=self.reset_biomes, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
+        btn_reset_biomes.pack(pady=5)
+        btn_reset_biomes.bind("<Enter>", lambda e: on_enter(e, btn_reset_biomes, HOVER_COLOR))
+        btn_reset_biomes.bind("<Leave>", lambda e: on_leave(e, btn_reset_biomes, BG_COLOR))
+
+        tk.Label(button_frame_left, text="Réinitialisations", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=10)
+
+        btn_reset_cities = tk.Button(button_frame_left, text="Réinitialiser villes/routes", command=self.reset_cities_and_roads, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
+        btn_reset_cities.pack(pady=5)
+        btn_reset_cities.bind("<Enter>", lambda e: on_enter(e, btn_reset_cities, HOVER_COLOR))
+        btn_reset_cities.bind("<Leave>", lambda e: on_leave(e, btn_reset_cities, BG_COLOR))
+
+        btn_reset_rivers = tk.Button(button_frame_left, text="Réinitialiser rivières", command=self.reset_rivers, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
+        btn_reset_rivers.pack(pady=5)
+        btn_reset_rivers.bind("<Enter>", lambda e: on_enter(e, btn_reset_rivers, HOVER_COLOR))
+        btn_reset_rivers.bind("<Leave>", lambda e: on_leave(e, btn_reset_rivers, BG_COLOR))
+
+        tk.Label(button_frame_left, text="Nombre d'éléments", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=10)
+
+        tk.Label(button_frame_left, text="Nombre de villes :", font=BUTTON_FONT).pack(pady=5)
+        self.city_slider = tk.Scale(button_frame_left, from_=MIN_VILLE, to=MAX_VILLE, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
         self.city_slider.pack(pady=5)
 
-        tk.Label(button_frame, text="Nombre de rivières :", font=BUTTON_FONT).pack(pady=5)
-        self.river_slider = tk.Scale(button_frame, from_=0, to=R_MAX, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
+        tk.Label(button_frame_left, text="Nombre de rivières :", font=BUTTON_FONT).pack(pady=5)
+        self.river_slider = tk.Scale(button_frame_left, from_=0, to=R_MAX, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
         self.river_slider.pack(pady=5)
 
-        tk.Label(button_frame, text="Nombre de lacs :", font=BUTTON_FONT).pack(pady=5)
-        self.lake_slider = tk.Scale(button_frame, from_=0, to=L_MAX, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
+        tk.Label(button_frame_left, text="Nombre de lacs :", font=BUTTON_FONT).pack(pady=5)
+        self.lake_slider = tk.Scale(button_frame_left, from_=0, to=L_MAX, orient=tk.HORIZONTAL, command=lambda x: print(f"[DEBUG] Slider changé: {x}"))
         self.lake_slider.pack(pady=5)
 
+        btn_validate_sliders = tk.Button(button_frame_left, text="Valider les Sliders", command=self.validate_sliders, 
+                                        width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
+        btn_validate_sliders.pack(pady=5)
+        btn_validate_sliders.bind("<Enter>", lambda e: on_enter(e, btn_validate_sliders, HOVER_COLOR))
+        btn_validate_sliders.bind("<Leave>", lambda e: on_leave(e, btn_validate_sliders, BG_COLOR))
 
-        tk.Button(button_frame, text="Valider les Sliders",command=self.validate_sliders,width=BUTTON_WIDTH,height=BUTTON_HEIGHT,font=BUTTON_FONT,bg=BG_COLOR,fg=FG_COLOR).pack(pady=5)
+        ### Nouveau bouton pour télécharger l'image ###
+        btn_download_image = tk.Button(button_frame_left, text="Télécharger l'image", command=self.download_image, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=DOWNLOAD_BUTTON_COLOR, fg="white")
+        btn_download_image.pack(pady=5)
+        btn_download_image.bind("<Enter>", lambda e: on_enter(e, btn_download_image, DOWNLOAD_HOVER_COLOR))
+        btn_download_image.bind("<Leave>", lambda e: on_leave(e, btn_download_image, DOWNLOAD_BUTTON_COLOR))
 
+        ### Boutons à droite : Affichages, modifications, et suppressions ###
+        tk.Label(button_frame_right, text="Affichages", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=5)
 
-        tk.Button(button_frame, text="Réinitialiser villes/routes", command=self.reset_cities_and_roads,
-                  width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-                  bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
-
-        tk.Button(button_frame, text="Réinitialiser rivières", command=self.reset_rivers,
-                  width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-                  bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
-
-        # Bouton pour télécharger l'image
-        tk.Button(button_frame, text="Télécharger l'image", command=self.download_image,
-                  width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-                  bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
-        
-        # Variables pour les modes d'affichage
-        self.show_countries = tk.BooleanVar(value=True)
-        self.show_biomes = tk.BooleanVar(value=False)
-
-        # Boutons pour afficher les pays ou les biomes
         tk.Checkbutton(button_frame_right, text="Afficher Pays", variable=self.show_countries,
-                       command=lambda: self.handle_checkbox_change("pays"),
-                       font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
-
+                    command=lambda: self.handle_checkbox_change("pays"), font=BUTTON_FONT).pack(anchor="w", pady=5)
         tk.Checkbutton(button_frame_right, text="Afficher Biomes", variable=self.show_biomes,
-                       command=lambda: self.handle_checkbox_change("biome"),
-                       font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
-
+                    command=lambda: self.handle_checkbox_change("biome"), font=BUTTON_FONT).pack(anchor="w", pady=5)
         tk.Checkbutton(button_frame_right, text="Afficher Frontières", variable=self.show_borders,
-               command=self.update_display,
-               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
-
+                    command=self.update_display, font=BUTTON_FONT).pack(anchor="w", pady=5)
         tk.Checkbutton(button_frame_right, text="Afficher Routes", variable=self.show_roads,
-               command=self.update_display,
-               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
-
+                    command=self.update_display, font=BUTTON_FONT).pack(anchor="w", pady=5)
         tk.Checkbutton(button_frame_right, text="Afficher Villes", variable=self.show_cities,
-               command=self.update_display,
-               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
-        
+                    command=self.update_display, font=BUTTON_FONT).pack(anchor="w", pady=5)
         tk.Checkbutton(button_frame_right, text="Afficher Noms Villes", variable=self.show_city_names,
-               command=self.update_display,
-               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
-
+                    command=self.update_display, font=BUTTON_FONT).pack(anchor="w", pady=5)
         tk.Checkbutton(button_frame_right, text="Afficher Noms Pays", variable=self.show_country_names,
-               command=self.update_display,
-               font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR).pack(pady=5, anchor='w')
+                    command=self.update_display, font=BUTTON_FONT).pack(anchor="w", pady=5)
 
-        tk.Button(button_frame_right, text="Modifier Nom Ville", command=self.edit_city_name,
-          width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-          bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
+        tk.Label(button_frame_right, text="Modifications", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=10)
 
-        tk.Button(button_frame_right, text="Modifier Nom Pays", command=self.edit_country_name,
-          width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-          bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
-        
-        tk.Button(button_frame_right, text="Supprimer Ville", command=self.delete_city,
-                  width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-                  bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
-        
-        tk.Button(button_frame_right, text="Supprimer Pays", command=self.delete_country,
-                  width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-                  bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
-        
-        
-        tk.Button(button_frame_right, text="Supprimer Route", command=self.delete_road,
-                  width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
-                  bg=BG_COLOR, fg=FG_COLOR).pack(pady=5)
+        btn_edit_city = tk.Button(button_frame_right, text="Modifier Nom Ville", command=self.edit_city_name, 
+                                width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=MODIFY_BUTTON_COLOR, fg="black")
+        btn_edit_city.pack(pady=5)
+        btn_edit_city.bind("<Enter>", lambda e: on_enter(e, btn_edit_city, MODIFY_HOVER_COLOR))
+        btn_edit_city.bind("<Leave>", lambda e: on_leave(e, btn_edit_city, MODIFY_BUTTON_COLOR))
+
+        btn_edit_country = tk.Button(button_frame_right, text="Modifier Nom Pays", command=self.edit_country_name, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=MODIFY_BUTTON_COLOR, fg="black")
+        btn_edit_country.pack(pady=5)
+        btn_edit_country.bind("<Enter>", lambda e: on_enter(e, btn_edit_country, MODIFY_HOVER_COLOR))
+        btn_edit_country.bind("<Leave>", lambda e: on_leave(e, btn_edit_country, MODIFY_BUTTON_COLOR))
+
+        tk.Label(button_frame_right, text="Suppressions", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=10)
+
+        btn_delete_city = tk.Button(button_frame_right, text="Supprimer Ville", command=self.delete_city, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=DELETE_BUTTON_COLOR, fg="white")
+        btn_delete_city.pack(pady=5)
+        btn_delete_city.bind("<Enter>", lambda e: on_enter(e, btn_delete_city, DELETE_HOVER_COLOR))
+        btn_delete_city.bind("<Leave>", lambda e: on_leave(e, btn_delete_city, DELETE_BUTTON_COLOR))
+
+        btn_delete_country = tk.Button(button_frame_right, text="Supprimer Pays", command=self.delete_country, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=DELETE_BUTTON_COLOR, fg="white")
+        btn_delete_country.pack(pady=5)
+        btn_delete_country.bind("<Enter>", lambda e: on_enter(e, btn_delete_country, DELETE_HOVER_COLOR))
+        btn_delete_country.bind("<Leave>", lambda e: on_leave(e, btn_delete_country, DELETE_BUTTON_COLOR))
+
+        btn_delete_road = tk.Button(button_frame_right, text="Supprimer Route", command=self.delete_road, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=DELETE_BUTTON_COLOR, fg="white")
+        btn_delete_road.pack(pady=5)
+        btn_delete_road.bind("<Enter>", lambda e: on_enter(e, btn_delete_road, DELETE_HOVER_COLOR))
+        btn_delete_road.bind("<Leave>", lambda e: on_leave(e, btn_delete_road, DELETE_BUTTON_COLOR))
 
         # Canvas pour afficher la carte
-        self.canvas = tk.Canvas(main_container, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
-        self.canvas.pack(in_=map_frame, expand=True, fill=tk.BOTH)
+        self.canvas = tk.Canvas(map_frame, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
+        self.canvas.pack(expand=True, fill=tk.BOTH)
+        
+
 
     def handle_checkbox_change(self, mode):
         """
