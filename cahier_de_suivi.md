@@ -3,6 +3,14 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Débrief Réunion 02/01
+
+- Compte rendu + présentation (Jade) + doc technique + manuel
+- Correction au niveau de la suppression (route) + Jette un oeil à tout le code + mettre à jour la doc technique
+- Faire l'exécutable lundi 06 janvier (Carlos) + Adaptation Ecran + Readme comment utiliser le logiciel
+
+Dernière réunion lundi 6 janvier au soir : lecture complète ensemble de la doc technique + lecture complète du manuel + préparation de la présentation. Cloture avec génération de l'exécutable
+
 # Update Jade 02/01/2024
 
 Petit Commit avec amélioration de l'interface
