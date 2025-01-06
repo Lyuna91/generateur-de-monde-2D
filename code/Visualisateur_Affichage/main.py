@@ -596,34 +596,47 @@ class MapApp:
 
     def delete_country(self):
         """
-        Permet de supprimer un pays sélectionné et toutes les villes associées.
+        Permet de supprimer un pays sélectionné et toutes les villes et routes associées.
         """
         # Fenêtre popup pour choisir un pays
         popup = tk.Toplevel(self.root)
         popup.title("Supprimer un pays")
-
+    
         tk.Label(popup, text="Choisissez un pays à supprimer :", font=BUTTON_FONT).pack(pady=5)
-
+    
         # Liste déroulante pour les pays
         country_var = tk.StringVar(value=self.render.map.countries[0].name if self.render.map.countries else "")
         country_menu = tk.OptionMenu(popup, country_var, *[country.name for country in self.render.map.countries])
         country_menu.pack(pady=5)
-
+    
         # Bouton pour valider
         def delete_selected_country():
             selected_country = next(country for country in self.render.map.countries if country.name == country_var.get())
             self.render.map.countries.remove(selected_country)
+            
+            # Collecter les villes à supprimer
             cities_to_remove = [city for city in self.render.map.cities if city.country == selected_country]
+            
+            # Supprimer les routes associées aux villes à supprimer
+            for city in cities_to_remove:
+                roads_to_remove = [road for road in self.render.map.roads if road.start_city == city or road.end_city == city]
+                for road in roads_to_remove:
+                    self.render.map.roads.remove(road)
+                    print(f"[INFO] Route supprimée : {road.start_city.name} -> {road.end_city.name}")
+            
+            # Supprimer les villes
             for city in cities_to_remove:
                 self.render.map.cities.remove(city)
+                print(f"[INFO] Ville supprimée : {city.name}")
+    
             print(f"[INFO] Pays supprimé : {selected_country.name}")
             self.update_canvas()
             popup.destroy()
-
+    
         tk.Button(popup, text="Supprimer", command=delete_selected_country,
                   width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
                   bg=BG_COLOR, fg=FG_COLOR).pack(pady=10)
-
+    
         popup.mainloop()
 
     def delete_road(self):
