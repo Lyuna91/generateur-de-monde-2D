@@ -31,7 +31,7 @@ class Country:
         """
         return f"Country(id={self.id}, name={self.name}, size={self.size}, zones={len(self.zones)} zones)"
 
-    ######################### METHODS
+    ######################### STATIC METHODS
 
     @staticmethod
     def create_countries_from_zones(zones, num_countries):
@@ -114,7 +114,7 @@ class Country:
 
         return countries
 
-
+    ######################### METHODS
     
     def get_border_pixels(self):
         """

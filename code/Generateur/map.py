@@ -81,7 +81,6 @@ class Map:
             country.id: (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
             for country in self.countries}
 
-
     def assign_biomes(self):
         """
         Assigne des biomes aléatoires aux zones après leur génération.
@@ -214,7 +213,6 @@ class Map:
 
         return central_pixel
     
-
     def assign_biomes_for_island(self):
         """
         Assigne des biomes de manière à former une île centrale entourée d'océans.

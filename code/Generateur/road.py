@@ -22,7 +22,7 @@ class Road:
         self.id = id
         self.start_city = start_city
         self.end_city = end_city
-        self.route_pixels = self.create_route_pixels(pixels)
+        self.route_pixels = self.create_road_pixels(pixels)
 
     def __repr__(self):
         """
@@ -32,27 +32,27 @@ class Road:
 
     ######################### METHODS
 
-    def create_route_pixels(self, all_pixels):
+    def create_road_pixels(self, all_pixels):
         """
         Crée une ligne de pixels entre les points de départ et d'arrivée en utilisant des points intermédiaires aléatoires.
 
         :param all_pixels: Liste des pixels disponibles sur le plateau.
         :return: Liste des pixels formant la route.
         """
-        def calculer_distance(depart, fin):
+        def calculate_distance(depart, fin):
             x1, y1 = depart
             x2, y2 = fin
             distance = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
             return distance
 
-        def calculer_intersections(distance):
+        def calculate_intersections(distance):
             intersections = max(1, round(distance / 110))  # Diviser par une valeur plus grande pour moins de points
             return intersections
 
-        def creer_intersections(depart, fin, divergence=1.5):
+        def create_interections(depart, fin, divergence=1.5):
             x1, y1 = depart
             x2, y2 = fin
-            intersections = calculer_intersections(calculer_distance(depart, fin))
+            intersections = calculate_intersections(calculate_distance(depart, fin))
             dx = (x2 - x1) / intersections
             dy = (y2 - y1) / intersections
             x, y = x1, y1
@@ -71,7 +71,7 @@ class Road:
         x2, y2 = self.end_city.position.x, self.end_city.position.y
 
         # Générer les points intermédiaires
-        points_intersections = creer_intersections((x1, y1), (x2, y2))
+        points_intersections = create_interections((x1, y1), (x2, y2))
 
         # Créer la route en passant par les points intermédiaires
         for i in range(len(points_intersections) - 1):

@@ -65,8 +65,6 @@ def generate_position(country):
     """
     Génère une position valide pour une ville dans un pays donné.
     """
-    TENTATIVES_MAX = 1000
-    tentatives = 0
     
     # Obtenir tous les pixels valides du pays
     pixels_valides = []

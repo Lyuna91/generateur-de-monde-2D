@@ -28,7 +28,7 @@ class Lake:
         """
         return f"Lake(id={self.id}, lake_pixels={self.lake_pixels})"
 
-    ######################### METHODS
+    ######################### STATIC METHODS
 
     @staticmethod
     def get_adjacent_pixels(pixel, all_zones):

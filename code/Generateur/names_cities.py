@@ -39,6 +39,5 @@ introductions = [
     "", "Ville de", "Commune de", "Municipalité de", "Cité de", "", "Fort de", "Nouveau", "Vieux"
 ]
 
-# Fonction de génération de noms de ville
 
 

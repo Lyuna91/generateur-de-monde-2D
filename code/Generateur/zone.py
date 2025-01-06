@@ -11,7 +11,7 @@ class Zone:
     Classe permettant de définir les zones de Voronoi.
     """
 
-######################### INIT
+    ######################### INIT
 
     def __init__(self, id, size, seed, pixels):
         """
@@ -35,7 +35,7 @@ class Zone:
         """
         return f"Zone(id={self.id}, size={self.size}, seed={self.seed}, biome={self.biome})"
 
-######################### METHODS
+    ######################### METHODS
 
     def get_info_zone(self):
         """
