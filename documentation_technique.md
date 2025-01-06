@@ -1,97 +1,191 @@
----
----
+# Documentation Technique du Projet de Génération de Cartes 2D
 
-Le retour!
+## Introduction
 
-# Documentation technique
-
-ici c'est un document qui viendra expliqué les différentes fonctions, les différents éléments, les appels de fonctions, le fonctionnement des algorithmes, etc...
-C'est complémentaire au commentaire présents dans le code. C'est pour permettre à quiconque souhaite s'intéresser aux détails techniques de notre projet sans lire le code.
-
-Ici on établis et on explique notamment nos règles de développement.
+Ce document vise à fournir une vue détaillée sur les aspects techniques du projet de génération aléatoire de cartes en 2D, incluant les classes, fonctions, et modules utilisés dans le code. Il est destiné aux développeurs et autres parties prenantes qui souhaitent comprendre les éléments techniques sans parcourir le code source en détail.
 
 ---
 
-# Règles de nommage
+## Structure du Projet
 
-NB : on a decide de tout nommer en anglais.
+Le projet est organisé autour des modules suivants :
 
-## Dossier
+### 1. **Modules Principaux**
 
-Majuscule au début des mots avec underscore si nécessaire
-Ex : Visualisateur_Affichage
-Ex : Générateur
+- **`map.py`** : Gère la création et la gestion de la carte principale.
+- **`pixel.py`** : Définit les pixels comme éléments unitaires de la carte.
+- **`zone.py`** : Implémente la division en zones basée sur l'algorithme de Voronoi.
+- **`river.py`** : Modélise les rivières sur la carte.
+- **`road.py`** : Implémente les routes entre les villes.
+- **`city.py`** : Gère les villes, incluant leur positionnement et leur nommage.
+- **`country.py`** : Regroupe les zones pour former des pays.
+- **`biome.py`** : Définit les différents types de biomes (forêts, déserts, montagnes, etc.).
+- **`lake.py`** : Gère la création et l'organisation des lacs.
+- **`main.py`** : Point d'entrée principal avec une interface utilisateur graphique (Tkinter) pour interagir avec la carte.
+- **`Render.py`** : Gère l'affichage graphique des éléments de la carte à l'aide de Pygame.
 
-## Fichier .py
+---
 
-Ques des minuscules avec underscore
-ex : export_type
-ex : panel
+## Détails des Classes et Fonctions
 
-## Classes
+### **1. `map.py`**
 
-Le nom d'une Classe commence avec une Majuscule et si le nom est composé de plusieurs mots
-(pour plus de précision notamment) on mettra une majuscule au debut de chaque nouveaux mots.
+Classe principale pour la création et la gestion de la carte.
 
-Ex: class GenerateurDeCarte, GenerateurCarte ect...
+- **Attributs principaux :**
 
-## Variables
+  - `zones` : Liste des zones Voronoi.
+  - `countries` : Liste des pays.
+  - `cities` : Liste des villes.
+  - `roads` : Liste des routes.
+  - `rivers` : Liste des rivières.
+  - `lakes` : Liste des lacs.
 
-Toutes les lettres en minuscules et l'usage de "\_" pour separer les mots
-Ex: couleur_pixel, position_pixel ect...
+- **Fonctions principales :**
+  - `generate_map()` : Génère les éléments de la carte en fonction des paramètres (biomes, pays, villes, etc.).
+  - `delete_all_*()` : Supprime les éléments spécifiés (lacs, rivières, etc.).
+  - `assign_biomes()` : Associe des biomes à chaque zone.
 
-## Fonctions
+### **2. `pixel.py`**
 
-Toutes les lettres en minuscules et l'usage de "\_" pour separer les mots
-Ex: couleur_pixel, position_pixel ect...
+Représente chaque pixel comme unité de base de la carte.
 
-# Consignes de dev
+- **Attributs principaux :**
 
-## Séparation des parties du code
+  - `x, y` : Coordonnées du pixel.
+  - `color` : Couleur associée au biome ou à l'élément.
+  - `altitude` : Altitude du pixel.
 
-On sépare les parties d'un fichier de code avec
+- **Fonctions principales :**
+  - `set_color()` : Modifie la couleur du pixel.
+  - `set_element()` : Associe un élément (rivère, route) au pixel.
 
-- ######################### NOM DE LA PARTIE
+### **3. `zone.py`**
 
-Ex: ######################### SETTER
+Implemente les zones de Voronoi.
 
-## Dev d'une fonction
+- **Attributs principaux :**
 
-On commente toujours l'utilité de la fonction
-Ex : def generer_pixels(largeur, hauteur, taille_pixel, color=(200, 200, 200)):
-"""
-Génère automatiquement une grille de pixels pour remplir une fenêtre.
+  - `id` : Identifiant unique de la zone.
+  - `seed` : Centre de la zone.
+  - `pixels` : Liste des pixels appartenant à la zone.
 
-        :param largeur: Largeur de la fenêtre en pixels
-        :param hauteur: Hauteur de la fenêtre en pixels
-        :param taille_pixel: Taille de chaque pixel (par exemple 10x10)
-        :param color: Couleur par défaut des pixels (facultatif)
-        :return: Liste de pixels générés
-        """
+- **Fonctions principales :**
+  - `generate_voronoi_zones()` : Crée des zones Voronoi sur la carte.
+  - `is_adjacent()` : Détermine si une autre zone est adjacente.
 
-On mets :
--> une rapide description de ce que fait la fonction
--> les paramètres
--> le return
+### **4. `river.py`**
 
-ça va être long et fastidieux mais au moins pas besoin de lire le code pour savoir ce que fait la fonction
+Représente les rivières sur la carte.
 
-# Explications
+- **Fonctions principales :**
+  - `create_rivers_from_oceans()` : Crée des rivières à partir des zones océaniques.
+  - `create_route_pixels()` : Génère le tracé de la rivière.
 
-## Pixels, Zones et Affichage
+### **5. `road.py`**
 
-### Pixels --> pixel.py
+Crée et gère les routes connectant les villes.
 
-Définit la classe Pixel, représentant chaque pixel avec des attributs comme position, couleur, altitude et ID de zone. Il inclut des méthodes pour modifier la couleur ou l'élément associé au pixel.
+- **Fonctions principales :**
+  - `create_roads_between_cities()` : Crée des routes entre les villes aléatoirement ou suivant un ordre logique.
 
-### Zone --> zone.py
+### **6. `city.py`**
 
-La classe Zone utilise des diagrammes de Voronoi pour générer des zones avec des pixels. Chaque zone est définie par un ID, des pixels associés et une couleur, et permet de gérer des zones aléatoires.
+Gère les villes et leur distribution sur la carte.
 
-### Render --> render.py
+- **Fonctions principales :**
+  - `create_cities_from_countries()` : Crée des villes en fonction des pays.
+  - `generate_city_name()` : Génère un nom aléatoire pour une ville.
 
-Utilise pygame pour afficher les zones et les pixels dans une fenêtre. Les pixels sont dessinés sous forme de rectangles colorés, et la méthode display_window permet de maintenir l'affichage actif.
+### **7. `country.py`**
 
-## Affichage des zones avec Voronoi (de maniere vulgariser, pour la version complete voir la partie de Jade)
+Organise les pays et leurs zones.
 
-Les zones sont générées via Voronoi dans zone.py, ce qui divise l'espace en polygones autour de graines. Les pixels de chaque zone sont ensuite affichés avec leurs couleurs respectives dans render.py, créant des sections visuelles distinctes sur la carte.
+- **Fonctions principales :**
+  - `create_countries_from_zones()` : Crée des pays en regroupant des zones adjacentes.
+  - `get_border_pixels()` : Identifie les pixels à la frontière d'un pays.
+
+### **8. `biome.py`**
+
+Définit les différents types de biomes.
+
+- **Fonctions principales :**
+  - `create_random_biome()` : Génère un biome aléatoire.
+  - `create_ocean_biome()` : Crée un biome de type océan.
+
+### **9. `lake.py`**
+
+Modélise les lacs.
+
+- **Fonctions principales :**
+  - `create_lakes()` : Crée des lacs sur la carte en respectant certaines contraintes.
+
+### **10. `main.py`**
+
+Gère l'interface utilisateur pour configurer et afficher la carte.
+
+- **Fonctions principales :**
+  - `create_menu()` : Permet à l'utilisateur de configurer la taille et le mode de la carte.
+  - `MapApp` : Classe principale pour gérer l'interface graphique avec des options pour afficher, modifier, et télécharger la carte.
+
+### **11. `Render.py`**
+
+Gère l'affichage graphique de la carte et de ses éléments.
+
+- **Attributs principaux :**
+
+  - `screen` : Surface graphique pour le rendu des éléments.
+  - `map` : Instance de la classe `Map` pour gérer les éléments.
+  - `display_mode` : Mode d'affichage (« biome » ou « pays »).
+
+- **Fonctions principales :**
+  - `generate_map()` : Génère la carte en fonction des paramètres définis.
+  - `display_pixels()` : Affiche les éléments de la carte sur la surface graphique.
+  - `toggle_display_mode()` : Alterne entre les différents modes d'affichage.
+  - `save_image()` : Sauvegarde l'image actuelle de la carte au format PNG.
+
+---
+
+## Interactions entre les Modules
+
+1. **Génération des Pixels :**
+
+   - Les pixels sont créés et attribués à des zones (module `pixel.py` et `zone.py`).
+
+2. **Assemblage des Zones :**
+
+   - Les zones sont regroupées pour former des pays (`zone.py` et `country.py`).
+
+3. **Ajout d'Éléments Naturels :**
+
+   - Les biomes, lacs, rivières et routes sont générés après la création des zones (`biome.py`, `lake.py`, `river.py`, `road.py`).
+
+4. **Affichage Graphique :**
+
+   - Le module `Render.py` gère l'affichage des éléments graphiques à l'aide de Pygame.
+
+5. **Interface Utilisateur :**
+   - Le module `main.py` connecte les fonctionnalités de génération de carte à une interface interactive pour l'utilisateur.
+
+---
+
+## Bonnes Pratiques de Développement
+
+1. **Règles de Nommage :**
+
+   - Variables : minuscules avec underscores (`snake_case`).
+   - Classes : CamelCase.
+   - Fichiers : minuscules avec underscores.
+
+2. **Commentaires :**
+
+   - Chaque fonction est documentée avec une description claire de ses paramètres et de son rôle.
+
+3. **Modularité :**
+   - Le projet est divisé en modules indépendants facilitant la maintenance et l'évolutivité.
+
+---
+
+## Conclusion
+
+Ce document technique constitue une référence complète pour comprendre le fonctionnement interne du projet de génération de cartes 2D. Les sections fournissent des explications détaillées sur chaque module, leur rôle, et leurs interactions.

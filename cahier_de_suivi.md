@@ -3,6 +3,14 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+# Débrief DERNIERE REUNION
+
+Dans la doc technique :
+
+- les noms de dossiers sont en français alors qu'on doit tout avoir en angalais -> Changer les noms de dossiers et changer les exemples de la doc technique
+- Render avec un majuscule -> tout passer en minuscule
+- Séparation de partie à faire dans river ######, main et render
+
 # Débrief Réunion 02/01
 
 - Compte rendu + présentation (Jade) + doc technique + manuel
