@@ -27,6 +27,15 @@ class Biome:
         """
         return f"Biome(id={self.id}, name={self.name}, color={self.color}, altitude_avg={self.altitude_avg})"
 
+######################### VARIABLES
+    biome_colors = {
+        "Forest": (34, 139, 34),
+        "Desert": (210, 180, 140),
+        "Mountain": (139, 137, 137),
+        "Ocean": (0, 105, 148),
+        "Plains": (124, 252, 0),
+    }
+
 ######################### GETTER
 
     def get_biome_info(self):
@@ -39,17 +48,8 @@ class Biome:
             'Color': self.color,
             'Average Altitude': self.altitude_avg,
         }
-    
-######################### BIOME COLOR
-    biome_colors = {
-        "Forest": (34, 139, 34),
-        "Desert": (210, 180, 140),
-        "Mountain": (139, 137, 137),
-        "Ocean": (0, 105, 148),
-        "Plains": (124, 252, 0),
-    }
 
-######################### METHODS
+######################### STATIC METHODS
 
     @staticmethod
     def create_forest_biome():
@@ -86,13 +86,6 @@ class Biome:
         """
         return Biome(id=5, name="Plains", color=Biome.biome_colors["Plains"], altitude_avg=100)
 
-    # @staticmethod
-    # def create_lake_biome():
-    #     """
-    #     Crée et retourne un biome lac.
-    #     """
-    #     return Biome(id=6, name="Lake", color=Biome.biome_colors["Lake"], altitude_avg=0)
-
     @classmethod
     def create_random_biome(self):
         """
@@ -103,15 +96,13 @@ class Biome:
         return liste[rdn_num]
 
     @classmethod
-    def create_random_biome_2(self):
+    def create_random_biome_without_water(self):
         """
         Crée et retourne un biome au hasard, sans inclure les biomes océan ou lac.
         """
         liste = [self.create_forest_biome(), self.create_desert_biome(), self.create_mountain_biome(), self.create_plains_biome()]
         rdn_num = randint(0, len(liste) - 1)
         return liste[rdn_num]
-    
-    
     
     @classmethod
     def create_biomes(self):

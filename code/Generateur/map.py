@@ -1,5 +1,4 @@
 from .pixel import Pixel
-from .border import Border
 from .river import River
 from .road import Road
 from .city import City
