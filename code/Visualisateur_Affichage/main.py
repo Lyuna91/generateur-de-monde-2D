@@ -18,7 +18,7 @@ RIVERS = 5
 R_MAX = 5 # Nombre de rivières pour le slider
 ZONES = 100
 LAKES = random.randint(3, 6)
-MAP_MODE = "Pangea"
+MAP_MODE = "Pangee"
 MIN_VILLE = COUNTRIES
 MAX_VILLE = 15
 L_MAX = 5 # Nombre de lacs pour le slider
@@ -59,7 +59,7 @@ def set_parameters(size, mode):
 
     # Configurer les paramètres en fonction de la taille
     if size == 'Petit':
-        if mode == "Pangea" :
+        if mode == "Pangee" :
             COUNTRIES = 5
             CITIES = random.randint(7, 10)
             RIVERS = random.randint(1, 3)
@@ -90,7 +90,7 @@ def set_parameters(size, mode):
             R_MAX = 3
             L_MAX = 2
     elif size == 'Moyen':
-        if mode == "Pangea" :
+        if mode == "Pangee" :
             COUNTRIES = 7
             CITIES = random.randint(10, 20)
             RIVERS = random.randint(1, 6)
@@ -121,7 +121,7 @@ def set_parameters(size, mode):
             R_MAX = 6
             L_MAX = 6
     elif size == 'Grand':
-        if mode == "Pangea" :
+        if mode == "Pangee" :
             COUNTRIES = 10
             CITIES = random.randint(7, 30)
             RIVERS = random.randint(2, 10)
@@ -163,7 +163,7 @@ def create_menu():
 
     # Variables pour les sélections
     size_var = tk.StringVar(value='Moyen')
-    mode_var = tk.StringVar(value='Pangea')
+    mode_var = tk.StringVar(value='Pangee')
 
     # Choix de la taille
     tk.Label(root, text="Choisissez la taille de la carte :", font=BUTTON_FONT).pack(pady=10)
@@ -175,7 +175,7 @@ def create_menu():
 
     # Choix du mode
     tk.Label(root, text="Choisissez le mode de génération :", font=BUTTON_FONT).pack(pady=10)
-    for mode in ['Pangea', 'Archipel', 'Continent']:
+    for mode in ['Pangee', 'Archipel', 'Continent']:
         tk.Radiobutton(
             root, text=mode, variable=mode_var, value=mode,
             font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR
@@ -206,8 +206,10 @@ def create_menu():
 # Appeler le menu principal pour sélectionner les paramètres
 create_menu()
 
-
 class MapApp:
+
+    ############################## INIT
+
     def __init__(self, root):
         self.root = root
         self.root.title("Carte avec interface utilisateur")
@@ -241,6 +243,7 @@ class MapApp:
         self.create_widgets()
         self.update_canvas()  # Affiche la première carte
         
+    ############################## METHODS
 
     def download_image(self):
         """
@@ -393,8 +396,6 @@ class MapApp:
         # Canvas pour afficher la carte
         self.canvas = tk.Canvas(map_frame, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
         self.canvas.pack(expand=True, fill=tk.BOTH)
-        
-
 
     def handle_checkbox_change(self, mode):
         """
@@ -415,7 +416,6 @@ class MapApp:
         self.render.map.delete_all_road()
         self.render.map.cities = self.render.map.generate_cities(nb_cities)
         self.render.map.roads = self.render.map.generate_roads()
-
 
     def validate_rivers(self):
         nb_rivers = self.river_slider.get()

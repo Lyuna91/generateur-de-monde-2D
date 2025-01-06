@@ -61,7 +61,7 @@ class Map:
         """
         self.zones = Zone.generate_voronoi_zones(self.size[0], self.size[1], num_zones)
         
-        if mode == "Pangea":
+        if mode == "Pangee":
             self.generate_biomes_for_pangea()
         elif mode == "Archipel":
             self.generate_biomes_for_archipel()

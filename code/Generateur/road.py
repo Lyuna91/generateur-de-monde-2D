@@ -22,7 +22,7 @@ class Road:
         self.id = id
         self.start_city = start_city
         self.end_city = end_city
-        self.route_pixels = self.create_road_pixels(pixels)
+        self.road_pixels = self.create_road_pixels(pixels)
 
     def __repr__(self):
         """
