@@ -270,7 +270,14 @@ class MapApp:
             widget.config(bg=default_color)
 
         ### Boutons à gauche : Actions principales et curseurs ###
+
         tk.Label(button_frame_left, text="Actions principales", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=5)
+
+        btn_change_mode = tk.Button(button_frame_left, text="Changer de mode", command=self.restart_generation, 
+                            width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
+        btn_change_mode.pack(pady=5)
+        btn_change_mode.bind("<Enter>", lambda e: on_enter(e, btn_change_mode, HOVER_COLOR))
+        btn_change_mode.bind("<Leave>", lambda e: on_leave(e, btn_change_mode, BG_COLOR))
 
         btn_generate = tk.Button(button_frame_left, text="Régénérer la carte", command=self.generate_new_map, 
                                 width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
@@ -278,13 +285,13 @@ class MapApp:
         btn_generate.bind("<Enter>", lambda e: on_enter(e, btn_generate, HOVER_COLOR))
         btn_generate.bind("<Leave>", lambda e: on_leave(e, btn_generate, BG_COLOR))
 
+        tk.Label(button_frame_left, text="Réinitialisations", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=10)
+
         btn_reset_biomes = tk.Button(button_frame_left, text="Réinitialiser biomes", command=self.reset_biomes, 
                                     width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
         btn_reset_biomes.pack(pady=5)
         btn_reset_biomes.bind("<Enter>", lambda e: on_enter(e, btn_reset_biomes, HOVER_COLOR))
         btn_reset_biomes.bind("<Leave>", lambda e: on_leave(e, btn_reset_biomes, BG_COLOR))
-
-        tk.Label(button_frame_left, text="Réinitialisations", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=10)
 
         btn_reset_cities = tk.Button(button_frame_left, text="Réinitialiser villes/routes", command=self.reset_cities_and_roads, 
                                     width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR)
@@ -653,6 +660,14 @@ class MapApp:
         img_tk = ImageTk.PhotoImage(img)
         self.canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
         self.canvas.image_tk = img_tk  # Empêche le garbage collector de supprimer l'image
+    
+    def restart_generation(self):
+        """
+        Redémarre le processus de génération en rouvrant le menu principal.
+        """
+        self.root.destroy()  # Ferme la fenêtre actuelle
+        create_menu()  # Relance le menu principal
+
 
 
 # Lancer l'application principale
