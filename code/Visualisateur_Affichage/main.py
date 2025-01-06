@@ -511,31 +511,38 @@ class MapApp:
 
     def delete_city(self):
         """
-        Permet de supprimer une ville sélectionnée.
+        Permet de supprimer une ville sélectionnée et toutes les routes associées.
         """
         # Fenêtre popup pour choisir une ville
         popup = tk.Toplevel(self.root)
         popup.title("Supprimer une ville")
-
+    
         tk.Label(popup, text="Choisissez une ville à supprimer :", font=BUTTON_FONT).pack(pady=5)
-
+    
         # Liste déroulante pour les villes
         city_var = tk.StringVar(value=self.render.map.cities[0].name if self.render.map.cities else "")
         city_menu = tk.OptionMenu(popup, city_var, *[city.name for city in self.render.map.cities])
         city_menu.pack(pady=5)
-
+    
         # Bouton pour valider
         def delete_selected_city():
             selected_city = next(city for city in self.render.map.cities if city.name == city_var.get())
             self.render.map.cities.remove(selected_city)
+            
+            # Supprimer les routes associées à la ville
+            roads_to_remove = [road for road in self.render.map.roads if road.start_city == selected_city or road.end_city == selected_city]
+            for road in roads_to_remove:
+                self.render.map.roads.remove(road)
+                print(f"[INFO] Route supprimée : {road.start_city.name} -> {road.end_city.name}")
+    
             print(f"[INFO] Ville supprimée : {selected_city.name}")
             self.update_canvas()
             popup.destroy()
-
+    
         tk.Button(popup, text="Supprimer", command=delete_selected_city,
                   width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT,
                   bg=BG_COLOR, fg=FG_COLOR).pack(pady=10)
-
+    
         popup.mainloop()
 
     def edit_country_name(self):
