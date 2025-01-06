@@ -137,17 +137,23 @@ class Render:
                 for pixel in river.route_pixels:
                     pygame.draw.rect(self.screen, (0, 105, 148), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
 
+            # Affichage conditionnel des routes
+            if self.show_roads:
+                for road in self.map.roads:
+                    for pixel in road.route_pixels:
+                        pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
+                        
+            for lake in self.map.lakes:
+                for pixel in lake.lake_pixels:
+                    pygame.draw.rect(self.screen, pixel.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
+
+
            # Affichage conditionnel des frontières
             if self.show_borders:
                 for country in self.map.countries:
                     for pixel in country.border_pixels:
                         pygame.draw.rect(self.screen, (0, 0, 0), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
         
-            # Affichage conditionnel des routes
-            if self.show_roads:
-                for road in self.map.roads:
-                    for pixel in road.route_pixels:
-                        pygame.draw.rect(self.screen, (255, 255, 0), (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
             
             # Affichage conditionnel des villes
             if self.show_cities:
@@ -176,9 +182,7 @@ class Render:
                     pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(PIXEL_SIZE, PIXEL_SIZE))
                     self.screen.blit(text_surface, text_rect)
 
-            for lake in self.map.lakes:
-                for pixel in lake.lake_pixels:
-                    pygame.draw.rect(self.screen, pixel.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
+            
 
 
 
