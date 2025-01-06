@@ -21,6 +21,8 @@ class Render:
     Classe permettant de gérer l'affichage de la carte générée.
     """
 
+    ######################### INIT
+
     def __init__(self, width, height, title, num_countries, num_cities, num_rivers, num_zones, mode, num_lakes):
         self.width = width
         self.height = height
@@ -46,7 +48,8 @@ class Render:
         pygame.font.init()  # Initialiser les polices
         self.font = pygame.font.SysFont('Arial', 15, bold=True)  # Police plus grande et en gras
 
-
+    ######################### METHODS
+    
     def toggle_display_mode(self, mode):
         self.display_mode = mode
         self.display_pixels()

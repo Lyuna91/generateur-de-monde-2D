@@ -3,6 +3,11 @@ updated_at: 2024-10-12T17:15:10.623+02:00
 edited_seconds: 10
 ---
 
+## Update Yuna 06/01
+
+J'ai régler les problèmes dans notre code par rapport à la doc technique.
+J'ai corrigé les problèmes de suppressions à l'unité
+
 # Débrief DERNIERE REUNION
 
 Dans la doc technique :
@@ -18,6 +23,10 @@ Dans la doc technique :
 - Faire l'exécutable lundi 06 janvier (Carlos) + Adaptation Ecran + Readme comment utiliser le logiciel
 
 Dernière réunion lundi 6 janvier au soir : lecture complète ensemble de la doc technique + lecture complète du manuel + préparation de la présentation. Cloture avec génération de l'exécutable
+
+# Update Yuna 30/12
+
+J'ai fais les suppressions à l'unité de ville, pays ainsi que des routes
 
 # Update Jade 02/01/2024
 
@@ -45,6 +54,10 @@ A faire pour le 2 janvier
 - Exécutable
 - Documentation du code
 - Documentation technique
+
+# Update Yuna 27/12
+
+J'ai réussi a faire les lacs, les fôrets et les plages mais ces dernières mettent 50 ans à se générer du coup j'ai garder la fonction mais j'ai commenter son appel.
 
 # Update Carlos 23/12
 

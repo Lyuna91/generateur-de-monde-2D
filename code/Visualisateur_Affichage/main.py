@@ -10,6 +10,8 @@ from Generateur.map import Map
 from Render import Render
 import random
 
+####################### PARAMETRES
+
 CANVAS_WIDTH = 800
 CANVAS_HEIGHT = 600
 COUNTRIES = 10
@@ -47,6 +49,7 @@ DELETE_HOVER_COLOR = "#ff6666"
 DOWNLOAD_BUTTON_COLOR = "#4CAF50"
 DOWNLOAD_HOVER_COLOR = "#45A049"
 
+####################### FONCTIONS
 
 def set_parameters(size, mode):
     """
