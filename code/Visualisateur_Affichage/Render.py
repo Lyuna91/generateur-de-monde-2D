@@ -176,6 +176,10 @@ class Render:
                     pygame.draw.rect(self.screen, (255, 255, 255), text_rect.inflate(PIXEL_SIZE, PIXEL_SIZE))
                     self.screen.blit(text_surface, text_rect)
 
+            for lake in self.map.lakes:
+                for pixel in lake.lake_pixels:
+                    pygame.draw.rect(self.screen, pixel.color, (pixel.x, pixel.y, PIXEL_SIZE, PIXEL_SIZE))
+
 
 
 
