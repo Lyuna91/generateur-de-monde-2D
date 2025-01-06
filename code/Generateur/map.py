@@ -252,6 +252,6 @@ class Map:
 
         # Assigner des biomes aléatoires (sans eau) aux zones de l'île
         for zone in island_zones:
-            zone.biome = Biome.create_random_biome_2()
+            zone.biome = Biome.create_random_biome_without_water()
             for pixel in zone.pixels:
                 pixel.color = zone.biome.color
