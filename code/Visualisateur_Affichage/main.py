@@ -181,14 +181,17 @@ def create_menu():
             font=BUTTON_FONT, bg=BG_COLOR, fg=FG_COLOR, selectcolor=HOVER_COLOR
         ).pack(pady=5)
 
-    # Bouton Valider
+    # Fonction pour valider les choix
     def validate_and_close():
         """
         Valider les paramètres sélectionnés et fermer la fenêtre.
         """
-        set_parameters(size_var.get(), mode_var.get())
+        selected_size = size_var.get()
+        selected_mode = mode_var.get()
         root.destroy()
+        return selected_size, selected_mode
 
+    # Bouton Valider
     tk.Button(
         root, text="Valider", command=validate_and_close,
         width=BUTTON_WIDTH, height=BUTTON_HEIGHT,
@@ -196,6 +199,8 @@ def create_menu():
     ).pack(pady=20)
 
     root.mainloop()
+    return size_var.get(), mode_var.get()  # Retourne les choix
+
 
 
 # Appeler le menu principal pour sélectionner les paramètres
@@ -325,13 +330,6 @@ class MapApp:
         btn_validate_sliders.bind("<Enter>", lambda e: on_enter(e, btn_validate_sliders, HOVER_COLOR))
         btn_validate_sliders.bind("<Leave>", lambda e: on_leave(e, btn_validate_sliders, BG_COLOR))
 
-        ### Nouveau bouton pour télécharger l'image ###
-        btn_download_image = tk.Button(button_frame_left, text="Télécharger l'image", command=self.download_image, 
-                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=DOWNLOAD_BUTTON_COLOR, fg="white")
-        btn_download_image.pack(pady=5)
-        btn_download_image.bind("<Enter>", lambda e: on_enter(e, btn_download_image, DOWNLOAD_HOVER_COLOR))
-        btn_download_image.bind("<Leave>", lambda e: on_leave(e, btn_download_image, DOWNLOAD_BUTTON_COLOR))
-
         ### Boutons à droite : Affichages, modifications, et suppressions ###
         tk.Label(button_frame_right, text="Affichages", font=("Helvetica", 14, "bold")).pack(anchor="w", pady=5)
 
@@ -383,6 +381,14 @@ class MapApp:
         btn_delete_road.pack(pady=5)
         btn_delete_road.bind("<Enter>", lambda e: on_enter(e, btn_delete_road, DELETE_HOVER_COLOR))
         btn_delete_road.bind("<Leave>", lambda e: on_leave(e, btn_delete_road, DELETE_BUTTON_COLOR))
+
+        ### Nouveau bouton pour télécharger l'image ###
+        btn_download_image = tk.Button(button_frame_right, text="Télécharger l'image", command=self.download_image, 
+                                    width=BUTTON_WIDTH, height=BUTTON_HEIGHT, font=BUTTON_FONT, bg=DOWNLOAD_BUTTON_COLOR, fg="white")
+        btn_download_image.pack(pady=5)
+        btn_download_image.bind("<Enter>", lambda e: on_enter(e, btn_download_image, DOWNLOAD_HOVER_COLOR))
+        btn_download_image.bind("<Leave>", lambda e: on_leave(e, btn_download_image, DOWNLOAD_BUTTON_COLOR))
+
 
         # Canvas pour afficher la carte
         self.canvas = tk.Canvas(map_frame, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white")
@@ -666,7 +672,18 @@ class MapApp:
         Redémarre le processus de génération en rouvrant le menu principal.
         """
         self.root.destroy()  # Ferme la fenêtre actuelle
-        create_menu()  # Relance le menu principal
+
+        # Récupérer les nouveaux paramètres
+        size, mode = create_menu()
+
+        # Met à jour les paramètres globaux
+        set_parameters(size, mode)
+
+        # Relancer l'application principale
+        new_root = tk.Tk()
+        MapApp(new_root)
+        new_root.mainloop()
+
 
 
 

@@ -104,7 +104,7 @@ class Map:
         """
         for zone in self.zones:
             if random.random() < 0.2:  # 20% des zones deviennent des îles
-                zone.biome = Biome.create_random_biome_2()  # Biome terrestre (sans eau)
+                zone.biome = Biome.create_random_biome_without_water()  # Biome terrestre (sans eau)
             else:
                 zone.biome = Biome.create_ocean_biome()
 
@@ -180,7 +180,7 @@ class Map:
         """
         for zone in self.zones: 
             if zone.biome is None: 
-                zone.biome = Biome.create_random_biome_2()
+                zone.biome = Biome.create_random_biome_without_water()
                 for pixel in zone.pixels:
                     pixel.color = zone.biome.color
 
