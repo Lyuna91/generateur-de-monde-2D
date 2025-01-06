@@ -6,7 +6,7 @@ import pygame
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from Generateur.map import Map
+from Generator.map import Map
 from render import Render
 import random
 

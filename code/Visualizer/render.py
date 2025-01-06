@@ -5,14 +5,14 @@ import random
 from scipy.spatial import Voronoi
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from Generateur.map import Map
-from Generateur.biome import Biome
-from Generateur.zone import Zone
-from Generateur.pixel import Pixel
-from Generateur.country import Country
-from Generateur.city import City
-from Generateur.road import Road
-from Generateur.river import River
+from Generator.map import Map
+from Generator.biome import Biome
+from Generator.zone import Zone
+from Generator.pixel import Pixel
+from Generator.country import Country
+from Generator.city import City
+from Generator.road import Road
+from Generator.river import River
 
 PIXEL_SIZE = 5
 
