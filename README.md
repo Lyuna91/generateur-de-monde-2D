@@ -36,7 +36,7 @@ Soit via Github soit via une transmission annexe.
 
 2. Acceder au repertoire
 
-cd generateur-de-monde-2D\code\Visualisateur_Affichage
+cd generateur-de-monde-2D\code\Visualizer
 
 3. Lancer le programme
 
