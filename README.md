@@ -50,4 +50,6 @@ py main.py
 
 ### Lancer le programme grace à l'exécuteur (.exe)
 
-1. Une fois le projet telecharger cliquez sur l'application main.exe et le programme se lancera.
+1. Une fois le projet telecharger, ouvrez le fichier Visualizer -> output -> main . Puis lancez le app.exe
+
+2. Amusez vous bien avec notre logiciel
